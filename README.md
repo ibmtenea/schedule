@@ -1,5 +1,6 @@
 # Schedule
 
+Aplicación para el control y recopilación de datos.
 
 Reconstruir módulos de Node
 ```
