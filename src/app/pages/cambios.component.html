@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mt-5">
+            <div class="tabbable" id="tabs-850675">
+			<app-botonestab></app-botonestab>			
+				<div class="tab-content p-5">
+					<div class="tab-pane active" id="panel-813817">
+						
+						
+						<mat-tab-group  (selectedTabChange)="handleMatTabChange($event)">
+                            <mat-tab label="Cambios que provocan incidencia– 72h previas"><app-provocanincidencia></app-provocanincidencia></mat-tab>
+                            <mat-tab label="Cambios críticos"><app-cambioscriticos></app-cambioscriticos></mat-tab>
+						</mat-tab-group> 
+
+
+
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>

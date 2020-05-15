@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+
+html, body { height: 100%; }
+
+
+.footer {
+margin-top:50px;
+    width: 100%;
+  }
+
+body { 
+    background: #dce0d9;
+    margin: 0; font-family: 'Open Sans', sans-serif; 
+}
+
+h2{font-weight:700;font-size:26px;color:#495867;font-family: 'Open Sans', sans-serif;}
+h4{color:#c18c5d;font-size:18px;}
+h3{color:#c18c5d;font-size:19px;}
+.text-muted{color:#c18c5d !important;}
+
+
+
+/***************** GLOBALES*********************/
+.anchoinput{width:70px;}
+.noborder td, .borderless th {border:0px;font-size:14px;}
+.columnadiassemana{background-color: #4e4e4e;color:#ffffff;}
+.zebraone{background-color: #eed2b9;border-bottom:1px solid #ffffff !important;}
+
+.borderleft{padding:0px; border-right:1px solid #DFE2E6;}
+.borderbase{padding:0px; border-bottom:1px solid #DFE2E6;}
+.bgdias{background-color: #8a8888;color:#cccccc;}
+
+.columnadias{width:80px;}
+.columnanames{width:130px;}
+.columnames{width:130px;}
+
+.c1tema{width:80px;}
+.c2tema{width:250px;}
+.c3tema{width:200px;}
+.c4tema{width:390px;}
+.c5tema{width:450px;}
+.c6tema{width:140px;}
+
+.minifoto{height:30px;}
+.positive {width:100%;
+    background-color: #d0f3c9;text-align:center !important;margin:0px;
+}
+
+.negative {width:100%;
+    background-color: #f2746f;text-align:center !important;
+}
+.warning{width:100%;
+  background-color: #f0e07a;text-align:center !important;
+}
+
+.text-muted2{color:#cccccc;}
+
+   
+
+.logoimage{height:30px;margin-right:30px;}
+.bg-dark{background-color: #495867 !important;}
+.searchinput{font-size:13px;height:30px;border-radius: 1rem;}
+
+.botonsearch{border-radius: 50%;
+    background-color: #c18c5d;
+    border: none;
+    height:40px;
+    width:40px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.botonsearch:hover, .botonsearch:focus, .botonsearch:active, .botonsearch.active, .open>.dropdown-toggle.btn-botonsearch {
+    color: #fff;
+    background-color: #808f85;
+    border-color: #808f85; /*set the color you want here*/
+}
+
+
+.nav-tabs .nav-link{background-color: #c7c9c5;color:#495867;margin-right:2px;font-size:16px;}
+.nav-tabs .active{border-left:0px;border-right:0px;}
+.tab-content{background-color: #ffffff;
+    -webkit-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);
+    box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);}

@@ -1,0 +1,749 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 p-0 mt-5">
+      <h2>Controles Batch</h2>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  
+
+  <div class="row">
+    <div class="col-9 text-right p-0 mt-2">
+      <!-- <a
+            alt="Nuevo registro"
+            title="nuevo registro"
+            [routerLink]="['/', 'alta']"
+            class="btn btn-info pt4 btn-circle posicionplus"
+            ><i class="fa fa-plus fa-3"></i
+          ></a> -->
+    </div>
+    <div class="col-3 p-0 mt-2 text-right">
+      <div class="form">
+        <mat-form-field floatPlaceholder="never" color="accent">
+          <input
+            matInput
+            placeholder="Buscar"
+            (keyup)="updateFilterBatch1($event)"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!--tabla 1-->
+    <div class="col-12 p-0 mt-2">
+      <ngx-datatable
+        #mydatatable
+        class="material striped"
+        headerHeight="50"
+        [limit]="10"
+        [columnMode]="'force'"
+        footerHeight="50"
+        rowHeight="50"
+        [rows]="rows"
+        [messages]="my_messages"
+      >
+        <ngx-datatable-column name="id_coba1" [maxWidth]="90">
+          <ng-template ngx-datatable-header-template>
+            <span>ID</span>
+          </ng-template>
+          <ng-template
+            class="mat-column-id"
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+            ><div class="text-center">{{ row.id_coba1 }}</div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_hito1" [maxWidth]="500">
+          <ng-template ngx-datatable-header-template>
+            <span>Hito</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_hito1'] = true"
+              *ngIf="!editing[rowIndex + '-coba_hito1']"
+            >
+              {{ row.coba_hito1 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_hito1 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_hito1'] = false"
+              (keyup.enter)="updateValue1($event, 'coba_hito1', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_hito1']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_hito1"
+              [title]="row.id_coba1"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_fecha1" [maxWidth]="100">
+          <ng-template ngx-datatable-header-template>
+            <span>Fecha</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_fecha1'] = true"
+              *ngIf="!editing[rowIndex + '-coba_fecha1']"
+            >
+              {{ row.coba_fecha1 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_fecha1 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_fecha1'] = false"
+              (keyup.enter)="updateValue1($event, 'coba_fecha1', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_fecha1']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_fecha1"
+              [title]="row.id_coba1"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_horarioteorico1" [maxWidth]="100">
+          <ng-template ngx-datatable-header-template>
+            <span>Horario teórico</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_horarioteorico1'] = true"
+              *ngIf="!editing[rowIndex + '-coba_horarioteorico1']"
+            >
+              {{ row.coba_horarioteorico1 | slice: 0:90 }}
+              <span
+                class="text-muted2"
+                *ngIf="row.coba_horarioteorico1 === null"
+              >
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="
+                editing[rowIndex + '-coba_horarioteorico1'] = false
+              "
+              (keyup.enter)="
+                updateValue1($event, 'coba_horarioteorico1', rowIndex)
+              "
+              *ngIf="editing[rowIndex + '-coba_horarioteorico1']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_horarioteorico1"
+              [title]="row.id_coba1"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_horarioreal1" [maxWidth]="100">
+          <ng-template ngx-datatable-header-template>
+            <span>Horario real</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_horarioreal1'] = true"
+              *ngIf="!editing[rowIndex + '-coba_horarioreal1']"
+            >
+              {{ row.coba_horarioreal1 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_horarioreal1 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_horarioreal1'] = false"
+              (keyup.enter)="updateValue1($event, 'coba_horarioreal1', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_horarioreal1']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_horarioreal1"
+              [title]="row.id_coba1"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_jobs_pendientes1" [maxWidth]="500">
+          <ng-template ngx-datatable-header-template>
+            <span>Jobs pendientes</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_jobs_pendientes1'] = true"
+              *ngIf="!editing[rowIndex + '-coba_jobs_pendientes1']"
+            >
+              {{ row.coba_jobs_pendientes1 | slice: 0:90 }}
+              <span
+                class="text-muted2"
+                *ngIf="row.coba_jobs_pendientes1 === null"
+              >
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="
+                editing[rowIndex + '-coba_jobs_pendientes1'] = false
+              "
+              (keyup.enter)="
+                updateValue1($event, 'coba_jobs_pendientes1', rowIndex)
+              "
+              *ngIf="editing[rowIndex + '-coba_jobs_pendientes1']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_jobs_pendientes1"
+              [title]="row.id_coba1"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_incidencias1" [maxWidth]="1610">
+          <ng-template ngx-datatable-header-template>
+            <span>Incidencias</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_incidencias1'] = true"
+              *ngIf="!editing[rowIndex + '-coba_incidencias1']"
+            >
+              {{ row.coba_incidencias1 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_incidencias1 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_incidencias1'] = false"
+              (keyup.enter)="updateValue1($event, 'coba_incidencias1', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_incidencias1']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_incidencias1"
+              [title]="row.id_coba1"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+            <ng-template
+                class="mat-column-id"
+                ngx-datatable-cell-template
+                let-row="row"
+            >
+
+                <div class="text-center">
+                <div class="row">
+                    <div class="col-12 p0 m0">
+
+
+        <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
+                    <button (click)="duplicar(row, i)"
+                    class="btn btn-warning botonsizes mr-1">
+                        <i class="fa fa-clone"></i>
+                    </button>
+                    <a
+                        [routerLink]="['/detalle', row.tokenid]"
+                        class="btn btn-warning botonsizes mr-1"
+                        ><i class="fa fa-pencil"></i
+                    ></a>
+                    <button
+                        (click)="borrarRegistro(row, i)"
+                        class="btn btn-warning botonsizes"
+                    >
+                        <i class="fa fa-trash"></i>
+                    </button>
+        </div> 
+
+        <div *ngIf="registroroleperson.id_rol== '8'">
+                    <button (click)="duplicar(row, i)"
+                    class="btn btn-warning botonsizes mr-1">
+                        <i class="fa fa-clone"></i>
+                    </button>
+                    <a
+                    [routerLink]="['/detalle', row.tokenid]"
+                    class="btn btn-warning botonsizes mr-1"
+                    ><i class="fa fa-pencil"></i
+                    ></a>
+                    <button
+                    (click)="borrarRegistro(row, i)"
+                    class="btn btn-warning botonsizes"
+                    >
+                    <i class="fa fa-trash"></i>
+                    </button>
+        </div> 
+
+
+                    </div>
+                </div>
+                </div>
+            </ng-template>
+            </ngx-datatable-column> -->
+      </ngx-datatable>
+    </div>
+    <!--/tabla 1-->
+  </div>
+
+
+
+
+
+  <div class="row">
+    <div class="col-9 text-right p-0 mt-5">
+      <!-- <a
+            alt="Nuevo registro"
+            title="nuevo registro"
+            [routerLink]="['/', 'alta']"
+            class="btn btn-info pt4 btn-circle posicionplus"
+            ><i class="fa fa-plus fa-3"></i
+          ></a> -->
+    </div>
+    <div class="col-3 p-0 mt-5 text-right">
+      <div class="form">
+        <mat-form-field floatPlaceholder="never" color="accent">
+          <input
+            matInput
+            placeholder="Buscar"
+            (keyup)="updateFilterBatch2($event)"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <!--tabla 2-->
+    <div class="col-12 p-0 mt-2">
+        <ngx-datatable
+        #mydatatable
+        class="material striped"
+        headerHeight="50"
+        [limit]="15"
+        [columnMode]="'force'"
+        footerHeight="50"
+        rowHeight="50"
+        [rows]="rows2"
+        [messages]="my_messages"
+      >
+        <ngx-datatable-column name="id_coba2" [maxWidth]="90">
+          <ng-template ngx-datatable-header-template>
+            <span>ID</span>
+          </ng-template>
+          <ng-template
+            class="mat-column-id"
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+            ><div class="text-center">{{ row.id_coba2 }}</div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_hito1" [maxWidth]="500">
+          <ng-template ngx-datatable-header-template>
+            <span>Hito</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+
+
+          <ngx-datatable-column name="coba_fechaproceso2" [maxWidth]="100">
+            <ng-template ngx-datatable-header-template>
+              <span>Fecha proceso</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-coba_fechaproceso2'] = true"
+                *ngIf="!editing[rowIndex + '-coba_fechaproceso2']"
+              >
+                {{ row.coba_fechaproceso2 | slice: 0:90 }}
+                <span class="text-muted2" *ngIf="row.coba_fechaproceso2 === null">
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+              <input
+                required
+                autofocus
+                (clickOutside)="editing[rowIndex + '-coba_fechaproceso2'] = false"
+                (keyup.enter)="updateValue2($event, 'coba_fechaproceso2', rowIndex)"
+                *ngIf="editing[rowIndex + '-coba_fechaproceso2']"
+                type="text"
+                class="form-control"
+                [value]="row.coba_fechaproceso2"
+                [title]="row.id_coba2"
+              />
+            </ng-template>
+          </ngx-datatable-column>
+
+
+
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_proceso2'] = true"
+              *ngIf="!editing[rowIndex + '-coba_proceso2']"
+            >
+              {{ row.coba_proceso2 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_proceso2 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_proceso2'] = false"
+              (keyup.enter)="updateValue2($event, 'coba_proceso2', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_proceso2']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_proceso2"
+              [title]="row.id_coba2"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        
+        <ngx-datatable-column name="coba_job2" [maxWidth]="500">
+            <ng-template ngx-datatable-header-template>
+              <span>Jobs</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-coba_job2'] = true"
+                *ngIf="!editing[rowIndex + '-coba_job2']"
+              >
+                {{ row.coba_job2 | slice: 0:90 }}
+                <span
+                  class="text-muted2"
+                  *ngIf="row.coba_job2 === null"
+                >
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+              <input
+                required
+                autofocus
+                (clickOutside)="
+                  editing[rowIndex + '-coba_job2'] = false
+                "
+                (keyup.enter)="
+                  updateValue2($event, 'coba_job2', rowIndex)
+                "
+                *ngIf="editing[rowIndex + '-coba_job2']"
+                type="text"
+                class="form-control"
+                [value]="row.coba_job2"
+                [title]="row.id_coba2"
+              />
+            </ng-template>
+          </ngx-datatable-column>
+
+
+
+          <ngx-datatable-column name="coba_terminado2" [maxWidth]="500">
+            <ng-template ngx-datatable-header-template>
+              <span>Terminado</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-coba_terminado2'] = true"
+                *ngIf="!editing[rowIndex + '-coba_terminado2']"
+              >
+                {{ row.coba_terminado2 | slice: 0:90 }}
+                <span
+                  class="text-muted2"
+                  *ngIf="row.coba_terminado2 === null"
+                >
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+              <input
+                required
+                autofocus
+                (clickOutside)="
+                  editing[rowIndex + '-coba_terminado2'] = false
+                "
+                (keyup.enter)="
+                  updateValue2($event, 'coba_terminado2', rowIndex)
+                "
+                *ngIf="editing[rowIndex + '-coba_terminado2']"
+                type="text"
+                class="form-control"
+                [value]="row.coba_terminado2"
+                [title]="row.id_coba2"
+              />
+            </ng-template>
+          </ngx-datatable-column>
+
+
+
+
+
+
+
+
+
+
+
+        <ngx-datatable-column name="coba_horarioteorico2" [maxWidth]="100">
+          <ng-template ngx-datatable-header-template>
+            <span>Horario teórico</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_horarioteorico2'] = true"
+              *ngIf="!editing[rowIndex + '-coba_horarioteorico2']"
+            >
+              {{ row.coba_horarioteorico2 | slice: 0:90 }}
+              <span
+                class="text-muted2"
+                *ngIf="row.coba_horarioteorico2 === null"
+              >
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="
+                editing[rowIndex + '-coba_horarioteorico2'] = false
+              "
+              (keyup.enter)="
+                updateValue2($event, 'coba_horarioteorico2', rowIndex)
+              "
+              *ngIf="editing[rowIndex + '-coba_horarioteorico2']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_horarioteorico2"
+              [title]="row.id_coba2"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="coba_horarioreal2" [maxWidth]="100">
+          <ng-template ngx-datatable-header-template>
+            <span>Horario real</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_horarioreal2'] = true"
+              *ngIf="!editing[rowIndex + '-coba_horarioreal2']"
+            >
+              {{ row.coba_horarioreal2 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_horarioreal2 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_horarioreal2'] = false"
+              (keyup.enter)="updateValue2($event, 'coba_horarioreal2', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_horarioreal2']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_horarioreal2"
+              [title]="row.id_coba2"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        
+
+        <ngx-datatable-column name="coba_incidencias2" [maxWidth]="1610">
+          <ng-template ngx-datatable-header-template>
+            <span>Problemas</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <span
+              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              (dblclick)="editing[rowIndex + '-coba_incidencias2'] = true"
+              *ngIf="!editing[rowIndex + '-coba_incidencias2']"
+            >
+              {{ row.coba_incidencias2 | slice: 0:90 }}
+              <span class="text-muted2" *ngIf="row.coba_incidencias2 === null">
+                vacío
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </span>
+            <input
+              required
+              autofocus
+              (clickOutside)="editing[rowIndex + '-coba_incidencias2'] = false"
+              (keyup.enter)="updateValue2($event, 'coba_incidencias2', rowIndex)"
+              *ngIf="editing[rowIndex + '-coba_incidencias2']"
+              type="text"
+              class="form-control"
+              [value]="row.coba_incidencias2"
+              [title]="row.id_coba2"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+            <ng-template
+                class="mat-column-id"
+                ngx-datatable-cell-template
+                let-row="row"
+            >
+
+                <div class="text-center">
+                <div class="row">
+                    <div class="col-12 p0 m0">
+
+
+        <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
+                    <button (click)="duplicar(row, i)"
+                    class="btn btn-warning botonsizes mr-1">
+                        <i class="fa fa-clone"></i>
+                    </button>
+                    <a
+                        [routerLink]="['/detalle', row.tokenid]"
+                        class="btn btn-warning botonsizes mr-1"
+                        ><i class="fa fa-pencil"></i
+                    ></a>
+                    <button
+                        (click)="borrarRegistro(row, i)"
+                        class="btn btn-warning botonsizes"
+                    >
+                        <i class="fa fa-trash"></i>
+                    </button>
+        </div> 
+
+        <div *ngIf="registroroleperson.id_rol== '8'">
+                    <button (click)="duplicar(row, i)"
+                    class="btn btn-warning botonsizes mr-1">
+                        <i class="fa fa-clone"></i>
+                    </button>
+                    <a
+                    [routerLink]="['/detalle', row.tokenid]"
+                    class="btn btn-warning botonsizes mr-1"
+                    ><i class="fa fa-pencil"></i
+                    ></a>
+                    <button
+                    (click)="borrarRegistro(row, i)"
+                    class="btn btn-warning botonsizes"
+                    >
+                    <i class="fa fa-trash"></i>
+                    </button>
+        </div> 
+
+
+                    </div>
+                </div>
+                </div>
+            </ng-template>
+            </ngx-datatable-column> -->
+      </ngx-datatable>
+    </div>
+    <!--tabla 2-->
+  </div>
+</div>

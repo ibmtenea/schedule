@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 p-0 mt-5">
+      <h2>Ticketing CECO – Help Desk</h2>
+      <h3>Aperturas vs Cierres</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-left p-0 mt-5">
+
+        
+      <table class="table table-bordered table-hover">
+
+        <tbody>
+          <tr *ngFor="let ticke of ticketing; let i = index">
+            <td class="columnames">{{ ticke.tike_mes }}</td>
+            <td class="columnanames" class="borderleft p-0 m-0">
+              <p class="ml-2">Día</p>
+              <p class="ml-2">Abiertos</p>
+              <p class="ml-2">Cerrados</p>
+              <p class="ml-2">Diferencia</p>
+            </td>
+            <td
+              class="columnadias"
+              class="p-0 m-0"
+              *ngFor="let param of ticke.parametros; let n = index;"
+            >
+
+            <p class="bgdias borderbase text-center">{{param.tike_dia}}</p>
+
+
+
+
+
+
+    <p class="borderbase text-center">
+        {{param.tike_abiertos}} 
+    <!-- <input-editor 
+    [(ngModel)]="param.tike_abiertos" 
+    type="text" 
+    (onSave)="sampleClick()">
+    </input-editor> -->
+    </p>
+
+
+
+
+
+    <p class="borderbase text-center">{{param.tike_cerrados}}</p>
+
+
+
+
+
+
+              <p class="text-center">{{ param.tike_diferencia }}</p>
+            </td>
+          </tr>
+        </tbody>
+
+
+ 
+
+      </table>
+    </div>
+  </div>
+</div>

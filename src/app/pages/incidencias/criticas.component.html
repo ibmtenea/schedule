@@ -1,0 +1,330 @@
+
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-12 p-0 mt-5">
+        <h2>Incidencias críticas en infraestructura sin afectación a servicio</h2>
+    </div>
+    </div>
+
+  
+    <div class="row">
+      <div class="col-9 text-right p-0 mt-2">
+        <!-- <a
+          alt="Nuevo registro"
+          title="nuevo registro"
+          [routerLink]="['/', 'alta']"
+          class="btn btn-info pt4 btn-circle posicionplus"
+          ><i class="fa fa-plus fa-3"></i
+        ></a> -->
+      </div>
+      <div class="col-3 p-0 mt-2 text-right">
+        <div class="form">
+          <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput placeholder="Buscar" (keyup)="updateFilter($event)" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+    <div class="row">
+      <div class="col-12 p-0 m-0">
+        <ngx-datatable
+          #mydatatable
+          class="material striped"
+          headerHeight="50"
+          [limit]="25"
+          [columnMode]="'force'"
+          footerHeight="50"
+          rowHeight="50"
+          [rows]="rows"
+          [messages]="my_messages"
+        >
+          <ngx-datatable-column name="id_crise" [maxWidth]="60">
+            <ng-template ngx-datatable-header-template>
+              <span>ID</span>
+            </ng-template>
+            <ng-template
+              class="mat-column-id"
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+              ><div class="text-center">{{ row.id_crise }}</div>
+            </ng-template>
+          </ngx-datatable-column>
+ 
+          <ngx-datatable-column name="crise_fecha" [maxWidth]="130">
+            <ng-template ngx-datatable-header-template>
+              <span>Fecha</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-crise_fecha'] = true"
+            *ngIf="!editing[rowIndex + '-crise_fecha']"
+            >
+            {{ row.crise_fecha | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.crise_fecha === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-crise_fecha'] = false"
+            (keyup.enter)="updateValue($event, 'crise_fecha', rowIndex)"
+            *ngIf="editing[rowIndex + '-crise_fecha']"
+            type="text"
+            class="form-control"
+            [value]="row.crise_fecha"
+            [title]="row.id_crise"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="crise_proveedor" [maxWidth]="400">
+            <ng-template ngx-datatable-header-template>
+              <span>Proveedor</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-crise_proveedor'] = true"
+            *ngIf="!editing[rowIndex + '-crise_proveedor']"
+            >
+            {{ row.crise_proveedor | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.crise_proveedor === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-crise_proveedor'] = false"
+            (keyup.enter)="updateValue($event, 'crise_proveedor', rowIndex)"
+            *ngIf="editing[rowIndex + '-crise_proveedor']"
+            type="text"
+            class="form-control"
+            [value]="row.crise_proveedor"
+            [title]="row.id_crise"
+          /></ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="crise_existe_incidencia" [maxWidth]="300">
+            <ng-template ngx-datatable-header-template>
+              <span>Existe incidencia</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-crise_existe_incidencia'] = true"
+            *ngIf="!editing[rowIndex + '-crise_existe_incidencia']"
+            >
+            {{ row.crise_existe_incidencia | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.crise_existe_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-crise_existe_incidencia'] = false"
+            (keyup.enter)="updateValue($event, 'crise_existe_incidencia', rowIndex)"
+            *ngIf="editing[rowIndex + '-crise_existe_incidencia']"
+            type="text"
+            class="form-control"
+            [value]="row.crise_existe_incidencia"
+            [title]="row.id_crise"
+          /></ng-template>
+          </ngx-datatable-column>
+        
+          <ngx-datatable-column name="crise_aplicaciones_impactadas" [maxWidth]="430">
+            <ng-template ngx-datatable-header-template>
+              <span>Aplicaciones impactadas</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-crise_aplicaciones_impactadas'] = true"
+            *ngIf="!editing[rowIndex + '-crise_aplicaciones_impactadas']"
+            >
+            {{ row.crise_aplicaciones_impactadas | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.crise_aplicaciones_impactadas === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-crise_aplicaciones_impactadas'] = false"
+            (keyup.enter)="updateValue($event, 'crise_aplicaciones_impactadas', rowIndex)"
+            *ngIf="editing[rowIndex + '-crise_aplicaciones_impactadas']"
+            type="text"
+            class="form-control"
+            [value]="row.crise_aplicaciones_impactadas"
+            [title]="row.id_crise"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="crise_resolucion" [maxWidth]="380">
+            <ng-template ngx-datatable-header-template>
+              <span>Última actualización</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-crise_resolucion'] = true"
+            *ngIf="!editing[rowIndex + '-crise_resolucion']"
+            >
+            {{ row.crise_resolucion | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.crise_resolucion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-crise_resolucion'] = false"
+            (keyup.enter)="updateValue($event, 'crise_resolucion', rowIndex)"
+            *ngIf="editing[rowIndex + '-crise_resolucion']"
+            type="text"
+            class="form-control"
+            [value]="row.crise_resolucion"
+            [title]="row.id_crise"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="crise_estado" [maxWidth]="120">
+            <ng-template ngx-datatable-header-template>
+              <span>Estado</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-row="row"
+              let-value="value"
+            >
+              <div
+                [ngClass]="{
+                  positive: row.crise_estado == 'OPEN',
+                  negative: row.crise_estado == 'CLOSED'
+                }"
+              >
+                <span
+                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  (dblclick)="editing[rowIndex + '-crise_estado'] = true"
+                  *ngIf="!editing[rowIndex + '-crise_estado']"
+                >
+                  {{ row.crise_estado }}
+                </span>
+                <input type="hidden" #varId [value]="row.id_esse" />
+                <select
+                  class="form-control"
+                  name="crise_estado"
+                  *ngIf="editing[rowIndex + '-crise_estado']"
+                  (clickOutside)="editing[rowIndex + '-crise_estado'] = false"
+                  (change)="updateValue($event, 'crise_estado', rowIndex)"
+                  [value]="row.crise_estado"
+                  [title]="row.id_crise"
+                  ><option value="OPEN">OPEN</option>
+                  <option value="CLOSED">CLOSED</option>
+                </select>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <!-- <ngx-datatable-column name="esse_observaciones" [maxWidth]="1610">
+            <ng-template ngx-datatable-header-template>
+              <span>Observaciones</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
+                *ngIf="!editing[rowIndex + '-esse_observaciones']"
+              >
+                {{ row.esse_observaciones | slice: 0:90 }}
+                <span class="text-muted2" *ngIf="row.esse_observaciones === null">
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+  
+              <input
+                required
+                autofocus
+                (clickOutside)="editing[rowIndex + '-esse_observaciones'] = false"
+                (keyup.enter)="
+                  updateValue($event, 'esse_observaciones', rowIndex)
+                "
+                *ngIf="editing[rowIndex + '-esse_observaciones']"
+                type="text"
+                class="form-control"
+                [value]="row.esse_observaciones"
+                [title]="row.id_esse"
+              />
+            </ng-template>
+          </ngx-datatable-column> -->
+  
+          <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+        <ng-template
+          class="mat-column-id"
+          ngx-datatable-cell-template
+          let-row="row"
+        >
+  
+          <div class="text-center">
+            <div class="row">
+              <div class="col-12 p0 m0">
+  
+  
+  <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
+                <button (click)="duplicar(row, i)"
+                class="btn btn-warning botonsizes mr-1">
+                    <i class="fa fa-clone"></i>
+                </button>
+                <a
+                  [routerLink]="['/detalle', row.tokenid]"
+                  class="btn btn-warning botonsizes mr-1"
+                  ><i class="fa fa-pencil"></i
+                ></a>
+                <button
+                  (click)="borrarRegistro(row, i)"
+                  class="btn btn-warning botonsizes"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+  </div> 
+  
+  <div *ngIf="registroroleperson.id_rol== '8'">
+              <button (click)="duplicar(row, i)"
+              class="btn btn-warning botonsizes mr-1">
+                  <i class="fa fa-clone"></i>
+              </button>
+              <a
+                [routerLink]="['/detalle', row.tokenid]"
+                class="btn btn-warning botonsizes mr-1"
+                ><i class="fa fa-pencil"></i
+              ></a>
+              <button
+                (click)="borrarRegistro(row, i)"
+                class="btn btn-warning botonsizes"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+  </div> 
+  
+  
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column> -->
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  

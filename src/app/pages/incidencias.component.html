@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mt-5">
+            <div class="tabbable" id="tabs-850675">
+				<app-botonestab></app-botonestab>			
+				<div class="tab-content p-5">
+					<div class="tab-pane active" id="panel-813817">
+						
+						
+                        <mat-tab-group  (selectedTabChange)="handleMatTabChange($event)">
+                            <mat-tab label="Resumen incidencia DEFCON-3/2/1 – 24 Horas Previas"><app-defcon></app-defcon></mat-tab>
+                            <mat-tab label="Incidencias críticas en infraestructura sin afectación a servicio"><app-criticas></app-criticas></mat-tab>
+							<mat-tab label="Servicio Oficina Directa y plataforma telefonía"><app-oficinatelefonia></app-oficinatelefonia></mat-tab>
+							<mat-tab label="Ticketing CECO – Help Desk"><app-ticketing></app-ticketing></mat-tab>
+                        </mat-tab-group> 
+
+
+                          
+                          
+                          
+                          
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,35 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-0 mt-5">
+            <h2>Resumen</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 p-0 mt-5">
+            <h3>Controles Batch</h3>
+            <div *ngFor="let conIn of conIncidencia">
+                    <strong>{{conIn.coba_hito1}}</strong> - {{conIn.coba_incidencias1}}
+                    <span *ngIf="conIn.coba_hito1===null">
+                        <p>Se han cumplido todos los controles</p>
+                    </span> 
+            </div>  
+            <hr class="mt-2 mb-2" />          
+            <h3>Incidencias destacables resueltas</h3>
+            <div *ngFor="let destaIn of destaIncidencia">
+                    <strong>{{destaIn.coba_proceso2}}</strong> - {{destaIn.coba_incidencias2}}
+                    <span *ngIf="destaIn.coba_proceso2===null">
+                        <p>Sin incidencias destacables</p>
+                    </span> 
+            </div>            
+            <hr class="mt-2 mb-2" />  
+            <h3>Incidencias destacables pendientes</h3>
+            <div *ngFor="let resumenIn of resumenIncidencia">
+                <strong>{{resumenIn.esse_servicio}}</strong> - {{resumenIn.esse_observaciones}}
+                <span *ngIf="resumenIn.esse_servicio===null">
+                    <p>Sin incidencias destacables pendientes</p>
+                </span> 
+            </div>  
+        </div>
+    </div>
+</div>

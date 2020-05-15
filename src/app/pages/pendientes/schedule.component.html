@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 p-0 mt-5">
+      <h2>Schedule</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 p-0 mt-5">
+      <table class="table table-bordered">
+        <tbody>
+          <tr *ngFor="let tema of temas; let i = index">
+            <td class="p-0 m-0">
+              <table class="table table-hover noborder p-0 m-0">
+                <tbody>
+                  <tr>
+                    <td colspan="6" class="columnadiassemana">
+                      {{ tema.pendi_dia }} - {{ tema.pendi_definicion }}
+                    </td>
+                  </tr>
+                  <tr *ngFor="let param of tema.parametros; let n = index">
+                    <td class="c1tema">{{ param.pendi_ticket }}</td>
+                    <td class="c2tema zebraone">{{ param.pendi_aplicaciones }}</td>
+                    <td class="c3tema">{{ param.pendi_descripcion }}</td>
+                    <td class="c4tema zebraone">{{ param.pendi_analisis }}</td>
+                    <td class="c5tema">{{ param.pendi_ultiactual }}</td>
+                    <td class="c6tema zebraone">{{ param.pendi_owner }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

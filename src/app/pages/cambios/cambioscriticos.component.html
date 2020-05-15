@@ -1,0 +1,445 @@
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-12 p-0 mt-5">
+        <h2>Cambios críticos</h2>
+    </div>
+    </div>
+
+  
+    <div class="row">
+      <div class="col-9 text-right p-0 mt-2">
+        <!-- <a
+          alt="Nuevo registro"
+          title="nuevo registro"
+          [routerLink]="['/', 'alta']"
+          class="btn btn-info pt4 btn-circle posicionplus"
+          ><i class="fa fa-plus fa-3"></i
+        ></a> -->
+      </div>
+      <div class="col-3 p-0 mt-2 text-right">
+        <div class="form">
+          <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput placeholder="Buscar" (keyup)="updateFilter($event)" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+    <div class="row">
+      <div class="col-12 p-0 m-0">
+        <ngx-datatable
+          #mydatatable
+          class="material striped"
+          headerHeight="50"
+          [limit]="25"
+          [columnMode]="'force'"
+          footerHeight="50"
+          rowHeight="50"
+          [rows]="rows"
+          [messages]="my_messages"
+        >
+          <ngx-datatable-column name="id_criti" [maxWidth]="60">
+            <ng-template ngx-datatable-header-template>
+              <span>ID</span>
+            </ng-template>
+            <ng-template
+              class="mat-column-id"
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+              ><div class="text-center">{{ row.id_criti }}</div>
+            </ng-template>
+          </ngx-datatable-column>
+  
+
+          <ngx-datatable-column name="criti_id" [maxWidth]="130">
+            <ng-template ngx-datatable-header-template>
+              <span>Identificador</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_id'] = true"
+            *ngIf="!editing[rowIndex + '-criti_id']"
+            >
+            {{ row.criti_id | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_id === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_id'] = false"
+            (keyup.enter)="updateValue($event, 'criti_id', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_id']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_id"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+ 
+          <ngx-datatable-column name="criti_titulo" [maxWidth]="300">
+            <ng-template ngx-datatable-header-template>
+              <span>Título</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_titulo'] = true"
+            *ngIf="!editing[rowIndex + '-criti_titulo']"
+            >
+            {{ row.criti_titulo | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_titulo === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_titulo'] = false"
+            (keyup.enter)="updateValue($event, 'criti_titulo', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_titulo']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_titulo"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="criti_score" [maxWidth]="100">
+            <ng-template ngx-datatable-header-template>
+              <span>Score</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_score'] = true"
+            *ngIf="!editing[rowIndex + '-criti_score']"
+            >
+            {{ row.criti_score | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_score === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_score'] = false"
+            (keyup.enter)="updateValue($event, 'criti_score', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_score']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_score"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+        
+          <ngx-datatable-column name="criti_riesgo" [maxWidth]="90">
+            <ng-template ngx-datatable-header-template>
+              <span>Riesgo</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_riesgo'] = true"
+            *ngIf="!editing[rowIndex + '-criti_riesgo']"
+            >
+            {{ row.criti_riesgo | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_riesgo === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_riesgo'] = false"
+            (keyup.enter)="updateValue($event, 'criti_riesgo', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_riesgo']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_riesgo"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="criti_inicio" [maxWidth]="180">
+            <ng-template ngx-datatable-header-template>
+              <span>Inicio</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_inicio'] = true"
+            *ngIf="!editing[rowIndex + '-criti_inicio']"
+            >
+            {{ row.criti_inicio | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_inicio === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_inicio'] = false"
+            (keyup.enter)="updateValue($event, 'criti_inicio', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_inicio']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_inicio"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="criti_duracion" [maxWidth]="80">
+            <ng-template ngx-datatable-header-template>
+              <span>Duración</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_duracion'] = true"
+            *ngIf="!editing[rowIndex + '-criti_duracion']"
+            >
+            {{ row.criti_duracion | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_duracion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_duracion'] = false"
+            (keyup.enter)="updateValue($event, 'criti_duracion', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_duracion']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_duracion"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          
+          <ngx-datatable-column name="criti_urgente" [maxWidth]="120">
+            <ng-template ngx-datatable-header-template>
+              <span>Urgente</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-row="row"
+              let-value="value"
+            >
+              <div
+                [ngClass]="{
+                  positive: row.criti_urgente == 'false',
+                  negative: row.criti_urgente == 'true'
+                }"
+              >
+                <span
+                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  (dblclick)="editing[rowIndex + '-criti_urgente'] = true"
+                  *ngIf="!editing[rowIndex + '-criti_urgente']"
+                >
+                  {{ row.criti_urgente }}
+                </span>
+                <input type="hidden" #varId [value]="row.id_esse" />
+                <select
+                  class="form-control"
+                  name="criti_urgente"
+                  *ngIf="editing[rowIndex + '-criti_urgente']"
+                  (clickOutside)="editing[rowIndex + '-criti_urgente'] = false"
+                  (change)="updateValue($event, 'criti_urgente', rowIndex)"
+                  [value]="row.criti_urgente"
+                  [title]="row.id_criti"
+                  ><option value="true">SÍ</option>
+                  <option value="false">NO</option>
+                </select>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column name="criti_afectacion" [maxWidth]="530">
+            <ng-template ngx-datatable-header-template>
+              <span>Afectación usuario</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_afectacion'] = true"
+            *ngIf="!editing[rowIndex + '-criti_afectacion']"
+            >
+            {{ row.criti_afectacion | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_afectacion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_afectacion'] = false"
+            (keyup.enter)="updateValue($event, 'criti_afectacion', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_afectacion']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_afectacion"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="criti_responsable" [maxWidth]="180">
+            <ng-template ngx-datatable-header-template>
+              <span>Responsable</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_responsable'] = true"
+            *ngIf="!editing[rowIndex + '-criti_responsable']"
+            >
+            {{ row.criti_responsable | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_responsable === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_responsable'] = false"
+            (keyup.enter)="updateValue($event, 'criti_responsable', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_responsable']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_responsable"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column name="criti_cio" [maxWidth]="180">
+            <ng-template ngx-datatable-header-template>
+              <span>CIO</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-criti_cio'] = true"
+            *ngIf="!editing[rowIndex + '-criti_cio']"
+            >
+            {{ row.criti_cio | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.criti_cio === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-criti_cio'] = false"
+            (keyup.enter)="updateValue($event, 'criti_cio', rowIndex)"
+            *ngIf="editing[rowIndex + '-criti_cio']"
+            type="text"
+            class="form-control"
+            [value]="row.criti_cio"
+            [title]="row.id_criti"
+          /></ng-template>
+          </ngx-datatable-column>
+
+
+
+          
+  
+          <!-- <ngx-datatable-column name="esse_observaciones" [maxWidth]="1610">
+            <ng-template ngx-datatable-header-template>
+              <span>Observaciones</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
+                *ngIf="!editing[rowIndex + '-esse_observaciones']"
+              >
+                {{ row.esse_observaciones | slice: 0:90 }}
+                <span class="text-muted2" *ngIf="row.esse_observaciones === null">
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+  
+              <input
+                required
+                autofocus
+                (clickOutside)="editing[rowIndex + '-esse_observaciones'] = false"
+                (keyup.enter)="
+                  updateValue($event, 'esse_observaciones', rowIndex)
+                "
+                *ngIf="editing[rowIndex + '-esse_observaciones']"
+                type="text"
+                class="form-control"
+                [value]="row.esse_observaciones"
+                [title]="row.id_esse"
+              />
+            </ng-template>
+          </ngx-datatable-column> -->
+  
+          <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+        <ng-template
+          class="mat-column-id"
+          ngx-datatable-cell-template
+          let-row="row"
+        >
+  
+          <div class="text-center">
+            <div class="row">
+              <div class="col-12 p0 m0">
+  
+  
+  <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
+                <button (click)="duplicar(row, i)"
+                class="btn btn-warning botonsizes mr-1">
+                    <i class="fa fa-clone"></i>
+                </button>
+                <a
+                  [routerLink]="['/detalle', row.tokenid]"
+                  class="btn btn-warning botonsizes mr-1"
+                  ><i class="fa fa-pencil"></i
+                ></a>
+                <button
+                  (click)="borrarRegistro(row, i)"
+                  class="btn btn-warning botonsizes"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+  </div> 
+  
+  <div *ngIf="registroroleperson.id_rol== '8'">
+              <button (click)="duplicar(row, i)"
+              class="btn btn-warning botonsizes mr-1">
+                  <i class="fa fa-clone"></i>
+              </button>
+              <a
+                [routerLink]="['/detalle', row.tokenid]"
+                class="btn btn-warning botonsizes mr-1"
+                ><i class="fa fa-pencil"></i
+              ></a>
+              <button
+                (click)="borrarRegistro(row, i)"
+                class="btn btn-warning botonsizes"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+  </div> 
+  
+  
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column> -->
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  

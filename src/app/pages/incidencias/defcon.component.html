@@ -1,0 +1,414 @@
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-12 p-0 mt-5">
+        <h2>Resumen incidencia DEFCON-3/2/1 – 24 Horas Previas</h2>
+    </div>
+    </div>
+
+  
+    <div class="row">
+      <div class="col-9 text-right p-0 mt-2">
+        <!-- <a
+          alt="Nuevo registro"
+          title="nuevo registro"
+          [routerLink]="['/', 'alta']"
+          class="btn btn-info pt4 btn-circle posicionplus"
+          ><i class="fa fa-plus fa-3"></i
+        ></a> -->
+      </div>
+      <div class="col-3 p-0 mt-2 text-right">
+        <div class="form">
+          <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput placeholder="Buscar" (keyup)="updateFilter($event)" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+    <div class="row">
+      <div class="col-12 p-0 m-0">
+        <ngx-datatable
+          #mydatatable
+          class="material striped"
+          headerHeight="50"
+          [limit]="25"
+          [columnMode]="'force'"
+          footerHeight="50"
+          rowHeight="50"
+          [rows]="rows"
+          [messages]="my_messages"
+        >
+          <ngx-datatable-column name="id_defcon" [maxWidth]="60">
+            <ng-template ngx-datatable-header-template>
+              <span>ID</span>
+            </ng-template>
+            <ng-template
+              class="mat-column-id"
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+              ><div class="text-center">{{ row.id_defcon }}</div>
+            </ng-template>
+          </ngx-datatable-column>
+  
+
+          <ngx-datatable-column name="defcon_fecha" [maxWidth]="100">
+            <ng-template ngx-datatable-header-template>
+              <span>Fecha</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_fecha'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_fecha']"
+            >
+            {{ row.defcon_fecha | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_fecha === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_fecha'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_fecha', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_fecha']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_fecha"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+ 
+          <ngx-datatable-column name="defcon_inicio_incidencia" [maxWidth]="100">
+            <ng-template ngx-datatable-header-template>
+              <span>Inicio incidencia</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_inicio_incidencia'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_inicio_incidencia']"
+            >
+            {{ row.defcon_inicio_incidencia | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_inicio_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_inicio_incidencia'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_inicio_incidencia', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_inicio_incidencia']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_inicio_incidencia"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="defcon_final_incidencia" [maxWidth]="100">
+            <ng-template ngx-datatable-header-template>
+              <span>Final incidencia</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_final_incidencia'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_final_incidencia']"
+            >
+            {{ row.defcon_final_incidencia | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_final_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_final_incidencia'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_final_incidencia', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_final_incidencia']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_final_incidencia"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+        
+          <ngx-datatable-column name="defcon_ticket" [maxWidth]="130">
+            <ng-template ngx-datatable-header-template>
+              <span>Ticket</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_ticket'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_ticket']"
+            >
+            {{ row.defcon_ticket | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_ticket === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_ticket'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_ticket', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_ticket']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_ticket"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="defcon_aplicaciones_impactadas" [maxWidth]="160">
+            <ng-template ngx-datatable-header-template>
+              <span>Aplicaciones impactadas</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_aplicaciones_impactadas'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_aplicaciones_impactadas']"
+            >
+            {{ row.defcon_aplicaciones_impactadas | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_aplicaciones_impactadas === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_aplicaciones_impactadas'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_aplicaciones_impactadas', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_aplicaciones_impactadas']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_aplicaciones_impactadas"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="defcon_descripcion" [maxWidth]="530">
+            <ng-template ngx-datatable-header-template>
+              <span>Descripción</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_descripcion'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_descripcion']"
+            >
+            {{ row.defcon_descripcion | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_descripcion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_descripcion'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_descripcion', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_descripcion']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_descripcion"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="defcon_ultima_actualizacion" [maxWidth]="530">
+            <ng-template ngx-datatable-header-template>
+              <span>Última actualización</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_ultima_actualizacion'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_ultima_actualizacion']"
+            >
+            {{ row.defcon_ultima_actualizacion | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_ultima_actualizacion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_ultima_actualizacion'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_ultima_actualizacion', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_ultima_actualizacion']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_ultima_actualizacion"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column name="defcon_resolutores" [maxWidth]="180">
+            <ng-template ngx-datatable-header-template>
+              <span>Última actualización</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-defcon_resolutores'] = true"
+            *ngIf="!editing[rowIndex + '-defcon_resolutores']"
+            >
+            {{ row.defcon_resolutores | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.defcon_resolutores === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-defcon_resolutores'] = false"
+            (keyup.enter)="updateValue($event, 'defcon_resolutores', rowIndex)"
+            *ngIf="editing[rowIndex + '-defcon_resolutores']"
+            type="text"
+            class="form-control"
+            [value]="row.defcon_resolutores"
+            [title]="row.id_defcon"
+          /></ng-template>
+          </ngx-datatable-column>
+
+
+
+          <ngx-datatable-column name="defcon_estado" [maxWidth]="120">
+            <ng-template ngx-datatable-header-template>
+              <span>Estado</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-row="row"
+              let-value="value"
+            >
+              <div
+                [ngClass]="{
+                  positive: row.defcon_estado == 'OPEN',
+                  negative: row.defcon_estado == 'CLOSED'
+                }"
+              >
+                <span
+                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  (dblclick)="editing[rowIndex + '-defcon_estado'] = true"
+                  *ngIf="!editing[rowIndex + '-defcon_estado']"
+                >
+                  {{ row.defcon_estado }}
+                </span>
+                <input type="hidden" #varId [value]="row.id_esse" />
+                <select
+                  class="form-control"
+                  name="defcon_estado"
+                  *ngIf="editing[rowIndex + '-defcon_estado']"
+                  (clickOutside)="editing[rowIndex + '-defcon_estado'] = false"
+                  (change)="updateValue($event, 'defcon_estado', rowIndex)"
+                  [value]="row.defcon_estado"
+                  [title]="row.id_defcon"
+                  ><option value="OPEN">OPEN</option>
+                  <option value="CLOSED">CLOSED</option>
+                </select>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+  
+          <!-- <ngx-datatable-column name="esse_observaciones" [maxWidth]="1610">
+            <ng-template ngx-datatable-header-template>
+              <span>Observaciones</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
+                *ngIf="!editing[rowIndex + '-esse_observaciones']"
+              >
+                {{ row.esse_observaciones | slice: 0:90 }}
+                <span class="text-muted2" *ngIf="row.esse_observaciones === null">
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+  
+              <input
+                required
+                autofocus
+                (clickOutside)="editing[rowIndex + '-esse_observaciones'] = false"
+                (keyup.enter)="
+                  updateValue($event, 'esse_observaciones', rowIndex)
+                "
+                *ngIf="editing[rowIndex + '-esse_observaciones']"
+                type="text"
+                class="form-control"
+                [value]="row.esse_observaciones"
+                [title]="row.id_esse"
+              />
+            </ng-template>
+          </ngx-datatable-column> -->
+  
+          <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+        <ng-template
+          class="mat-column-id"
+          ngx-datatable-cell-template
+          let-row="row"
+        >
+  
+          <div class="text-center">
+            <div class="row">
+              <div class="col-12 p0 m0">
+  
+  
+  <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
+                <button (click)="duplicar(row, i)"
+                class="btn btn-warning botonsizes mr-1">
+                    <i class="fa fa-clone"></i>
+                </button>
+                <a
+                  [routerLink]="['/detalle', row.tokenid]"
+                  class="btn btn-warning botonsizes mr-1"
+                  ><i class="fa fa-pencil"></i
+                ></a>
+                <button
+                  (click)="borrarRegistro(row, i)"
+                  class="btn btn-warning botonsizes"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+  </div> 
+  
+  <div *ngIf="registroroleperson.id_rol== '8'">
+              <button (click)="duplicar(row, i)"
+              class="btn btn-warning botonsizes mr-1">
+                  <i class="fa fa-clone"></i>
+              </button>
+              <a
+                [routerLink]="['/detalle', row.tokenid]"
+                class="btn btn-warning botonsizes mr-1"
+                ><i class="fa fa-pencil"></i
+              ></a>
+              <button
+                (click)="borrarRegistro(row, i)"
+                class="btn btn-warning botonsizes"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+  </div> 
+  
+  
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column> -->
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  

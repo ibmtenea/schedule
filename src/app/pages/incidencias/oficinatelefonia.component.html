@@ -1,0 +1,333 @@
+
+
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-12 p-0 mt-5">
+        <h2>Servicio Oficina Directa y plataforma telefonía</h2>
+    </div>
+    </div>
+
+  
+    <div class="row">
+      <div class="col-9 text-right p-0 mt-2">
+        <!-- <a
+          alt="Nuevo registro"
+          title="nuevo registro"
+          [routerLink]="['/', 'alta']"
+          class="btn btn-info pt4 btn-circle posicionplus"
+          ><i class="fa fa-plus fa-3"></i
+        ></a> -->
+      </div>
+      <div class="col-3 p-0 mt-2 text-right">
+        <div class="form">
+          <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput placeholder="Buscar" (keyup)="updateFilter($event)" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="row">
+      <div class="col-12 p-0 m-0">
+        <ngx-datatable
+          #mydatatable
+          class="material striped"
+          headerHeight="50"
+          [limit]="25"
+          [columnMode]="'force'"
+          footerHeight="50"
+          rowHeight="50"
+          [rows]="rows"
+          [messages]="my_messages"
+        >
+
+          <ngx-datatable-column name="id_sodi" [maxWidth]="60">
+            <ng-template ngx-datatable-header-template>
+              <span>ID</span>
+            </ng-template>
+            <ng-template
+              class="mat-column-id"
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+              ><div class="text-center">{{ row.id_sodi }}</div>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="sodi_fecha" [maxWidth]="130">
+            <ng-template ngx-datatable-header-template>
+              <span>Fecha</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-sodi_fecha'] = true"
+            *ngIf="!editing[rowIndex + '-sodi_fecha']"
+            >
+            {{ row.sodi_fecha | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.sodi_fecha === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-sodi_fecha'] = false"
+            (keyup.enter)="updateValue($event, 'sodi_fecha', rowIndex)"
+            *ngIf="editing[rowIndex + '-sodi_fecha']"
+            type="text"
+            class="form-control"
+            [value]="row.sodi_fecha"
+            [title]="row.id_sodi"
+          /></ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="sodi_canales" [maxWidth]="400">
+            <ng-template ngx-datatable-header-template>
+              <span>Canales</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            (dblclick)="editing[rowIndex + '-sodi_canales'] = true"
+            *ngIf="!editing[rowIndex + '-sodi_canales']"
+            >
+            {{ row.sodi_canales | slice: 0:90 }}
+            <span class="text-muted2" *ngIf="row.sodi_canales === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+          <input autofocus
+            (clickOutside)="editing[rowIndex + '-sodi_canales'] = false"
+            (keyup.enter)="updateValue($event, 'sodi_canales', rowIndex)"
+            *ngIf="editing[rowIndex + '-sodi_canales']"
+            type="text"
+            class="form-control"
+            [value]="row.sodi_canales"
+            [title]="row.id_sodi"
+          /></ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="sodi_grafico1" [maxWidth]="300">
+            <ng-template ngx-datatable-header-template>
+              <span>Imagen 1</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+              <span *ngIf="row.sodi_grafico1!=null">
+                <img 
+                class="minifoto"
+                src="./assets/loader.gif" 
+                jpPreload="{{row.sodi_grafico1}}">
+              </span>
+              <p *ngIf="row.sodi_grafico2==null" class="text-muted2">no hay imagen</p>
+          </ng-template>
+          </ngx-datatable-column>
+
+
+
+          <ngx-datatable-column name="sodi_grafico2" [maxWidth]="300">
+            <ng-template ngx-datatable-header-template>
+              <span>Imagen 2</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row">
+             
+            <span *ngIf="row.sodi_grafico2!=null">
+                <img 
+                class="minifoto"
+                src="./assets/loader.gif" 
+                jpPreload="{{row.sodi_grafico2}}">
+              
+            </span>
+            <p *ngIf="row.sodi_grafico2==null" class="text-muted2">no hay imagen</p>
+          </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="sodi_estado" [maxWidth]="120">
+            <ng-template ngx-datatable-header-template>
+              <span>Estado</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-row="row"
+              let-value="value"
+            >
+              <div
+                [ngClass]="{
+                  positive: row.sodi_estado == 'OPEN',
+                  negative: row.sodi_estado == 'CLOSED'
+                }"
+              >
+                <span
+                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  (dblclick)="editing[rowIndex + '-sodi_estado'] = true"
+                  *ngIf="!editing[rowIndex + '-sodi_estado']"
+                >
+                  {{ row.sodi_estado }}
+                </span>
+                <input type="hidden" #varId [value]="row.id_sodi" />
+                <select
+                  class="form-control"
+                  name="sodi_estado"
+                  *ngIf="editing[rowIndex + '-sodi_estado']"
+                  (clickOutside)="editing[rowIndex + '-sodi_estado'] = false"
+                  (change)="updateValue($event, 'sodi_estado', rowIndex)"
+                  [value]="row.sodi_estado"
+                  [title]="row.id_sodi"
+                  ><option value="OPEN">OPEN</option>
+                  <option value="CLOSED">CLOSED</option>
+                </select>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+  
+
+
+          <ngx-datatable-column name="sodi_estadoplataforma" [maxWidth]="120">
+            <ng-template ngx-datatable-header-template>
+              <span>Estado</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-row="row"
+              let-value="value"
+            >
+              <div
+                [ngClass]="{
+                  positive: row.sodi_estadoplataforma == 'OPEN',
+                  negative: row.sodi_estadoplataforma == 'CLOSED'
+                }"
+              >
+                <span
+                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  (dblclick)="editing[rowIndex + '-sodi_estadoplataforma'] = true"
+                  *ngIf="!editing[rowIndex + '-sodi_estadoplataforma']"
+                >
+                  {{ row.sodi_estadoplataforma }}
+                </span>
+                <input type="hidden" #varId [value]="row.id_sodi" />
+                <select
+                  class="form-control"
+                  name="sodi_estadoplataforma"
+                  *ngIf="editing[rowIndex + '-sodi_estadoplataforma']"
+                  (clickOutside)="editing[rowIndex + '-sodi_estadoplataforma'] = false"
+                  (change)="updateValue($event, 'sodi_estadoplataforma', rowIndex)"
+                  [value]="row.sodi_estadoplataforma"
+                  [title]="row.id_sodi"
+                  ><option value="OPEN">OPEN</option>
+                  <option value="CLOSED">CLOSED</option>
+                </select>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+
+
+          <!-- <ngx-datatable-column name="esse_observaciones" [maxWidth]="1610">
+            <ng-template ngx-datatable-header-template>
+              <span>Observaciones</span>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            >
+              <span
+                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
+                *ngIf="!editing[rowIndex + '-esse_observaciones']"
+              >
+                {{ row.esse_observaciones | slice: 0:90 }}
+                <span class="text-muted2" *ngIf="row.esse_observaciones === null">
+                  vacío
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </span>
+  
+              <input
+                required
+                autofocus
+                (clickOutside)="editing[rowIndex + '-esse_observaciones'] = false"
+                (keyup.enter)="
+                  updateValue($event, 'esse_observaciones', rowIndex)
+                "
+                *ngIf="editing[rowIndex + '-esse_observaciones']"
+                type="text"
+                class="form-control"
+                [value]="row.esse_observaciones"
+                [title]="row.id_esse"
+              />
+            </ng-template>
+          </ngx-datatable-column> -->
+  
+          <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+        <ng-template
+          class="mat-column-id"
+          ngx-datatable-cell-template
+          let-row="row"
+        >
+  
+          <div class="text-center">
+            <div class="row">
+              <div class="col-12 p0 m0">
+  
+  
+  <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
+                <button (click)="duplicar(row, i)"
+                class="btn btn-warning botonsizes mr-1">
+                    <i class="fa fa-clone"></i>
+                </button>
+                <a
+                  [routerLink]="['/detalle', row.tokenid]"
+                  class="btn btn-warning botonsizes mr-1"
+                  ><i class="fa fa-pencil"></i
+                ></a>
+                <button
+                  (click)="borrarRegistro(row, i)"
+                  class="btn btn-warning botonsizes"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+  </div> 
+  
+  <div *ngIf="registroroleperson.id_rol== '8'">
+              <button (click)="duplicar(row, i)"
+              class="btn btn-warning botonsizes mr-1">
+                  <i class="fa fa-clone"></i>
+              </button>
+              <a
+                [routerLink]="['/detalle', row.tokenid]"
+                class="btn btn-warning botonsizes mr-1"
+                ><i class="fa fa-pencil"></i
+              ></a>
+              <button
+                (click)="borrarRegistro(row, i)"
+                class="btn btn-warning botonsizes"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+  </div> 
+  
+  
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-column> -->
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  
