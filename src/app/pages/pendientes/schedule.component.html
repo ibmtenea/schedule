@@ -19,12 +19,78 @@
                     </td>
                   </tr>
                   <tr *ngFor="let param of tema.parametros; let n = index">
-                    <td class="c1tema">{{ param.pendi_ticket }}</td>
-                    <td class="c2tema zebraone">{{ param.pendi_aplicaciones }}</td>
-                    <td class="c3tema">{{ param.pendi_descripcion }}</td>
-                    <td class="c4tema zebraone">{{ param.pendi_analisis }}</td>
-                    <td class="c5tema">{{ param.pendi_ultiactual }}</td>
-                    <td class="c6tema zebraone">{{ param.pendi_owner }}</td>
+                    <td class="schedulclass c1tema">
+                      <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_ticket'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_ticket']">
+                        {{param.pendi_ticket}}
+                        <span class="text-muted2" *ngIf="param.pendi_ticket === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                      </span>
+                      <input autofocus type="text" name="pendi_ticket"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.pendi_dia + n + '-pendi_ticket']"
+                            (keyup.enter)="updateValue(param.id_pendi,$event, 'pendi_ticket',param.pendi_ticket, n)"
+                            (clickOutside)="editing[tema.pendi_dia + n + '-pendi_ticket'] = false"
+                            [value]="param.pendi_ticket"  
+                            [(ngModel)]="param.pendi_ticket" />
+                    </td>
+                    <td class="schedulclass c2tema zebraone">
+                      <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_aplicaciones'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_aplicaciones']">
+                        {{param.pendi_aplicaciones}}
+                        <span class="text-muted2" *ngIf="param.pendi_aplicaciones === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                      </span>
+                      <input autofocus type="text" name="pendi_aplicaciones"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.pendi_dia + n + '-pendi_aplicaciones']"
+                            (keyup.enter)="updateValue(param.id_pendi,$event, 'pendi_aplicaciones',param.pendi_aplicaciones, n)"
+                            (clickOutside)="editing[tema.pendi_dia + n + '-pendi_aplicaciones'] = false"
+                            [value]="param.pendi_aplicaciones"  
+                            [(ngModel)]="param.pendi_aplicaciones" />
+                    </td>
+                    <td class="schedulclass c3tema">
+                      <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_descripcion'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_descripcion']">
+                        {{param.pendi_descripcion}}
+                        <span class="text-muted2" *ngIf="param.pendi_descripcion === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                      </span>
+                      <input autofocus type="text" name="pendi_descripcion"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.pendi_dia + n + '-pendi_descripcion']"
+                            (keyup.enter)="updateValue(param.id_pendi,$event, 'pendi_descripcion',param.pendi_descripcion, n)"
+                            (clickOutside)="editing[tema.pendi_dia + n + '-pendi_descripcion'] = false"
+                            [value]="param.pendi_descripcion"  
+                            [(ngModel)]="param.pendi_descripcion" />
+                    </td>                    
+                    <td class="schedulclass c4tema zebraone">
+                      <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_analisis'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_analisis']">
+                        {{param.pendi_analisis}}
+                        <span class="text-muted2" *ngIf="param.pendi_analisis === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                      </span>
+                      <input autofocus type="text" name="pendi_analisis"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.pendi_dia + n + '-pendi_analisis']"
+                            (keyup.enter)="updateValue(param.id_pendi,$event, 'pendi_analisis',param.pendi_analisis, n)"
+                            (clickOutside)="editing[tema.pendi_dia + n + '-pendi_analisis'] = false"
+                            [value]="param.pendi_analisis"  
+                            [(ngModel)]="param.pendi_analisis" />
+                    </td>                    
+                    <td class="schedulclass c5tema">
+                      <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_ultiactual'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_ultiactual']">
+                        {{param.pendi_ultiactual}}
+                        <span class="text-muted2" *ngIf="param.pendi_ultiactual === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                      </span>
+                      <input autofocus type="text" name="pendi_ultiactual"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.pendi_dia + n + '-pendi_ultiactual']"
+                            (keyup.enter)="updateValue(param.id_pendi,$event, 'pendi_ultiactual',param.pendi_ultiactual, n)"
+                            (clickOutside)="editing[tema.pendi_dia + n + '-pendi_ultiactual'] = false"
+                            [value]="param.pendi_ultiactual"  
+                            [(ngModel)]="param.pendi_ultiactual" />
+                    </td>                    
+                    <td class="schedulclass c6tema zebraone">
+                      <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_owner'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_owner']">
+                        {{param.pendi_owner}}
+                        <span class="text-muted2" *ngIf="param.pendi_owner === null"> vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      </span>
+                      <input autofocus type="text" name="pendi_owner"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.pendi_dia + n + '-pendi_owner']"
+                            (keyup.enter)="updateValue(param.id_pendi,$event, 'pendi_owner',param.pendi_owner, n)"
+                            (clickOutside)="editing[tema.pendi_dia + n + '-pendi_owner'] = false"
+                            [value]="param.pendi_owner"  
+                            [(ngModel)]="param.pendi_owner" />
+                    </td>    
                   </tr>
                 </tbody>
               </table>

@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
       .subscribe( (resp:Personas) => {
         this.user = resp;
        // this.user.id_persona=id_persona;
-        console.log(this.user);
+       // console.log(this.user);
       });
   }
 
@@ -52,6 +52,16 @@ export class HeaderComponent implements OnInit {
      });
   }
 
+
+  Logout() {
+    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_rol');
+    localStorage.removeItem('id_persona');
+    localStorage.removeItem('valorTurno');
+    const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/login';
+                this.router.navigate([redirect]);
+  }
 
 
 }

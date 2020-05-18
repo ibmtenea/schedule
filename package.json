@@ -36,6 +36,8 @@
     "ngx-datatable": "^1.0.3",
     "ngx-lightbox": "^2.0.0",
     "ngx-socket-io": "^3.0.1",
+    "ngx-spinner": "^9.0.1",
+    "rocket-edit": "^1.0.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.10.12",
     "tslib": "^1.10.0",

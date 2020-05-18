@@ -11,12 +11,12 @@
 						
 						
 
-						<mat-tab-group >
+						<mat-tab-group  (selectedTabChange)="handleMatTabChange($event)">
                             <mat-tab label="Schedule"><app-schedule></app-schedule></mat-tab>
 							<mat-tab label="Disaster Recovery">
 							
 
-								<mat-tab-group  (selectedTabChange)="handleMatTabChange($event)">
+								<mat-tab-group  (selectedTabChange)="handleMatTabChange2($event)">
 									<mat-tab label="Ámbito funcional"><app-ambitofuncional></app-ambitofuncional></mat-tab>
 									<mat-tab label="Infraestructuras de comunicaciones"><app-infrcomunicaciones></app-infrcomunicaciones></mat-tab>
 									<mat-tab label="Herramientas de Monitorización"><app-monitorizacion></app-monitorizacion></mat-tab>

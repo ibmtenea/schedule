@@ -1,9 +1,97 @@
+
+
 <div class="container-fluid">
     <div class="row">
-    <div class="col-12 p-0 mt-5">
-        <h4>Disaster Recovery</h4>
-        <h2>Ámbito funcional</h2>
+      <div class="col-12 p-0 mt-5">
+        <h4>Disaster Recovery - Servicios críticos</h4>
+        <h2>Ámbito funcional - Detalle estado</h2>
+      </div>
     </div>
-</div>
-</div>
+  
+    <div class="row">
+      <div class="col-12 p-0 mt-5">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="c1diser">Tipo DR</th>
+                    <th class="c2diser">ID</th>
+                    <th class="c3diser">Fecha planificada</th>
+                    <th class="c4diser">Estado</th>
+                </tr>
+            </thead>
+          <tbody>
+            <tr *ngFor="let tema of temas; let i = index">
+              <td colspan="4" class="p-0 m-0">
+                <table class="table table-hover noborder p-0 m-0">
 
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="columnadiassemana">
+                        {{ tema.dire_duracion_enunciado }}
+                      </td>
+                    </tr>
+                    <tr *ngFor="let param of tema.parametros; let n = index">
+                     
+                     <td class="diserclass c1diser">
+                        <span (dblclick)="editing[tema.id_dire_duracion + n + '-diser_tipodr'] = true;" *ngIf="!editing[tema.id_dire_duracion + n + '-diser_tipodr']">
+                          {{param.diser_tipodr}}
+                          <span class="text-muted2" *ngIf="param.diser_tipodr === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </span>
+                        <input autofocus type="text" name="diser_tipodr"  class="actividaddeinput form-control"
+                              *ngIf="editing[tema.id_dire_duracion + n + '-diser_tipodr']"
+                              (keyup.enter)="updateValue(param.id_diser,$event, 'diser_tipodr',param.diser_tipodr, n)"
+                              (clickOutside)="editing[tema.id_dire_duracion + n + '-diser_tipodr'] = false"
+                              [value]="param.diser_tipodr"  
+                              [(ngModel)]="param.diser_tipodr" />
+                      </td>
+                      <td class="diserclass c2diser zebratwo">
+                        <span (dblclick)="editing[tema.id_dire_duracion + n + '-diser_id'] = true;" *ngIf="!editing[tema.id_dire_duracion + n + '-diser_id']">
+                          {{param.diser_id}}
+                          <span class="text-muted2" *ngIf="param.diser_id === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </span>
+                        <input autofocus type="text" name="diser_id"  class="actividaddeinput form-control"
+                              *ngIf="editing[tema.id_dire_duracion + n + '-diser_id']"
+                              (keyup.enter)="updateValue(param.id_diser,$event, 'diser_id',param.diser_id, n)"
+                              (clickOutside)="editing[tema.id_dire_duracion + n + '-diser_id'] = false"
+                              [value]="param.diser_id"  
+                              [(ngModel)]="param.diser_id" />
+                      </td>
+
+                      <td class="diserclass c3diser">
+                        <span (dblclick)="editing[tema.id_dire_duracion + n + '-diser_fecha_plan'] = true;" *ngIf="!editing[tema.id_dire_duracion + n + '-diser_fecha_plan']">
+                          {{param.diser_fecha_plan}}
+                          <span class="text-muted2" *ngIf="param.diser_fecha_plan === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </span>
+                        <input autofocus type="text" name="diser_fecha_plan"  class="actividaddeinput form-control"
+                              *ngIf="editing[tema.id_dire_duracion + n + '-diser_fecha_plan']"
+                              (keyup.enter)="updateValue(param.id_diser,$event, 'diser_fecha_plan',param.diser_fecha_plan, n)"
+                              (clickOutside)="editing[tema.id_dire_duracion + n + '-diser_fecha_plan'] = false"
+                              [value]="param.diser_fecha_plan"  
+                              [(ngModel)]="param.diser_fecha_plan" />
+                      </td>
+
+                      <td class="diserclass c4diser zebratwo">
+                        <span (dblclick)="editing[tema.id_dire_duracion + n + '-diser_estado'] = true;" *ngIf="!editing[tema.id_dire_duracion + n + '-diser_estado']">
+                          {{param.diser_estado}}
+                          <span class="text-muted2" *ngIf="param.diser_estado === null"> vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </span>
+                        <input autofocus type="text" name="diser_estado"  class="actividaddeinput form-control"
+                              *ngIf="editing[tema.id_dire_duracion + n + '-diser_estado']"
+                              (keyup.enter)="updateValue(param.id_diser,$event, 'diser_estado',param.diser_estado, n)"
+                              (clickOutside)="editing[tema.id_dire_duracion + n + '-diser_estado'] = false"
+                              [value]="param.diser_estado"  
+                              [(ngModel)]="param.diser_estado" />
+                      </td>
+
+                      
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

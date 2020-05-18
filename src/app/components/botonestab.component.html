@@ -11,4 +11,10 @@
     <li class="nav-item">
         <a [routerLinkActive]="['active']"  class="nav-link"  [routerLink]="['/', 'pendientes']" data-toggle="tab">Temas Pendientes</a>
     </li>
+    <li *ngIf="user.id_rol=='8'" class="nav-item">
+        <a [routerLinkActive]="['active']"  class="nav-link navmodificado"  [routerLink]="['/', 'bitacora']" data-toggle="tab">Bitácora de seguimiento</a>
+    </li>
+    <li *ngIf="user.id_rol=='8'" class="nav-item">
+        <a [routerLinkActive]="['active']"  class="nav-link navmodificado2"  [routerLink]="['/', 'administracion']" data-toggle="tab">Administración</a>
+    </li>
 </ul>

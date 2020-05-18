@@ -23,18 +23,74 @@ h3{color:#c18c5d;font-size:19px;}
 
 
 /***************** GLOBALES*********************/
-.anchoinput{width:70px;}
+
+.tamaicon i{font-size:88px;margin-top:30px;margin-bottom:30px;}
+.card-altura-minima{min-height:330px;}
+.tabladimond th{font-size:12px;background-color: #127e99;color:#ffffff;}
+.tablahemo th{font-size:12px;background-color: #74254c;color:#ffffff;}
+.tablacitrix th{font-size:12px;background-color: #8d7d34;color:#ffffff;}
+.tablasema th{font-size:12px;background-color: #c22c59;color:#ffffff;}
+
+
+.positiver {width:100%;padding:5px;
+    background-color: #d3f0cd;text-align:center !important;margin:0px;
+}
+
+.negativer {width:100%;padding:5px;
+    background-color: #e9c0be;text-align:center !important;margin:0px;
+}
+
+.positiveh {width:100%;padding-top:12px;height:46px;
+    background-color: #d3f0cd;text-align:center !important;margin:0px;
+}
+
+.negativeh {width:100%;padding-top:12px;height:46px;
+    background-color: #e9c0be;text-align:center !important;margin:0px;
+}
+
+
+.ticketclass  .ng-pristine{width:30px !important;}
+.ticketclass  .ng-valid{width:30px !important;} 
+.ticketclass  .ng-invalid{width:30px !important;} 
+
+.schedulclass .ng-pristine{}
+.schedulclass .ng-valid{} 
+.schedulclass .ng-invalid{} 
+
+.diserclass .ng-pristine{}
+.diserclass .ng-valid{} 
+.diserclass .ng-invalid{} 
+
+.dimodclass .ng-pristine{}
+.dimodclass .ng-valid{} 
+.dimodclass .ng-invalid{} 
+
+
+/*ng-star-inserted ng-dirty ng-touched"*/
+.activwinput{background-color:#c18c5d;color:#ffffff;}
+.actividaddeinput{background-color:#ffffff;color:#333333;}
 .noborder td, .borderless th {border:0px;font-size:14px;}
 .columnadiassemana{background-color: #4e4e4e;color:#ffffff;}
 .zebraone{background-color: #eed2b9;border-bottom:1px solid #ffffff !important;}
+.zebratwo{background-color: rgb(220, 221, 218);}
+.zebrathree{background-color: rgb(220, 221, 218);}
 
-.borderleft{padding:0px; border-right:1px solid #DFE2E6;}
-.borderbase{padding:0px; border-bottom:1px solid #DFE2E6;}
+.borbase{padding:5px; margin:0px;}
+.borderleft{padding:0px;  margin:0px;border-right:1px solid #DFE2E6;}
+.borderbase{padding:5px; margin:0px;border-bottom:1px solid #DFE2E6;}
 .bgdias{background-color: #8a8888;color:#cccccc;}
 
 .columnadias{width:80px;}
-.columnanames{width:130px;}
+.columnanames{width:130px;padding:0px; margin:0px;}
 .columnames{width:130px;}
+
+.c1dimod{border-bottom:1px solid #cccccc !important;}
+
+
+.c1diser{width:250px;border-bottom:1px solid #cccccc !important;}
+.c2diser{width:350px;border-bottom:1px solid #cccccc !important;}
+.c3diser{width:400px;border-bottom:1px solid #cccccc !important;}
+.c4diser{width:490px;border-bottom:1px solid #cccccc !important;}
 
 .c1tema{width:80px;}
 .c2tema{width:250px;}
@@ -82,7 +138,16 @@ h3{color:#c18c5d;font-size:19px;}
 
 
 .nav-tabs .nav-link{background-color: #c7c9c5;color:#495867;margin-right:2px;font-size:16px;}
+.nav-tabs .navmodificado{background-color: #c18c5d !important;color:#ffffff !important;margin-right:2px;font-size:16px;}
+.nav-tabs .navmodificado2{background-color: #495867 !important;color:#ffffff !important;margin-right:2px;font-size:16px;}
+
+.nav-tabs  .navmodificado.active{background-color: #ffffff !important;color:#495867 !important;margin-right:2px;font-size:16px;}
+.nav-tabs .navmodificado2.active{background-color: #ffffff !important;color:#495867 !important;margin-right:2px;font-size:16px;}
+
+
+
 .nav-tabs .active{border-left:0px;border-right:0px;}
+
 .tab-content{background-color: #ffffff;
     -webkit-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);

@@ -124,5 +124,11 @@ export class IncidenciasService {
     console.log(datos);
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_criti.php`,datos);
   }
+
+  guardarTicketing(valor){
+console.log("valor: ",valor)
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_ticketing.php`,valor);
+  }
+
   
 }

@@ -56,7 +56,9 @@ import { SeguimientosemanalComponent } from './pages/pendientes/disaster/seguimi
 import { PeriodosanterioresComponent } from './pages/home/periodosanteriores.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { InPlaceEditorModule } from '@syncfusion/ej2-angular-inplace-editor';
-
+import { RocketEditModule } from 'rocket-edit';
+import { BitacoraComponent } from './pages/bitacora/bitacora.component';
+import { AdministracionComponent } from './pages/administracion/administracion.component'
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 registerLocaleData(localeEs, 'es');
@@ -98,12 +100,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     CitrixComponent,
     DiscoveryComponent,
     SeguimientosemanalComponent,
-    PeriodosanterioresComponent
+    PeriodosanterioresComponent,
+    BitacoraComponent,
+    AdministracionComponent
     
   ],
   imports: [
     BrowserModule,
- 
+    RocketEditModule,
     ClickOutsideModule,
     MatTabsModule,
     InPlaceEditorModule,

@@ -1,9 +1,177 @@
+
 <div class="container-fluid">
     <div class="row">
-    <div class="col-12 p-0 mt-5">
-        <h4>Disaster Recovery</h4>
+      <div class="col-12 p-0 mt-5">
+        <h4>Disaster Recovery - Modos de operación</h4>
         <h2>Herramientas de Monitorización</h2>
+      </div>
     </div>
-</div>
-</div>
+  
+    <div class="row">
+      <div class="col-12 p-0 mt-5">
+        <table class="table table-bordered">
 
+          <tbody>
+            <tr >
+              <td colspan="4" class="p-0 m-0">
+
+
+
+                <table class="table table-hover noborder p-0 m-0 tablahemo">
+                    <thead>
+
+                          <tr>
+                            <th>Bussiness Application</th>
+                            <th>Server</th>
+                            <th>CPD</th>
+                            <th>Basculable</th>
+                            <th width="180">Función del servidor</th>
+                            <th>Acción en caso de fallo del servidor</th>
+                            <th width="80">Tiene capacidad para soportar la carga?</th>
+                          </tr>
+                        
+                    </thead>
+                  <tbody>
+
+                    <tr *ngFor="let tema of temas; let n = index">
+                        <td class="hemoclass c1dimod ">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_bussinesapp'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_bussinesapp']">
+                              {{tema.hemo_bussinesapp}}
+                              <span class="text-muted2" *ngIf="tema.hemo_bussinesapp === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="hemo_bussinesapp"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_hemo + n + '-hemo_bussinesapp']"
+                                  (keyup.enter)="updateValue(tema.id_hemo,$event, 'hemo_bussinesapp',tema.hemo_bussinesapp, n)"
+                                  (clickOutside)="editing[tema.id_hemo + n + '-hemo_bussinesapp'] = false"
+                                  [value]="tema.hemo_bussinesapp"  
+                                  [(ngModel)]="tema.hemo_bussinesapp" />
+                          </td>
+                          <td class="hemoclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_server'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_server']">
+                              {{tema.hemo_server}}
+                              <span class="text-muted2" *ngIf="tema.hemo_server === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="hemo_server"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_hemo + n + '-hemo_server']"
+                                  (keyup.enter)="updateValue(tema.id_hemo,$event, 'hemo_server',tema.hemo_server, n)"
+                                  (clickOutside)="editing[tema.id_hemo + n + '-hemo_server'] = false"
+                                  [value]="tema.hemo_server"  
+                                  [(ngModel)]="tema.hemo_server" />
+                          </td>
+                          <td class="hemoclass c1dimod ">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_cpd'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_cpd']">
+                              {{tema.hemo_cpd}}
+                              <span class="text-muted2" *ngIf="tema.hemo_cpd === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="hemo_cpd"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_hemo + n + '-hemo_cpd']"
+                                  (keyup.enter)="updateValue(tema.id_hemo,$event, 'hemo_cpd',tema.hemo_cpd, n)"
+                                  (clickOutside)="editing[tema.id_hemo + n + '-hemo_cpd'] = false"
+                                  [value]="tema.hemo_cpd"  
+                                  [(ngModel)]="tema.hemo_cpd" />
+                          </td>
+
+
+
+                          <td class="hemoclass c1dimod p-0">
+                            <div [ngClass]="{
+                                positiveh: tema.hemo_basculable == 'SÍ',
+                                negativeh: tema.hemo_basculable == 'NO'
+                            }">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_basculable'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_basculable']">
+                              {{tema.hemo_basculable}}
+                              <span class="text-muted2" *ngIf="tema.hemo_basculable === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <select name="hemo_basculable"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.id_hemo + n + '-hemo_basculable']"
+                            (change)="updateValue(tema.id_hemo,$event, 'hemo_basculable',tema.hemo_basculable, n)"
+                            (clickOutside)="editing[tema.id_hemo + n + '-hemo_basculable'] = false"
+                            [(ngModel)]="tema.hemo_basculable">
+                                <option [value]="tema.hemo_basculable">{{tema.hemo_basculable}}</option>
+                                <option value="SÍ">SÍ</option>
+                                <option value="NO">NO</option>
+                            </select>
+                           </div>
+                          </td>        
+
+
+
+
+                          <td class="hemoclass c1dimod ">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_funcionservidor'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_funcionservidor']">
+                              {{tema.hemo_funcionservidor}}
+                              <span class="text-muted2" *ngIf="tema.hemo_funcionservidor === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="hemo_funcionservidor"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_hemo + n + '-hemo_funcionservidor']"
+                                  (keyup.enter)="updateValue(tema.id_hemo,$event, 'hemo_funcionservidor',tema.hemo_funcionservidor, n)"
+                                  (clickOutside)="editing[tema.id_hemo + n + '-hemo_funcionservidor'] = false"
+                                  [value]="tema.hemo_funcionservidor"  
+                                  [(ngModel)]="tema.hemo_funcionservidor" />
+                          </td>
+                          <td class="hemoclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_accion'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_accion']">
+                              {{tema.hemo_accion}}
+                              <span class="text-muted2" *ngIf="tema.hemo_accion === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="hemo_accion"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_hemo + n + '-hemo_accion']"
+                                  (keyup.enter)="updateValue(tema.id_hemo,$event, 'hemo_accion',tema.hemo_accion, n)"
+                                  (clickOutside)="editing[tema.id_hemo + n + '-hemo_accion'] = false"
+                                  [value]="tema.hemo_accion"  
+                                  [(ngModel)]="tema.hemo_accion" />
+                          </td>
+
+
+
+                          <td class="hemoclass c1dimod p-0">
+                            <div [ngClass]="{
+                                positiveh: tema.hemo_capacidad == 'SÍ',
+                                negativeh: tema.hemo_capacidad == 'NO'
+                            }">
+                            <span (dblclick)="editing[tema.id_hemo + n + '-hemo_capacidad'] = true;" *ngIf="!editing[tema.id_hemo + n + '-hemo_capacidad']">
+                              {{tema.hemo_capacidad}}
+                              <span class="text-muted2" *ngIf="tema.hemo_capacidad === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <select name="hemo_capacidad"  class="actividaddeinput form-control"
+                            *ngIf="editing[tema.id_hemo + n + '-hemo_capacidad']"
+                            (change)="updateValue(tema.id_hemo,$event, 'hemo_capacidad',tema.hemo_capacidad, n)"
+                            (clickOutside)="editing[tema.id_hemo + n + '-hemo_capacidad'] = false"
+                            [(ngModel)]="tema.hemo_capacidad">
+                                <option [value]="tema.hemo_capacidad">{{tema.hemo_capacidad}}</option>
+                                <option value="SÍ">SÍ</option>
+                                <option value="NO">NO</option>
+                            </select>
+                           </div>
+                          </td>           
+                          
+                          
+
+
+                    </tr>
+                    <tr *ngFor="let comentarios of comentariostabla; let i = index">
+
+                        <td class="hemoclass c1dimod " colspan="15"><h4>Observaciones</h4>
+                            <span (dblclick)="editing[comentarios.id_hemo_com + i + '-hemo_comentariostabla'] = true;" *ngIf="!editing[comentarios.id_hemo_com + i + '-hemo_comentariostabla']">
+                              {{comentarios.hemo_comentariostabla}}
+                              <span class="text-muted2" *ngIf="comentarios.hemo_comentariostabla === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <textarea autofocus name="hemo_comentariostabla"  class="actividaddeinput form-control"
+                                  *ngIf="editing[comentarios.id_hemo_com + i + '-hemo_comentariostabla']"
+                                  (keyup.enter)="updateValueComent(comentarios.id_hemo_com,$event, 'hemo_comentariostabla',comentarios.hemo_comentariostabla, i)"
+                                  (clickOutside)="editing[comentarios.id_hemo_com + i + '-hemo_comentariostabla'] = false"
+                                  
+                                  [(ngModel)]="comentarios.hemo_comentariostabla">{{comentarios.hemo_comentariostabla}}</textarea>
+                          </td>
+ 
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

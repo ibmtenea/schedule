@@ -1,9 +1,269 @@
+
+
+
 <div class="container-fluid">
     <div class="row">
-    <div class="col-12 p-0 mt-5">
-        <h4>Disaster Recovery</h4>
+      <div class="col-12 p-0 mt-5">
+        <h4>Disaster Recovery - Modos de operación</h4>
         <h2>Infraestructuras de comunicaciones</h2>
+      </div>
     </div>
-</div>
-</div>
+  
+    <div class="row">
+      <div class="col-12 p-0 mt-5">
+        <table class="table table-bordered">
 
+          <tbody>
+            <tr >
+              <td colspan="4" class="p-0 m-0">
+
+
+
+                <table class="table table-hover noborder p-0 m-0 tabladimond">
+                    <thead>
+
+                        
+
+                        <tr>
+                            <th width="50%" colspan="4" rowspan="2">&nbsp;</th>
+                            <th class="text-center" colspan="2" rowspan="2">Units Deployed</th>
+                            <th colspan="6"  class="text-center" >Component operational mode</th>
+                            <th colspan="2"  class="text-center"  rowspan="2">Operations mode proposal</th>
+                            <th rowspan="2" class="text-center" >1xQ(uarter) 2xY(ear) 1xM(onth) Specific DR Etc.</th>
+                          </tr>
+                          <tr>
+                            <th colspan="2" class="text-center">Fully Operational</th>
+                            <th colspan="2" class="text-center">Single Failure</th>
+                            <th colspan="2" class="text-center">DR</th>
+                          </tr>
+                          <tr>
+                            <th>Provider</th>
+                            <th>Environement</th>
+                            <th>Description</th>
+                            <th>Component</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">Maintenance plan?</th>
+                          </tr>
+                        
+                    </thead>
+                  <tbody>
+
+                    <tr *ngFor="let tema of temas; let n = index">
+
+                        
+                        <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_provider'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_provider']">
+                              {{tema.dimod_provider}}
+                              <span class="text-muted2" *ngIf="tema.dimod_provider === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_provider"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_provider']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_provider',tema.dimod_provider, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_provider'] = false"
+                                  [value]="tema.dimod_provider"  
+                                  [(ngModel)]="tema.dimod_provider" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_enviroment'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_enviroment']">
+                              {{tema.dimod_enviroment}}
+                              <span class="text-muted2" *ngIf="tema.dimod_enviroment === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_enviroment"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_enviroment']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_enviroment',tema.dimod_enviroment, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_enviroment'] = false"
+                                  [value]="tema.dimod_enviroment"  
+                                  [(ngModel)]="tema.dimod_enviroment" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_description'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_description']">
+                              {{tema.dimod_description}}
+                              <span class="text-muted2" *ngIf="tema.dimod_description === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_description"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_description']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_description',tema.dimod_description, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_description'] = false"
+                                  [value]="tema.dimod_description"  
+                                  [(ngModel)]="tema.dimod_description" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_component'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_component']">
+                              {{tema.dimod_component}}
+                              <span class="text-muted2" *ngIf="tema.dimod_component === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_component"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_component']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_component',tema.dimod_component, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_component'] = false"
+                                  [value]="tema.dimod_component"  
+                                  [(ngModel)]="tema.dimod_component" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_ud_sft'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_ud_sft']">
+                              {{tema.dimod_ud_sft}}
+                              <span class="text-muted2" *ngIf="tema.dimod_ud_sft === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_ud_sft"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_ud_sft']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_ud_sft',tema.dimod_ud_sft, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_ud_sft'] = false"
+                                  [value]="tema.dimod_ud_sft"  
+                                  [(ngModel)]="tema.dimod_ud_sft" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_ud_cbs'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_ud_cbs']">
+                              {{tema.dimod_ud_cbs}}
+                              <span class="text-muted2" *ngIf="tema.dimod_ud_cbs === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_ud_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_ud_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_ud_cbs',tema.dimod_ud_cbs, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_ud_cbs'] = false"
+                                  [value]="tema.dimod_ud_cbs"  
+                                  [(ngModel)]="tema.dimod_ud_cbs" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_fo_sft'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_fo_sft']">
+                              {{tema.dimod_fo_sft}}
+                              <span class="text-muted2" *ngIf="tema.dimod_fo_sft === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_fo_sft"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_fo_sft']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_fo_sft',tema.dimod_fo_sft, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_fo_sft'] = false"
+                                  [value]="tema.dimod_fo_sft"  
+                                  [(ngModel)]="tema.dimod_fo_sft" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_fo_cbs'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_fo_cbs']">
+                              {{tema.dimod_fo_cbs}}
+                              <span class="text-muted2" *ngIf="tema.dimod_fo_cbs === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_fo_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_fo_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_fo_cbs',tema.dimod_fo_cbs, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_fo_cbs'] = false"
+                                  [value]="tema.dimod_fo_cbs"  
+                                  [(ngModel)]="tema.dimod_fo_cbs" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_sf_sft'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_sf_sft']">
+                              {{tema.dimod_sf_sft}}
+                              <span class="text-muted2" *ngIf="tema.dimod_sf_sft === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_sf_sft"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_sf_sft']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_sf_sft',tema.dimod_sf_sft, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_sf_sft'] = false"
+                                  [value]="tema.dimod_sf_sft"  
+                                  [(ngModel)]="tema.dimod_sf_sft" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_sf_cbs'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_sf_cbs']">
+                              {{tema.dimod_sf_cbs}}
+                              <span class="text-muted2" *ngIf="tema.dimod_sf_cbs === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_sf_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_sf_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_sf_cbs',tema.dimod_sf_cbs, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_sf_cbs'] = false"
+                                  [value]="tema.dimod_sf_cbs"  
+                                  [(ngModel)]="tema.dimod_sf_cbs" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_dr_sft'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_dr_sft']">
+                              {{tema.dimod_dr_sft}}
+                              <span class="text-muted2" *ngIf="tema.dimod_dr_sft === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_dr_sft"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_dr_sft']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_dr_sft',tema.dimod_dr_sft, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_dr_sft'] = false"
+                                  [value]="tema.dimod_dr_sft"  
+                                  [(ngModel)]="tema.dimod_dr_sft" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_dr_cbs'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_dr_cbs']">
+                              {{tema.dimod_dr_cbs}}
+                              <span class="text-muted2" *ngIf="tema.dimod_dr_cbs === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_dr_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_dr_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_dr_cbs',tema.dimod_dr_cbs, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_dr_cbs'] = false"
+                                  [value]="tema.dimod_dr_cbs"  
+                                  [(ngModel)]="tema.dimod_dr_cbs" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_omp_sft'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_omp_sft']">
+                              {{tema.dimod_omp_sft}}
+                              <span class="text-muted2" *ngIf="tema.dimod_omp_sft === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_omp_sft"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_omp_sft']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_omp_sft',tema.dimod_omp_sft, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_omp_sft'] = false"
+                                  [value]="tema.dimod_omp_sft"  
+                                  [(ngModel)]="tema.dimod_omp_sft" />
+                          </td>
+                          <td class="dimodclass c1dimod">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_omp_cbs'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_omp_cbs']">
+                              {{tema.dimod_omp_cbs}}
+                              <span class="text-muted2" *ngIf="tema.dimod_omp_cbs === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_omp_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_omp_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_omp_cbs',tema.dimod_omp_cbs, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_omp_cbs'] = false"
+                                  [value]="tema.dimod_omp_cbs"  
+                                  [(ngModel)]="tema.dimod_omp_cbs" />
+                          </td>
+                          <td class="dimodclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_dimod + n + '-dimod_maintenances_plan'] = true;" *ngIf="!editing[tema.id_dimod + n + '-dimod_maintenances_plan']">
+                              {{tema.dimod_maintenances_plan}}
+                              <span class="text-muted2" *ngIf="tema.dimod_maintenances_plan === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="dimod_maintenances_plan"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_dimod + n + '-dimod_maintenances_plan']"
+                                  (keyup.enter)="updateValue(tema.id_dimod,$event, 'dimod_maintenances_plan',tema.dimod_maintenances_plan, n)"
+                                  (clickOutside)="editing[tema.id_dimod + n + '-dimod_maintenances_plan'] = false"
+                                  [value]="tema.dimod_maintenances_plan"  
+                                  [(ngModel)]="tema.dimod_maintenances_plan" />
+                          </td>
+                    </tr>
+                    <tr *ngFor="let comentarios of comentariostabla; let i = index">
+
+                        <td class="dimodclass c1dimod " colspan="15"><h4>Observaciones</h4>
+                            <span (dblclick)="editing[comentarios.id_dimod_com + i + '-dimod_comentariostabla'] = true;" *ngIf="!editing[comentarios.id_dimod_com + i + '-dimod_comentariostabla']">
+                              {{comentarios.dimod_comentariostabla}}
+                              <span class="text-muted2" *ngIf="comentarios.dimod_comentariostabla === null">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <textarea autofocus name="dimod_comentariostabla"  class="actividaddeinput form-control"
+                                  *ngIf="editing[comentarios.id_dimod_com + i + '-dimod_comentariostabla']"
+                                  (keyup.enter)="updateValueComent(comentarios.id_dimod_com,$event, 'dimod_comentariostabla',comentarios.dimod_comentariostabla, i)"
+                                  (clickOutside)="editing[comentarios.id_dimod_com + i + '-dimod_comentariostabla'] = false"
+                                  
+                                  [(ngModel)]="comentarios.dimod_comentariostabla">{{comentarios.dimod_comentariostabla}}</textarea>
+                          </td>
+ 
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

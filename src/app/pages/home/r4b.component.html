@@ -61,7 +61,7 @@
             let-value="value"
             let-row="row"
           >
-            {{ row.esse_servicio | slice: 0:90 }}
+            {{ row.esse_servicio}}
           </ng-template>
         </ngx-datatable-column>
 
@@ -83,7 +83,7 @@
               }"
             >
               <span
-                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                title="Doble click para editar"
                 (dblclick)="editing[rowIndex + '-esse_estado'] = true"
                 *ngIf="!editing[rowIndex + '-esse_estado']"
               >
@@ -117,11 +117,11 @@
             let-row="row"
           >
             <span
-              title="{{ 'txtDobleclickparaeditar' | translate }}"
+              title="Doble click para editar"
               (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
               *ngIf="!editing[rowIndex + '-esse_observaciones']"
             >
-              {{ row.esse_observaciones | slice: 0:90 }}
+              {{ row.esse_observaciones}}
               <span class="text-muted2" *ngIf="row.esse_observaciones === null">
                 vacío
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

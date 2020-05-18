@@ -66,11 +66,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_fecha'] = true"
             *ngIf="!editing[rowIndex + '-defcon_fecha']"
             >
-            {{ row.defcon_fecha | slice: 0:90 }}
+            {{ row.defcon_fecha}}
             <span class="text-muted2" *ngIf="row.defcon_fecha === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -93,11 +93,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_inicio_incidencia'] = true"
             *ngIf="!editing[rowIndex + '-defcon_inicio_incidencia']"
             >
-            {{ row.defcon_inicio_incidencia | slice: 0:90 }}
+            {{ row.defcon_inicio_incidencia}}
             <span class="text-muted2" *ngIf="row.defcon_inicio_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -120,11 +120,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_final_incidencia'] = true"
             *ngIf="!editing[rowIndex + '-defcon_final_incidencia']"
             >
-            {{ row.defcon_final_incidencia | slice: 0:90 }}
+            {{ row.defcon_final_incidencia}}
             <span class="text-muted2" *ngIf="row.defcon_final_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -147,11 +147,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_ticket'] = true"
             *ngIf="!editing[rowIndex + '-defcon_ticket']"
             >
-            {{ row.defcon_ticket | slice: 0:90 }}
+            {{ row.defcon_ticket}}
             <span class="text-muted2" *ngIf="row.defcon_ticket === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -174,11 +174,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_aplicaciones_impactadas'] = true"
             *ngIf="!editing[rowIndex + '-defcon_aplicaciones_impactadas']"
             >
-            {{ row.defcon_aplicaciones_impactadas | slice: 0:90 }}
+            {{ row.defcon_aplicaciones_impactadas}}
             <span class="text-muted2" *ngIf="row.defcon_aplicaciones_impactadas === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -201,11 +201,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_descripcion'] = true"
             *ngIf="!editing[rowIndex + '-defcon_descripcion']"
             >
-            {{ row.defcon_descripcion | slice: 0:90 }}
+            {{ row.defcon_descripcion}}
             <span class="text-muted2" *ngIf="row.defcon_descripcion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -228,11 +228,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_ultima_actualizacion'] = true"
             *ngIf="!editing[rowIndex + '-defcon_ultima_actualizacion']"
             >
-            {{ row.defcon_ultima_actualizacion | slice: 0:90 }}
+            {{ row.defcon_ultima_actualizacion}}
             <span class="text-muted2" *ngIf="row.defcon_ultima_actualizacion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -256,11 +256,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-defcon_resolutores'] = true"
             *ngIf="!editing[rowIndex + '-defcon_resolutores']"
             >
-            {{ row.defcon_resolutores | slice: 0:90 }}
+            {{ row.defcon_resolutores}}
             <span class="text-muted2" *ngIf="row.defcon_resolutores === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -293,7 +293,7 @@
                 }"
               >
                 <span
-                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  title="Doble click para editar"
                   (dblclick)="editing[rowIndex + '-defcon_estado'] = true"
                   *ngIf="!editing[rowIndex + '-defcon_estado']"
                 >
@@ -326,11 +326,11 @@
               let-row="row"
             >
               <span
-                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                title="Doble click para editar"
                 (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
                 *ngIf="!editing[rowIndex + '-esse_observaciones']"
               >
-                {{ row.esse_observaciones | slice: 0:90 }}
+                {{ row.esse_observaciones}}
                 <span class="text-muted2" *ngIf="row.esse_observaciones === null">
                   vacío
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

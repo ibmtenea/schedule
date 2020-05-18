@@ -66,11 +66,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-crise_fecha'] = true"
             *ngIf="!editing[rowIndex + '-crise_fecha']"
             >
-            {{ row.crise_fecha | slice: 0:90 }}
+            {{ row.crise_fecha}}
             <span class="text-muted2" *ngIf="row.crise_fecha === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -93,11 +93,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-crise_proveedor'] = true"
             *ngIf="!editing[rowIndex + '-crise_proveedor']"
             >
-            {{ row.crise_proveedor | slice: 0:90 }}
+            {{ row.crise_proveedor}}
             <span class="text-muted2" *ngIf="row.crise_proveedor === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -120,11 +120,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-crise_existe_incidencia'] = true"
             *ngIf="!editing[rowIndex + '-crise_existe_incidencia']"
             >
-            {{ row.crise_existe_incidencia | slice: 0:90 }}
+            {{ row.crise_existe_incidencia}}
             <span class="text-muted2" *ngIf="row.crise_existe_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -147,11 +147,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-crise_aplicaciones_impactadas'] = true"
             *ngIf="!editing[rowIndex + '-crise_aplicaciones_impactadas']"
             >
-            {{ row.crise_aplicaciones_impactadas | slice: 0:90 }}
+            {{ row.crise_aplicaciones_impactadas}}
             <span class="text-muted2" *ngIf="row.crise_aplicaciones_impactadas === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -174,11 +174,11 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-            <span title="{{ 'txtDobleclickparaeditar' | translate }}"
+            <span title="Doble click para editar"
             (dblclick)="editing[rowIndex + '-crise_resolucion'] = true"
             *ngIf="!editing[rowIndex + '-crise_resolucion']"
             >
-            {{ row.crise_resolucion | slice: 0:90 }}
+            {{ row.crise_resolucion}}
             <span class="text-muted2" *ngIf="row.crise_resolucion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
@@ -209,7 +209,7 @@
                 }"
               >
                 <span
-                  title="{{ 'txtDobleclickparaeditar' | translate }}"
+                  title="Doble click para editar"
                   (dblclick)="editing[rowIndex + '-crise_estado'] = true"
                   *ngIf="!editing[rowIndex + '-crise_estado']"
                 >
@@ -242,11 +242,11 @@
               let-row="row"
             >
               <span
-                title="{{ 'txtDobleclickparaeditar' | translate }}"
+                title="Doble click para editar"
                 (dblclick)="editing[rowIndex + '-esse_observaciones'] = true"
                 *ngIf="!editing[rowIndex + '-esse_observaciones']"
               >
-                {{ row.esse_observaciones | slice: 0:90 }}
+                {{ row.esse_observaciones}}
                 <span class="text-muted2" *ngIf="row.esse_observaciones === null">
                   vacío
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

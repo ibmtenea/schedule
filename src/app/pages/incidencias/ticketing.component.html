@@ -14,11 +14,11 @@
         <tbody>
           <tr *ngFor="let ticke of ticketing; let i = index">
             <td class="columnames">{{ ticke.tike_mes }}</td>
-            <td class="columnanames" class="borderleft p-0 m-0">
-              <p class="ml-2">Día</p>
-              <p class="ml-2">Abiertos</p>
-              <p class="ml-2">Cerrados</p>
-              <p class="ml-2">Diferencia</p>
+            <td  class="borderleft p-0 m-0">
+              <p class="borbase ml-2">Día</p>
+              <p class="borbase ml-2">Abiertos</p>
+              <p class="borbase ml-2">Cerrados</p>
+              <p class="borbase ml-2">Diferencia</p>
             </td>
             <td
               class="columnadias"
@@ -32,28 +32,38 @@
 
 
 
-
-    <p class="borderbase text-center">
-        {{param.tike_abiertos}} 
-    <!-- <input-editor 
-    [(ngModel)]="param.tike_abiertos" 
-    type="text" 
-    (onSave)="sampleClick()">
-    </input-editor> -->
+    <p class="ticketclass borderbase text-center">
+      <span (dblclick)="editing[ticke.tike_mes + n + '-tike_abiertos'] = true;" *ngIf="!editing[ticke.tike_mes + n + '-tike_abiertos']">
+        {{param.tike_abiertos}}
+        <span class="text-muted2" *ngIf="param.tike_abiertos === null"> 0&nbsp;&nbsp;&nbsp;</span>
+      </span>
+      <input autofocus type="text" name="tike_abiertos" maxlength="4" class="activwinput"
+            *ngIf="editing[ticke.tike_mes + n + '-tike_abiertos']"
+            (keyup.enter)="updateValue(param.id_tike,$event, 'tike_abiertos',param.tike_abiertos, n)"
+            (clickOutside)="editing[ticke.tike_mes + n + '-tike_abiertos'] = false"
+            [value]="param.tike_abiertos"  
+            [(ngModel)]="param.tike_abiertos" 
+            pattern="[0-9]+"
+      />
     </p>
 
 
+    <p class="ticketclass borderbase text-center">
+      <span (dblclick)="editing[ticke.tike_mes + n + '-tike_cerrados'] = true;" *ngIf="!editing[ticke.tike_mes + n + '-tike_cerrados']">
+        {{param.tike_cerrados}}
+        <span class="text-muted2" *ngIf="param.tike_cerrados === null"> 0&nbsp;&nbsp;&nbsp;</span>
+      </span>
+      <input autofocus type="text" name="tike_cerrados" maxlength="4" class="activwinput"
+            *ngIf="editing[ticke.tike_mes + n + '-tike_cerrados']"
+            (keyup.enter)="updateValue(param.id_tike,$event, 'tike_cerrados',param.tike_cerrados, n)"
+            (clickOutside)="editing[ticke.tike_mes + n + '-tike_cerrados'] = false"
+            [value]="param.tike_cerrados"  
+            [(ngModel)]="param.tike_cerrados" 
+            pattern="[0-9]+"
+      />
+    </p>
 
-
-
-    <p class="borderbase text-center">{{param.tike_cerrados}}</p>
-
-
-
-
-
-
-              <p class="text-center">{{ param.tike_diferencia }}</p>
+      <p class="text-center" [ngClass]="{'positiver': param.negativo==='si','negativer': param.negativo==='no'}" >{{ param.tike_diferencia }}</p>
             </td>
           </tr>
         </tbody>

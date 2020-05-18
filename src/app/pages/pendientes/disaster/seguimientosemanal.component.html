@@ -1,9 +1,113 @@
+
 <div class="container-fluid">
     <div class="row">
-    <div class="col-12 p-0 mt-5">
-        <h4>Disaster Recovery</h4>
+      <div class="col-12 p-0 mt-5">
+        <h4>Disaster Recovery - Mapa Actividad</h4>
         <h2>Seguimiento semanal</h2>
+      </div>
     </div>
-</div>
-</div>
+  
+    <div class="row">
+      <div class="col-12 p-0 mt-5">
+        <table class="table table-bordered">
 
+          <tbody>
+            <tr >
+              <td colspan="4" class="p-0 m-0">
+
+
+
+                <table class="table table-hover noborder p-0 m-0 tablasema">
+                    <thead>
+
+                        
+                          <tr>
+                            <th>Ámbito</th>
+                            <th>Descripción</th>
+                            <th>Escenarios de desastre/ Modo operación actual</th>
+                            <th>Propuesta mejora modelo operación</th>
+                            <th>Analisis capacidad en escenarios de DR</th>
+                          </tr>
+                        
+
+
+                    </thead>
+                  <tbody>
+
+                    <tr *ngFor="let tema of temas; let n = index">
+
+                        
+                        <td class="citrixclass c1dimod ">
+                            <span (dblclick)="editing[tema.id_sema + n + '-sema_ambito'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_ambito']">
+                              {{tema.sema_ambito}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_ambito.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="sema_ambito"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_sema + n + '-sema_ambito']"
+                                  (keyup.enter)="updateValue(tema.id_sema,$event, 'sema_ambito',tema.sema_ambito, n)"
+                                  (clickOutside)="editing[tema.id_sema + n + '-sema_ambito'] = false"
+                                  [value]="tema.sema_ambito"  
+                                  [(ngModel)]="tema.sema_ambito" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_sema + n + '-sema_descripcion'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_descripcion']">
+                              {{tema.sema_descripcion}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_descripcion.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="sema_descripcion"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_sema + n + '-sema_descripcion']"
+                                  (keyup.enter)="updateValue(tema.id_sema,$event, 'sema_descripcion',tema.sema_descripcion, n)"
+                                  (clickOutside)="editing[tema.id_sema + n + '-sema_descripcion'] = false"
+                                  [value]="tema.sema_descripcion"  
+                                  [(ngModel)]="tema.sema_descripcion" />
+                          </td>
+                          <td class="citrixclass c1dimod ">
+                            <span (dblclick)="editing[tema.id_sema + n + '-sema_escenarios'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_escenarios']">
+                              {{tema.sema_escenarios}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_escenarios.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="sema_escenarios"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_sema + n + '-sema_escenarios']"
+                                  (keyup.enter)="updateValue(tema.id_sema,$event, 'sema_escenarios',tema.sema_escenarios, n)"
+                                  (clickOutside)="editing[tema.id_sema + n + '-sema_escenarios'] = false"
+                                  [value]="tema.sema_escenarios"  
+                                  [(ngModel)]="tema.sema_escenarios" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_sema + n + '-sema_propuesta'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_propuesta']">
+                              {{tema.sema_propuesta}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_propuesta.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="sema_propuesta"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_sema + n + '-sema_propuesta']"
+                                  (keyup.enter)="updateValue(tema.id_sema,$event, 'sema_propuesta',tema.sema_propuesta, n)"
+                                  (clickOutside)="editing[tema.id_sema + n + '-sema_propuesta'] = false"
+                                  [value]="tema.sema_propuesta"  
+                                  [(ngModel)]="tema.sema_propuesta" />
+                          </td>
+                          <td class="citrixclass c1dimod ">
+                            <span (dblclick)="editing[tema.id_sema + n + '-sema_analisis'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_analisis']">
+                              {{tema.sema_analisis}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_analisis.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="sema_analisis"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_sema + n + '-sema_analisis']"
+                                  (keyup.enter)="updateValue(tema.id_sema,$event, 'sema_analisis',tema.sema_analisis, n)"
+                                  (clickOutside)="editing[tema.id_sema + n + '-sema_analisis'] = false"
+                                  [value]="tema.sema_analisis"  
+                                  [(ngModel)]="tema.sema_analisis" />
+                          </td>
+
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

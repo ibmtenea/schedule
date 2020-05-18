@@ -1,9 +1,277 @@
+
+
+
 <div class="container-fluid">
     <div class="row">
-    <div class="col-12 p-0 mt-5">
-        <h4>Disaster Recovery</h4>
+      <div class="col-12 p-0 mt-5">
+        <h4>Disaster Recovery - Modos de operación</h4>
         <h2>Plataforma CITRIX</h2>
+      </div>
     </div>
-</div>
-</div>
+  
+    <div class="row">
+      <div class="col-12 p-0 mt-5">
+        <table class="table table-bordered">
 
+          <tbody>
+            <tr >
+              <td colspan="4" class="p-0 m-0">
+
+
+
+                <table class="table table-hover noborder p-0 m-0 tablacitrix">
+                    <thead>
+
+                        
+
+                        <tr>
+                            <th width="50%" colspan="3" rowspan="2">&nbsp;</th>
+                            <th class="text-center" colspan="3" rowspan="2">Units Deployed</th>
+                            <th colspan="9"  class="text-center" >Component operational mode</th>
+                          </tr>
+                          <tr>
+                            <th colspan="3" class="text-center">Fully Operational</th>
+                            <th colspan="3" class="text-center">Single Failure</th>
+                            <th colspan="3" class="text-center">DR</th>
+                          </tr>
+                          <tr>
+                           
+                            <th>Environement</th>
+                            <th>Description</th>
+                            <th>Component</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">COLT</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">COLT</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">COLT</th>
+                            <th class="text-center">SFT</th>
+                            <th class="text-center">CBS</th>
+                            <th class="text-center">COLT</th>
+                          </tr>
+                        
+
+
+                    </thead>
+                  <tbody>
+
+                    <tr *ngFor="let tema of temas; let n = index">
+
+                        
+                        <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_environement'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_environement']">
+                              {{tema.citrix_environement}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_environement.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_environement"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_environement']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_environement',tema.citrix_environement, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_environement'] = false"
+                                  [value]="tema.citrix_environement"  
+                                  [(ngModel)]="tema.citrix_environement" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_descripcion'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_descripcion']">
+                              {{tema.citrix_descripcion}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_descripcion.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_descripcion"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_descripcion']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_descripcion',tema.citrix_descripcion, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_descripcion'] = false"
+                                  [value]="tema.citrix_descripcion"  
+                                  [(ngModel)]="tema.citrix_descripcion" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_component'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_component']">
+                              {{tema.citrix_component}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_component.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_component"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_component']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_component',tema.citrix_component, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_component'] = false"
+                                  [value]="tema.citrix_component"  
+                                  [(ngModel)]="tema.citrix_component" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_ud_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_ud_sfb']">
+                              {{tema.citrix_ud_sfb}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_ud_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_ud_sfb"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_ud_sfb']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_ud_sfb',tema.citrix_ud_sfb, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_ud_sfb'] = false"
+                                  [value]="tema.citrix_ud_sfb"  
+                                  [(ngModel)]="tema.citrix_ud_sfb" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_ud_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_ud_cbs']">
+                              {{tema.citrix_ud_cbs}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_ud_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_ud_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_ud_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_ud_cbs',tema.citrix_ud_cbs, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_ud_cbs'] = false"
+                                  [value]="tema.citrix_ud_cbs"  
+                                  [(ngModel)]="tema.citrix_ud_cbs" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_ud_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_ud_colt']">
+                              {{tema.citrix_ud_colt}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_ud_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_ud_colt"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_ud_colt']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_ud_colt',tema.citrix_ud_colt, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_ud_colt'] = false"
+                                  [value]="tema.citrix_ud_colt"  
+                                  [(ngModel)]="tema.citrix_ud_colt" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_fo_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_fo_sfb']">
+                              {{tema.citrix_fo_sfb}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_fo_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_fo_sfb"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_fo_sfb']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_fo_sfb',tema.citrix_fo_sfb, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_fo_sfb'] = false"
+                                  [value]="tema.citrix_fo_sfb"  
+                                  [(ngModel)]="tema.citrix_fo_sfb" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_fo_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_fo_cbs']">
+                              {{tema.citrix_fo_cbs}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_fo_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_fo_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_fo_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_fo_cbs',tema.citrix_fo_cbs, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_fo_cbs'] = false"
+                                  [value]="tema.citrix_fo_cbs"  
+                                  [(ngModel)]="tema.citrix_fo_cbs" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_fo_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_fo_colt']">
+                              {{tema.citrix_fo_colt}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_fo_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_fo_colt"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_fo_colt']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_fo_colt',tema.citrix_fo_colt, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_fo_colt'] = false"
+                                  [value]="tema.citrix_fo_colt"  
+                                  [(ngModel)]="tema.citrix_fo_colt" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_sf_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_sf_sfb']">
+                              {{tema.citrix_sf_sfb}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_sf_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_sf_sfb"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_sf_sfb']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_sf_sfb',tema.citrix_sf_sfb, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_sf_sfb'] = false"
+                                  [value]="tema.citrix_sf_sfb"  
+                                  [(ngModel)]="tema.citrix_sf_sfb" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_sf_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_sf_cbs']">
+                              {{tema.citrix_sf_cbs}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_sf_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_sf_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_sf_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_sf_cbs',tema.citrix_sf_cbs, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_sf_cbs'] = false"
+                                  [value]="tema.citrix_sf_cbs"  
+                                  [(ngModel)]="tema.citrix_sf_cbs" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_sf_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_sf_colt']">
+                              {{tema.citrix_sf_colt}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_sf_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_sf_colt"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_sf_colt']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_sf_colt',tema.citrix_sf_colt, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_sf_colt'] = false"
+                                  [value]="tema.citrix_sf_colt"  
+                                  [(ngModel)]="tema.citrix_sf_colt" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_dr_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_dr_sfb']">
+                              {{tema.citrix_dr_sfb}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_dr_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_dr_sfb"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_dr_sfb']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_dr_sfb',tema.citrix_dr_sfb, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_dr_sfb'] = false"
+                                  [value]="tema.citrix_dr_sfb"  
+                                  [(ngModel)]="tema.citrix_dr_sfb" />
+                          </td>
+                          <td class="citrixclass c1dimod">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_dr_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_dr_cbs']">
+                              {{tema.citrix_dr_cbs}}
+                            <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_dr_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_dr_cbs"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_dr_cbs']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_dr_cbs',tema.citrix_dr_cbs, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_dr_cbs'] = false"
+                                  [value]="tema.citrix_dr_cbs"  
+                                  [(ngModel)]="tema.citrix_dr_cbs" />
+                          </td>
+                          <td class="citrixclass c1dimod zebrathree">
+                            <span (dblclick)="editing[tema.id_citrix + n + '-citrix_dr_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_dr_colt']">
+                              {{tema.citrix_dr_colt}}
+                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_dr_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input autofocus type="text" name="citrix_dr_colt"  class="actividaddeinput form-control"
+                                  *ngIf="editing[tema.id_citrix + n + '-citrix_dr_colt']"
+                                  (keyup.enter)="updateValue(tema.id_citrix,$event, 'citrix_dr_colt',tema.citrix_dr_colt, n)"
+                                  (clickOutside)="editing[tema.id_citrix + n + '-citrix_dr_colt'] = false"
+                                  [value]="tema.citrix_dr_colt"  
+                                  [(ngModel)]="tema.citrix_dr_colt" />
+                          </td>
+
+                    </tr>
+                    <tr *ngFor="let comentarios of comentariostabla; let i = index">
+
+                        <td class="citrixclass c1dimod " colspan="15"><h4>Observaciones</h4>
+                            <span (dblclick)="editing[comentarios.id_citrix_com + i + '-citrix_comentariostabla'] = true;" *ngIf="!editing[comentarios.id_citrix_com + i + '-citrix_comentariostabla']">
+                              
+
+                               
+{{comentarios.citrix_comentariostabla}}
+<span class="text-muted2" *ngIf="comentarios == undefined || comentarios.citrix_comentariostabla.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+
+                              
+                            </span>
+                            <input type="text" autofocus name="citrix_comentariostabla"  class="actividaddeinput form-control"
+                                  *ngIf="editing[comentarios.id_citrix_com + i + '-citrix_comentariostabla']"
+                                  (keyup.enter)="updateValueComent(comentarios.id_citrix_com,$event, 'citrix_comentariostabla',comentarios.citrix_comentariostabla, i)"
+                                  (clickOutside)="editing[comentarios.id_citrix_com + i + '-citrix_comentariostabla'] = false"
+                                  [(value)]="comentarios.citrix_comentariostabla" 
+                                  [(ngModel)]="comentarios.citrix_comentariostabla">
+                          </td>
+ 
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

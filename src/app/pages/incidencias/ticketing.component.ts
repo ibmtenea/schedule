@@ -2,7 +2,8 @@ import { Tickets } from '../../models/tickets';
 import { IncidenciasService } from '../../services/incidencias.service';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, HostListener } from '@angular/core';
+
 
 
 
@@ -20,14 +21,17 @@ export class TicketingComponent implements  OnInit {
   id_tike: any;
   id_persona: any;
   valor: any;
-  
-  name:string;
-    // //click fuera del input
-    // @HostListener('document:click', ['$event'])
-    // clickout(event) {
-    //   this.ngOnInit();
-    // }
+  editing = {};
+  ever: any;
+  req: any;
+  datos: string;
 
+
+    // //click fuera del input
+    @HostListener('document:click', ['$event'])
+    clickout(event) {
+      
+    }
 
 
   constructor(private incidenciasServicio: IncidenciasService) { }
@@ -54,12 +58,43 @@ export class TicketingComponent implements  OnInit {
 
 
 
+  /**
+   * metodo que actualiza los campos
+   */
 
- 
-  sampleClick(){
-    console.log('clicked!!');
+   updateValue(id_tiket,event, cell, valor, rowIndex:number) {
+    this.editing[rowIndex + '-' + cell] = false;
+    this.campo = cell;
+    this.valor = valor;
+    this.id_tike = id_tiket;
+    const id_persona = localStorage.getItem('id_persona');
+    const clave = localStorage.getItem('ccom');
+    this.ever =  this.campo,  this.valor,this.id_tike;
+    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_tike": this.id_tike,"clave": clave});
+    var patronNumeros = /[0-9]+/;
+    var numberResult = patronNumeros.test(this.valor);
+
+    if (numberResult==false) {
+      Swal.fire({
+        title: 'Revise los datos',
+        text: 'Solo puede introducir números. Si desea vaciar la columna, escriba un 0',
+        icon: 'error',
+        showConfirmButton: true
+      });
+      this.ngOnInit();
+    } else {
+      this.incidenciasServicio.guardarTicketing(this.datos).subscribe(
+        datos => {
+          Swal.fire({
+            text: 'Registro actualizado',
+            icon: 'success',
+            showConfirmButton: false
+          })
+          // , this.recarga();
+          , this.ngOnInit();
+        });
+    }
   }
-  
 
 
 }
