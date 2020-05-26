@@ -1,0 +1,92 @@
+<!--INCIDENCIAS VARIAS-->
+
+
+<div class="row mt-5">
+    <div class="col-10">
+      <h3>INCIDENCIAS:</h3>
+      <hr />
+    </div>
+    <div class="col-2 text-right">
+      <a      
+      title="Ayuda"
+      (click)="open(incidence)"
+      class="pointerplus"
+      ><i class="fa fa-plus-circle"></i> Crear nuevo ticket</a>
+  
+    </div>
+  </div>
+  
+  
+  <table class="table table-bordered">
+    <tbody>
+      <tr *ngFor="let incid of incidencias; let i = index">
+  <td>
+          <table class="table table-hover noborder p-0 m-0">
+            <tbody>
+              <tr><td><strong>{{incid.incid_tipo}}</strong></td></tr>
+              <tr *ngFor="let param of incid.parametros; let n = index">
+                <td class="basedoteada">
+                  <span (dblclick)="editing[incid.id_incid + i + '-incid_texto'] = true;" *ngIf="!editing[incid.id_incid + i + '-incid_texto']">
+                    {{param.incid_texto}}
+                    <span class="text-muted2" *ngIf="param.incid_texto === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                  </span>
+                  <input autofocus type="text" name="incid_texto"  class="actividaddeinput form-control"
+                        *ngIf="editing[incid.id_incid + i + '-incid_texto']"
+                        (keyup.enter)="updateValueIncid(incid.id_incid,$event, 'incid_texto',param.incid_texto, i)"
+                        (clickOutside)="editing[incid.id_incid + i + '-incid_texto'] = false"
+                        [value]="param.incid_texto"  
+                        [(ngModel)]="param.incid_texto" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  
+
+  <ng-template #incidence let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+   
+    <form [formGroup]="incideTiketForm" (ngSubmit)="submitincide()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+          <div class="row">
+            <div class="col-md-12 mb-2">
+                <label for="incid_tipo">Turno</label>
+                <select name="incid_tipo" formControlName="incid_tipo" class="form-control">
+                  <option value="BATCH">BATCH</option>
+                  <option value="INCIDENCIAS SUBIDA PAQUETES">INCIDENCIAS SUBIDA PAQUETES</option>
+                  <option value="INCIDENCIAS PAQUETES PROTEO-LIFE">INCIDENCIAS PAQUETES PROTEO-LIFE</option>
+                  <option value="INCIDENCIAS EDITRAN">INCIDENCIAS EDITRAN</option>
+                  <option value="INCIDENCIAS REPORTING">INCIDENCIAS REPORTING</option>
+                  <option value="INCIDENCIAS ENTORNOS MF NO PRODUCTIVOS">INCIDENCIAS ENTORNOS MF NO PRODUCTIVOS</option>
+                  <option value="INCIDENCIAS CORREO">INCIDENCIAS CORREO</option>
+                  <option value="INCIDENCIAS ENTORNOS DISTRIBUIDOS">INCIDENCIAS ENTORNOS DISTRIBUIDOS</option>
+                  <option value="INCIDENCIAS ENTORNOS DISTRIBUIDOS NO PRODUCTIVOS">INCIDENCIAS ENTORNOS DISTRIBUIDOS NO PRODUCTIVOS</option>
+                </select>
+            </div>
+          </div> 
+  
+          <div class="row">
+            <div class="col-md-12 mb-2">
+                <label for="incid_texto">Texto</label>
+                <textarea name="incid_texto" formControlName="incid_texto" class="form-control"></textarea>
+            </div>
+          </div>    
+          <p class="text-center"><button type="submit" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

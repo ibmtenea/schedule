@@ -38,11 +38,11 @@ export class ControlesbatchComponent implements OnInit {
     'totalMessage': ''
   };
 
-  //click fuera del input
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    this.ngOnInit();
-  }
+  // //click fuera del input
+  // @HostListener('document:click', ['$event'])
+  // clickout(event) {
+  //   this.ngOnInit();
+  // }
 
   constructor(private homeServicio: HomeService,private translate: TranslateService) { 
     translate.get('Total', { value: 'eeeeeeeeee' })
@@ -50,42 +50,30 @@ export class ControlesbatchComponent implements OnInit {
     translate.get('No hay resultados para mostrar', { value: '' })
     .subscribe((res: string) => this.my_messages.emptyMessage = res);
 
-    /**
-    * recibimos el listado de batch 1
-    */
-    this.homeServicio.getListadoBatch1(data => {
-    this.temp = [...data];
-    this.rows = data;
-    });
 
-    /**
-    * recibimos el listado de batch 2
-    */
-   this.homeServicio.getListadoBatch2(data2 => {
-    this.temp2 = [...data2];
-    this.rows2 = data2;
-    });
+
 
  }
 
 
   ngOnInit(){
-
-    /**
-    * recibimos el listado de batch 1
-    */
-   this.homeServicio.getListadoBatch1(data => {
-    this.temp = [...data];
-    this.rows = data;
-    });
-
-    /**
-    * recibimos el listado de batch 2
-    */
-   this.homeServicio.getListadoBatch2(data2 => {
-    this.temp2 = [...data2];
-    this.rows2 = data2;
-    });
+ 
+      /**
+      * recibimos el listado de batch 1
+      */
+      this.homeServicio.getListadoBatch1(data => {
+      this.temp = [...data];
+      this.rows = data;
+      });
+  
+      /**
+      * recibimos el listado de batch 2
+      */
+     this.homeServicio.getListadoBatch2(data2 => {
+      this.temp2 = [...data2];
+      this.rows2 = data2;
+      });
+   
 
   }
 
@@ -106,18 +94,50 @@ export class ControlesbatchComponent implements OnInit {
     this.rows = [...this.rows];
     this.campo = cell;
     this.id_coba1 = event.target.title;
+    const clave = localStorage.getItem('ccom');
     const id_persona = localStorage.getItem('id_persona');
     this.valor = event.target.value;
     this.ever =  this.campo,  this.valor,this.id_coba1;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_coba1": this.id_coba1});
+    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_coba1": this.id_coba1,"clave": clave});
+   
+    
+    
     if (this.campo == "observaciones" && this.valor.length < 3) {
-      Swal.fire({
-        title: 'Revise los datos',
-        text: 'El campo "observaciones" debe contener como mínimo tres carácteres!!',
-        icon: 'error',
-      });
-      this.ngOnInit();
+          Swal.fire({
+            title: 'Revise los datos',
+            text: 'El campo "observaciones" debe contener como mínimo tres carácteres!!',
+            icon: 'error',
+          });
+          this.ngOnInit();
     } else {
+
+      if ((this.campo == "coba_horarioteorico1") || (this.campo == "coba_horarioreal1")) {   
+        
+        var patronHora = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+        var horaResult = patronHora.test(this.valor);
+        if (horaResult == false) {
+          Swal.fire({
+            text: 'Los campos Hora deben cumplir con el formato adecuado',
+            icon: 'error',
+            showConfirmButton: true
+          });
+        }  else {
+
+          //todo Ok llamo al servicio
+          this.homeServicio.modiRegistroBacth(this.datos).subscribe(
+            datos => {
+              Swal.fire({
+                text: 'Registro actualizado',
+                icon: 'success',
+                showConfirmButton: false
+              }), this.recarga();
+    
+            });
+    
+          }
+
+      } else {
+
       //todo Ok llamo al servicio
       this.homeServicio.modiRegistroBacth(this.datos).subscribe(
         datos => {
@@ -128,6 +148,9 @@ export class ControlesbatchComponent implements OnInit {
           }), this.recarga();
 
         });
+
+      }
+
     }
 
   }
@@ -142,10 +165,11 @@ export class ControlesbatchComponent implements OnInit {
   this.rows = [...this.rows];
   this.campo = cell;
   this.id_coba2 = event.target.title;
+  const clave = localStorage.getItem('ccom');
   const id_persona = localStorage.getItem('id_persona');
   this.valor = event.target.value;
   this.ever =  this.campo,  this.valor,this.id_coba2;
-  this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_coba2": this.id_coba2});
+  this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_coba2": this.id_coba2,"clave": clave});
   if (this.campo == "observaciones" && this.valor.length < 3) {
     Swal.fire({
       title: 'Revise los datos',
@@ -154,18 +178,59 @@ export class ControlesbatchComponent implements OnInit {
     });
     this.ngOnInit();
   } else {
-    //todo Ok llamo al servicio
-    this.homeServicio.modiRegistroBacth2(this.datos).subscribe(
-      datos => {
-        Swal.fire({
-          text: 'Registro actualizado',
-          icon: 'success',
-          showConfirmButton: false
-        })
-        , this.recarga();
 
-      });
-  }
+
+
+
+
+
+ if ((this.campo == "coba_horarioteorico2") || (this.campo == "coba_horarioreal2")) {   
+        
+        var patronHora = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+        var horaResult = patronHora.test(this.valor);
+        if (horaResult == false) {
+          Swal.fire({
+            text: 'Los campos Hora deben cumplir con el formato adecuado',
+            icon: 'error',
+            showConfirmButton: true
+          });
+        }  else {
+
+          //todo Ok llamo al servicio
+          this.homeServicio.modiRegistroBacth2(this.datos).subscribe(
+            datos => {
+              Swal.fire({
+                text: 'Registro actualizado',
+                icon: 'success',
+                showConfirmButton: false
+              })
+              , this.recarga();
+    
+            });
+    
+          }
+
+      } else {
+
+      //todo Ok llamo al servicio
+      this.homeServicio.modiRegistroBacth2(this.datos).subscribe(
+        datos => {
+          Swal.fire({
+            text: 'Registro actualizado',
+            icon: 'success',
+            showConfirmButton: false
+          })
+          , this.recarga();
+
+        });
+
+      }
+  
+  
+  
+  
+  
+    }
 
 }
 

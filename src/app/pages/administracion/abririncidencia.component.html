@@ -1,0 +1,97 @@
+<app-header></app-header>
+
+<ngx-spinner></ngx-spinner>
+
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 mt-5">
+      <div class="tabbable" id="tabs-850675">
+        <app-botonestab></app-botonestab>
+        <div class="tab-content p-5">
+          <div class="tab-pane active" id="panel-813817">
+            <div class="row m-2">
+              <div class="col-md-12 mt-4 tituloseccion">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a [routerLink]="['/home']">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Abrir una nueva incidencia
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+
+            <div class="row m-2 mt-4">
+              <div class="col-md-12 alturaminima mb-5">
+               
+
+
+<form  (ngSubmit)="guardaryenviarIncidencia()" [formGroup]="incidenciaForm">  
+    <div class="row">
+        <div class="col-8"> 
+                    <input type="hidden"
+                    formControlName="id_persona" 
+                    class="form-control" />    
+                    <div class="form-group"><label>Enunciado de la incidencia</label>
+                        <input type="text" required
+                        formControlName="inci_enunciado" 
+                        class="form-control" />
+                    </div>
+                    <div class="form-group"><label>Texto de la incidencia</label>
+                        <ckeditor
+                        [config]="{
+                          toolbar: ['link', '|', 'bold', 'italic']
+                        }"
+                        (ready)="onReady($event)"
+                        id="ibmeditor"
+                        placeholder="Escriba el texto de la incidencia"
+                        maxlength="2000"
+                        name="inci_texto"
+                        formControlName="inci_texto"
+                        [editor]="Editor"
+                        data=""
+                      ></ckeditor>
+                    </div>
+        </div>
+        <div class="col-4 text-center">
+            <label for="imagenincidencia" class="fileContainer"><i class="fa fa-camera"></i>
+                <input 
+                       type="file"
+                       id="imagenincidencia"
+                       name="imagenincidencia"  
+                       formControlName="imagenincidencia"
+          
+                       accept="image/*" 
+                       (change)="preview($event)"
+                       />
+              
+               </label>
+               <hr />
+               <p class="mt-2">Si desea adjuntar una captura de pantalla, por favor pulse aquí</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button  
+            [disabled]="incidenciaForm.invalid" 
+            class="btn btn-info">
+              Enviar incidencia
+          </button>
+        </div>
+    </div>
+</form>                      
+                
+ 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

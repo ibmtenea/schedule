@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mt-5" >
+            <div class="tabbable" id="tabs-850675">
+	            <app-botonestab></app-botonestab>			
+				<div class="tab-content p-5">
+					<div class="tab-pane active" id="panel-813817"  >
+                        
+             
+                        
+                        
+
+
+
+
+		<div class="row">
+            <div class="col-md-3">&nbsp;</div>
+            <div class="col-md-12">
+                <div class="card p-3 aligmn">
+                    <ul>
+                        <li>Con fecha y hora: <div class="alert alert-light" role="alert"><strong>{{ registro.bita_fecha }}</strong></div></li>
+                        <li>El usuario <strong>{{ registro.nombres }}</strong> {{ registro.biac_descripcion }} <div class="alert alert-light" role="alert"><strong>{{ registro.bita_tabla }}</strong></div></li> 
+                        <li>En el registro ID <div class="alert alert-light" role="alert"><strong>{{ registro.bita_id_registro}}</strong></div></li>
+                        <li>En el campo <div class="alert alert-light" role="alert"><strong>{{ registro.bita_campo}}</strong></div></li>
+                        <li>El nuevo valor del campo es <div class="alert alert-light" role="alert"><strong>{{ registro.bita_valor}}</strong></div></li> 
+                    </ul>
+               <p class="text-center"><a  [routerLink]="['/bitacora']"  class="btn btn-info">Volver</a></p>
+                </div>
+            </div>
+            <div class="col-md-3">&nbsp;</div>
+            
+        </div>		   
+						
+
+
+                       
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+                          
+
+
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>
+

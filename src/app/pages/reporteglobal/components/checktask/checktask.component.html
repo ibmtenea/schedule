@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-12">
+        <h6>Fecha: 2020-20-20</h6>
+        <h2>R4B - MAINFRAME</h2>
+    </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-10">
+<table class="table">
+    <tbody>
+      <tr *ngFor="let tema of temas; let i = index">
+        <td class="pt-5 pb-5">
+          
+            <div class="block" *ngIf="tema.imch_imagen===null">
+              <img 
+              class="nofoto animate fadeIn" 
+              src="../../../../assets/nophoto.jpg" 
+              >
+            </div> 
+            <div class="block" *ngIf="tema.imch_imagen!=null">
+              <img 
+              class="perfildetalle animate fadeIn" 
+              src="../../../../assets/loader.gif" 
+              jpPreload="{{tema.imch_imagen}}">
+            </div> 
+           
+            </td>
+            </tr>
+        </tbody>
+</table>
+
+</div>
+
+
+
+
+  <div class="col-md-2 text-center mt-5">
+
+
+<form [formGroup]="accionForm" class="formulario" novalidate>
+  <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+  <label class="fileContainer"><i class="fa fa-camera"></i>
+ 
+
+  <input 
+         type="file"
+         name="imch_imagen"  
+         formControlName="imch_imagen"
+         (change)="handleInputChange($event)"
+         accept="image/*" 
+         
+         />
+
+ </label>
+</form>
+
+
+</div>

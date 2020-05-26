@@ -1,7 +1,10 @@
-<div class="container-fluid">
+<ngx-spinner></ngx-spinner><div class="container-fluid">
   <div class="row">
-    <div class="col-12 p-0 mt-5">
+    <div class="col-10 p-0 mt-5">
       <h2>Controles Batch</h2>
+    </div>
+    <div class="col-2 p-0 mt-5">
+      <app-imprimir classe="ClaseBatch1"></app-imprimir>
     </div>
   </div>
 
@@ -63,7 +66,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="coba_hito1" [maxWidth]="500">
+        <ngx-datatable-column name="coba_hito1" [maxWidth]="430">
           <ng-template ngx-datatable-header-template>
             <span>Hito</span>
           </ng-template>
@@ -98,7 +101,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="coba_fecha1" [maxWidth]="100">
+        <ngx-datatable-column name="coba_fecha1" [maxWidth]="170">
           <ng-template ngx-datatable-header-template>
             <span>Fecha</span>
           </ng-template>
@@ -113,23 +116,32 @@
               (dblclick)="editing[rowIndex + '-coba_fecha1'] = true"
               *ngIf="!editing[rowIndex + '-coba_fecha1']"
             >
-              {{ row.coba_fecha1}}
+              {{ row.coba_fecha1}} 
+
               <span class="text-muted2" *ngIf="row.coba_fecha1 === null">
                 vacío
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </span>
             </span>
+            <div class="form-group">
+              <div class="input-group torard">
             <input
               required
               autofocus
               (clickOutside)="editing[rowIndex + '-coba_fecha1'] = false"
               (keyup.enter)="updateValue1($event, 'coba_fecha1', rowIndex)"
               *ngIf="editing[rowIndex + '-coba_fecha1']"
-              type="text"
+              type="date"
               class="form-control"
               [value]="row.coba_fecha1"
               [title]="row.id_coba1"
             />
+                
+              </div>
+            </div>
+
+
+
           </ng-template>
         </ngx-datatable-column>
 
@@ -167,7 +179,7 @@
                 updateValue1($event, 'coba_horarioteorico1', rowIndex)
               "
               *ngIf="editing[rowIndex + '-coba_horarioteorico1']"
-              type="text"
+              type="text" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
               class="form-control"
               [value]="row.coba_horarioteorico1"
               [title]="row.id_coba1"
@@ -204,7 +216,7 @@
               *ngIf="editing[rowIndex + '-coba_horarioreal1']"
               type="text"
               class="form-control"
-              [value]="row.coba_horarioreal1"
+              [value]="row.coba_horarioreal1"  pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
               [title]="row.id_coba1"
             />
           </ng-template>

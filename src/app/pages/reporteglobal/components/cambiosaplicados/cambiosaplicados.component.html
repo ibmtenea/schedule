@@ -1,0 +1,394 @@
+<div class="row m0">
+  <div class="col-10">
+    <h3>CAMBIOS APLICADOS / CANCELADOS / SUSPENDIDOS:</h3>
+    <hr />
+  </div>
+  <div class="col-2 text-right">
+<a      
+title="Ayuda"
+(click)="open(tiket)"
+class="pointerplus"
+><i class="fa fa-plus-circle"></i> Crear nuevo ticket</a>
+
+  </div>
+</div>
+<table class="table table-hover noborder p-0 m-0">
+  <tbody>
+    <tr *ngFor="let cambio of cambios; let n = index">
+      <td class="basedoteada">
+        <div class="row m0">
+          <div class="col-4 m0">
+            <strong>Nº Ticket: </strong>
+            <span
+              (dblclick)="editing[cambio.id_care + n + '-care_ticket'] = true"
+              *ngIf="!editing[cambio.id_care + n + '-care_ticket']"
+            >
+              {{ cambio.care_ticket }}
+              <span class="text-muted2" *ngIf="cambio.care_ticket === null">
+                0&nbsp;&nbsp;&nbsp;</span
+              >
+            </span>
+            <input
+              autofocus
+              type="text"
+              name="care_ticket"
+              class="actividaddeinput form-control"
+              *ngIf="editing[cambio.id_care + n + '-care_ticket']"
+              (keyup.enter)="
+                updateValue(
+                  cambio.id_pendi,
+                  $event,
+                  'care_ticket',
+                  cambio.care_ticket,
+                  n
+                )
+              "
+              (clickOutside)="
+                editing[cambio.id_care + n + '-care_ticket'] = false
+              "
+              [value]="cambio.care_ticket"
+              [(ngModel)]="cambio.care_ticket"
+            />
+          </div>
+          <div class="col-8 m0">
+            <strong>Título: </strong>
+            <span
+              (dblclick)="editing[cambio.id_care + n + '-care_titulo'] = true"
+              *ngIf="!editing[cambio.id_care + n + '-care_titulo']"
+            >
+              {{ cambio.care_titulo }}
+              <span class="text-muted2" *ngIf="cambio.care_titulo === null">
+                0&nbsp;&nbsp;&nbsp;</span
+              >
+            </span>
+            <input
+              autofocus
+              type="text"
+              name="care_titulo"
+              class="actividaddeinput form-control"
+              *ngIf="editing[cambio.id_care + n + '-care_titulo']"
+              (keyup.enter)="
+                updateValue(
+                  cambio.id_pendi,
+                  $event,
+                  'care_titulo',
+                  cambio.care_titulo,
+                  n
+                )
+              "
+              (clickOutside)="
+                editing[cambio.id_care + n + '-care_titulo'] = false
+              "
+              [value]="cambio.care_titulo"
+              [(ngModel)]="cambio.care_titulo"
+            />
+          </div>
+        </div>
+
+        <div class="row m0">
+          <div class="col-4 m0">
+            <strong>Hora comienzo:</strong>
+            <span
+              (dblclick)="
+                editing[cambio.id_care + n + '-care_horacomienzo'] = true
+              "
+              *ngIf="!editing[cambio.id_care + n + '-care_horacomienzo']"
+            >
+              {{ cambio.care_horacomienzo }}
+              <span
+                class="text-muted2"
+                *ngIf="cambio.care_horacomienzo === null"
+              >
+                0&nbsp;&nbsp;&nbsp;</span
+              >
+            </span>
+            <input
+              autofocus
+              type="text"
+              name="care_horacomienzo"
+              class="actividaddeinput form-control"
+              *ngIf="editing[cambio.id_care + n + '-care_horacomienzo']"
+              (keyup.enter)="
+                updateValue(
+                  cambio.id_pendi,
+                  $event,
+                  'care_horacomienzo',
+                  cambio.care_horacomienzo,
+                  n
+                )
+              "
+              (clickOutside)="
+                editing[cambio.id_care + n + '-care_horacomienzo'] = false
+              "
+              [value]="cambio.care_horacomienzo"
+              [(ngModel)]="cambio.care_horacomienzo"
+            />
+          </div>
+          <div class="col-8 m0">
+            <strong>Hora resolución: </strong>
+            <span
+              (dblclick)="
+                editing[cambio.id_care + n + '-care_horaresolucion'] = true
+              "
+              *ngIf="!editing[cambio.id_care + n + '-care_horaresolucion']"
+            >
+              {{ cambio.care_horaresolucion }}
+              <span
+                class="text-muted2"
+                *ngIf="cambio.care_horaresolucion === null"
+              >
+                0&nbsp;&nbsp;&nbsp;</span
+              >
+            </span>
+            <input
+              autofocus
+              type="text"
+              name="care_horaresolucion"
+              class="actividaddeinput form-control"
+              *ngIf="editing[cambio.id_care + n + '-care_horaresolucion']"
+              (keyup.enter)="
+                updateValue(
+                  cambio.id_pendi,
+                  $event,
+                  'care_horaresolucion',
+                  cambio.care_horaresolucion,
+                  n
+                )
+              "
+              (clickOutside)="
+                editing[cambio.id_care + n + '-care_horaresolucion'] = false
+              "
+              [value]="cambio.care_horaresolucion"
+              [(ngModel)]="cambio.care_horaresolucion"
+            />
+          </div>
+        </div>
+
+        <div class="row m0">
+          <div class="col-12 m0">
+            <strong> Estado: </strong>
+
+            <span
+              (dblclick)="editing[cambio.id_care + n + '-care_estado'] = true"
+              *ngIf="!editing[cambio.id_care + n + '-care_estado']"
+            >
+              {{ cambio.care_estado }}
+              <span class="text-muted2" *ngIf="cambio.care_estado === null">
+                0&nbsp;&nbsp;&nbsp;</span
+              >
+            </span>
+            <input
+              autofocus
+              type="text"
+              name="care_estado"
+              class="actividaddeinput form-control"
+              *ngIf="editing[cambio.id_care + n + '-care_estado']"
+              (keyup.enter)="
+                updateValue(
+                  cambio.id_pendi,
+                  $event,
+                  'care_estado',
+                  cambio.care_estado,
+                  n
+                )
+              "
+              (clickOutside)="
+                editing[cambio.id_care + n + '-care_estado'] = false
+              "
+              [value]="cambio.care_estado"
+              [(ngModel)]="cambio.care_estado"
+            />
+          </div>
+        </div>
+        <div class="row m0">
+          <div class="col-12 m0">
+            <strong> Comentarios: </strong>
+            <span
+              (dblclick)="
+                editing[cambio.id_care + n + '-care_comentarios'] = true
+              "
+              *ngIf="!editing[cambio.id_care + n + '-care_comentarios']"
+            >
+              {{ cambio.care_comentarios }}
+              <span
+                class="text-muted2"
+                *ngIf="cambio.care_comentarios === null"
+              >
+                0&nbsp;&nbsp;&nbsp;</span
+              >
+            </span>
+            <input
+              autofocus
+              type="text"
+              name="care_comentarios"
+              class="actividaddeinput form-control"
+              *ngIf="editing[cambio.id_care + n + '-care_comentarios']"
+              (keyup.enter)="
+                updateValue(
+                  cambio.id_pendi,
+                  $event,
+                  'care_comentarios',
+                  cambio.care_comentarios,
+                  n
+                )
+              "
+              (clickOutside)="
+                editing[cambio.id_care + n + '-care_comentarios'] = false
+              "
+              [value]="cambio.care_comentarios"
+              [(ngModel)]="cambio.care_comentarios"
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!--TURNOS-->
+
+<div class="row mt-5">
+  <div class="col-10">
+    <h3>TURNOS:</h3>
+    <hr />
+  </div>
+  <div class="col-2 text-right">
+
+    <a      
+    title="Ayuda"
+    (click)="open(turns)"
+    class="pointerplus"
+    ><i class="fa fa-plus-circle"></i> Crear nuevo ticket</a>
+
+  </div>
+</div>
+
+
+<table class="table table-bordered">
+  <tbody>
+    <tr *ngFor="let turno of turnos; let i = index">
+<td>
+        <table class="table table-hover noborder p-0 m-0">
+          <tbody>
+            <tr><td><strong>{{turno.ture_titulo}}</strong></td></tr>
+            <tr *ngFor="let param of turno.parametros; ">
+              <td class="basedoteada">
+                <span (dblclick)="editing[turno.id_ture + i + '-ture_texto'] = true;" *ngIf="!editing[turno.id_ture + i + '-ture_texto']">
+                  {{param.ture_texto}}
+                  <span class="text-muted2" *ngIf="param.ture_texto === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                </span>
+                <input autofocus type="text" name="ture_texto"  class="actividaddeinput form-control"
+                      *ngIf="editing[turno.id_ture + i + '-ture_texto']"
+                      (keyup.enter)="updateValue(turno.id_ture,$event, 'ture_texto',param.ture_texto, i)"
+                      (clickOutside)="editing[turno.id_ture + i + '-ture_texto'] = false"
+                      [value]="param.ture_texto"  
+                      [(ngModel)]="param.ture_texto" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<ng-template #tiket let-modal class="modal-lg">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Tiket</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="careTiketForm" (ngSubmit)="submittiket()" class="formulario" novalidate>
+      <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+<div class="row">
+  <div class="col-md-12 mb-2">
+      <label for="care_ticket">Nº Ticket</label>
+      <input name="care_ticket" formControlName="care_ticket" type="text" class="form-control">
+  </div>
+</div>      
+<div class="row">
+  <div class="col-md-12 mb-2">    
+      <label for="care_titulo">Título</label>
+      <input name="care_titulo" formControlName="care_titulo" type="text" class="form-control"> 
+  </div>
+</div>         
+<div class="row">
+  <div class="col-md-6 mb-2">      
+      <label for="care_horacomienzo">Hora comienzo</label>
+      <input name="care_horacomienzo" formControlName="care_horacomienzo" type="text" class="form-control">
+  </div>    
+  <div class="col-md-6 mb-2">
+    <label for="care_horaresolucion">Hora resolución</label>
+      <input name="care_horaresolucion" formControlName="care_horaresolucion" type="text" class="form-control">
+  </div>   
+</div>      
+<div class="row">
+  <div class="col-md-12 mb-2">   
+      <label for="care_estado">Estado</label>
+      <input name="care_estado" formControlName="care_estado" type="text" class="form-control">
+  </div>   
+</div>   
+<div class="row">
+  <div class="col-md-12 mb-2">    
+      <label for="care_comentarios">Comentarios</label>
+      <input name="care_comentarios" formControlName="care_comentarios" type="text" class="form-control">
+  </div>      
+</div>      
+      <p class="text-center"><button type="submit" class="btn btn-primary">Guardar</button></p>
+    </form>
+            
+  
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+
+
+<ng-template #turns let-modal class="modal-lg">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ayuda</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+ 
+  <form [formGroup]="tureTiketForm" (ngSubmit)="submitturnos()" class="formulario" novalidate>
+        <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+        <div class="row">
+          <div class="col-md-12 mb-2">
+              <label for="ture_titulo">Turno</label>
+              <select name="ture_titulo" formControlName="ture_titulo" class="form-control">
+                <option value="TURNO MAÑANA">TURNO MAÑANA</option>
+                <option value="TURNO TARDE">TURNO TARDE</option>
+                <option value="TURNO NOCHE">TURNO NOCHE</option>
+              </select>
+          </div>
+        </div> 
+
+        <div class="row">
+          <div class="col-md-12 mb-2">
+              <label for="ture_texto">Texto</label>
+              <textarea name="ture_texto" formControlName="ture_texto" class="form-control"></textarea>
+          </div>
+        </div>    
+        <p class="text-center"><button type="submit" class="btn btn-primary">Guardar</button></p>  
+  </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+  </div>
+</ng-template>

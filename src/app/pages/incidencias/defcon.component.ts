@@ -5,7 +5,8 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IncidenciasService } from '../../services/incidencias.service';
-
+import {NgbModal, ModalDismissReasons, NgbModalOptions, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-defcon',
@@ -13,7 +14,8 @@ import { IncidenciasService } from '../../services/incidencias.service';
 })
 export class DefconComponent implements OnInit {
 
-
+  closeResult: string;
+  modalOptions:NgbModalOptions;
   final: Observable<Object>;
 
   rows = [];
@@ -33,18 +35,54 @@ export class DefconComponent implements OnInit {
     'totalMessage': ''
   };
 
+  DefconForm = new FormGroup({
+    clave_comun:new FormControl(''),
+    defcon_fecha:new FormControl(''),
+    defcon_inicio_incidencia:new FormControl(''),
+    defcon_final_incidencia:new FormControl(''),
+    defcon_ticket :new FormControl(''),
+    defcon_aplicaciones_impactadas :new FormControl(''),
+    defcon_descripcion :new FormControl(''),
+    defcon_ultima_actualizacion :new FormControl(''),
+    defcon_resolutores :new FormControl(''), 
+    defcon_estado:new FormControl(''),
+  });
+  isSubmittedTurno = false;
+  model: NgbDateStruct;
+  placement = 'bottom';
+
   //click fuera del input
   @HostListener('document:click', ['$event'])
   clickout(event) {
     this.ngOnInit();
   }
-
-  constructor(private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
+ 
+  constructor(private fb: FormBuilder,private modalService: NgbModal,private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
     translate.get('Total', { value: 'eeeeeeeeee' })
     .subscribe((res: string) => this.my_messages.totalMessage = res);
     translate.get('No hay resultados para mostrar', { value: '' })
     .subscribe((res: string) => this.my_messages.emptyMessage = res);
 
+    this.modalOptions = {
+      backdrop:'static',
+      backdropClass:'customBackdrop',
+      size: 'lg' 
+    }
+
+    this.DefconForm = this.fb.group({
+      id_persona: [localStorage.getItem('id_persona'), Validators.required],
+      defcon_inicio_incidencia: ['', Validators.required],
+      defcon_fecha:['', Validators.required],
+      clave_comun: [localStorage.getItem('ccom'), Validators.required],
+      defcon_final_incidencia:['', Validators.required],
+      defcon_ticket:['', Validators.required],
+      defcon_aplicaciones_impactadas:['', Validators.required],
+      defcon_descripcion:['', Validators.required],
+      defcon_ultima_actualizacion:['', Validators.required],
+      defcon_resolutores:['', Validators.required],
+      defcon_estado:['', Validators.required],
+
+    });
     /**
     * recibimos el listado
     */
@@ -64,6 +102,10 @@ export class DefconComponent implements OnInit {
       this.temp = [...data];
       this.rows = data;
     });
+
+    
+
+
 
   }
 
@@ -86,10 +128,11 @@ export class DefconComponent implements OnInit {
     this.rows = [...this.rows];
     this.campo = cell;
     this.id_defcon = event.target.title;
+    const clave = localStorage.getItem('ccom');
     const id_persona = localStorage.getItem('id_persona');
     this.valor = event.target.value;
     this.ever =  this.campo,  this.valor,this.id_defcon;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_defcon": this.id_defcon});
+    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_defcon": this.id_defcon,"clave": clave});
     if (this.campo == "observaciones" && this.valor.length < 3) {
       Swal.fire({
         title: 'Revise los datos',
@@ -111,12 +154,12 @@ export class DefconComponent implements OnInit {
         });
     }
 
-  }
+  }  
 
 
     //actualizacion filtro busqueda
     updateFilter(event) {
-      console.log(event);
+ 
       const val = event.target.value.toLowerCase();
       const temp = this.temp.filter(function (d) {
         return d.defcon_fecha.toLowerCase().indexOf(val) !== -1 || d.id_defcon.toLowerCase().indexOf(val) !== -1 || !val;
@@ -129,5 +172,41 @@ export class DefconComponent implements OnInit {
 
 
     
+    open(tiket) {
+      this.modalService.open(tiket, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+    
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
+      }
+    }
+
+
+
+    submitdef(){
+
+      this.isSubmittedTurno = true;
+      const valor = JSON.stringify(this.DefconForm.value);
+      
+      this.incidenciasServicio.guardarDefcon( valor ).subscribe( respuesta => {
+        Swal.fire({
+          title: 'Registro creado',
+          text: 'Se ha creado un registro de incidencia ',
+          icon: 'success',  
+          showConfirmButton : true
+        })
+     //   , this.recarga();
+        
+      });   
+    }
 
 }

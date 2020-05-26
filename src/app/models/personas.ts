@@ -9,5 +9,6 @@ export class Personas {
     public imagen:string;
     public registrado:string;
     public id_rol:string;
+  
 
 }

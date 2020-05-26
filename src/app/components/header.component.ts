@@ -29,13 +29,28 @@ export class HeaderComponent implements OnInit {
   }
 
 
+ makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+ 
+
+
+
   getUsuario(){   
     const id_persona = localStorage.getItem('id_persona'); 
     this.dataService.getUserId ( id_persona )
       .subscribe( (resp:Personas) => {
         this.user = resp;
-       // this.user.id_persona=id_persona;
-       // console.log(this.user);
+        this.user.id_persona = resp[0];
+        const identidad = this.makeid(5)+Constantes.ARND+id_persona+Constantes.BRND
+        this.user.id_persona=identidad;
+
       });
   }
 
@@ -45,10 +60,11 @@ export class HeaderComponent implements OnInit {
      this.periodo = respuesta;
      this.periodo.pema_fecha = respuesta[0];  
      this.periodo.clave_comun = respuesta[0];
-     console.log("Periodo: ",this.periodo.pema_fecha['pema_fecha']);
-     console.log("C Comun: ",this.periodo.clave_comun['clave_comun']);
-     const Clave = Constantes.ARND+this.periodo.clave_comun['clave_comun']+Constantes.BRND;
+   //  console.log("Periodo: ",this.periodo.pema_fecha['pema_fecha']);
+   //  console.log("C Comun: ",this.periodo.clave_comun['clave_comun']);
+      const Clave = Constantes.ARND+this.periodo.clave_comun['clave_comun']+Constantes.BRND;
      localStorage.setItem('ccom', Clave);
+    
      });
   }
 

@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Constantes } from '../models/constantes.model';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class DataserviceService {
   private bRndm = Constantes.BRND;
   private cRndm = Constantes.CRND;
   private dRndm = Constantes.DRND;
-
+  public showSpinner: boolean = false;
   redirectUrl: string;
 
   leftCypt = Math.random().toString(36).substr(2);
@@ -23,7 +23,17 @@ export class DataserviceService {
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private spinner: NgxSpinnerService,private httpClient: HttpClient) { }
+
+
+  showLoadingSpinner() {
+    this.spinner.show();
+  }
+  
+  hideLoadingSpinner() {
+    this.spinner.hide();
+  }
+
 
   public userlogin(username, password) {
     return this.httpClient.post<any>(`${this.PHP_API_SERVER}/ajax/login.php`, { username, password })
@@ -90,5 +100,10 @@ export class DataserviceService {
     return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_periodo.php`);
   }
 
+  guardarPersona(datos){
+    console.log(datos);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_persona.php`,datos);
+  }
+  
 
 }

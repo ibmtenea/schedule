@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 })
 export class HomeComponent implements AfterViewInit, OnInit {
 
-
+  
 
   @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
 
@@ -22,11 +23,21 @@ export class HomeComponent implements AfterViewInit, OnInit {
     localStorage.setItem('userTabLocationRB4', String(event.index));
   }
   
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+
+ 
    
   }
+
+
+
+  
+
+
+
+
 
 
 

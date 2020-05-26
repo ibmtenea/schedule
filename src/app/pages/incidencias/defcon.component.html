@@ -7,14 +7,18 @@
 
   
     <div class="row">
-      <div class="col-9 text-right p-0 mt-2">
-        <!-- <a
-          alt="Nuevo registro"
-          title="nuevo registro"
-          [routerLink]="['/', 'alta']"
-          class="btn btn-info pt4 btn-circle posicionplus"
-          ><i class="fa fa-plus fa-3"></i
-        ></a> -->
+      <div class="col-9 text-left p-0 mt-2">
+ 
+        <a      
+        title="Ayuda"
+        (click)="open(defcon)"
+        class="btn btn-info pointerplus btn-circle"
+        ><i class="fa fa-plus fa-2"></i
+          > </a>
+  
+        
+
+
       </div>
       <div class="col-3 p-0 mt-2 text-right">
         <div class="form">
@@ -412,3 +416,91 @@
     </div>
   </div>
   
+
+
+
+  <ng-template #defcon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+   
+    <form [formGroup]="DefconForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+          <div class="row">
+            <div class="col-md-12 mb-2">
+                <label for="defcon_ticket">Ticket</label>
+                <input type="text" class="form-control"  name="defcon_ticket"  formControlName="defcon_ticket"  />
+            </div>
+          </div>   
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+
+              <div class="form-group"><label for="defcon_fecha">Fecha</label>
+                <div class="input-group">
+                  <input type="text" 
+                  pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/" 
+                  class="form-control"  
+                  name="defcon_fecha" 
+                  formControlName="defcon_fecha" readonly
+                  ngbDatepicker #d="ngbDatepicker" #spy>
+                  
+                  <div class="input-group-addon" (click)="d.toggle()" >
+                    <i class="fa fa-calendar fa-1g" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+            <div class="col-md-4 mb-2">
+              <label for="defcon_inicio_incidencia">Inicio incidencia</label>
+              <input type="text" class="form-control" placeholder="00:00" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"  name="defcon_inicio_incidencia"  formControlName="defcon_inicio_incidencia"  />
+            </div>
+            <div class="col-md-4 mb-2">
+              <label for="defcon_final_incidencia">Fin incidencia</label>
+              <input type="text" class="form-control"  placeholder="00:00" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" name="defcon_final_incidencia"  formControlName="defcon_final_incidencia"  />
+            </div>
+          </div> 
+          <div class="row">
+            <div class="col-md-12 mb-2">
+                <label for="defcon_aplicaciones_impactadas">Aplicaciones impactadas</label>
+                <input type="text" class="form-control"  name="defcon_aplicaciones_impactadas"  formControlName="defcon_aplicaciones_impactadas"  />
+            </div>
+          </div>   
+          <div class="row">
+            <div class="col-md-12 mb-2">
+                <label for="defcon_descripcion">Descripción</label>
+                <textarea name="defcon_descripcion" formControlName="defcon_descripcion" class="form-control"></textarea>
+            </div>
+          </div>   
+          <div class="row">
+            <div class="col-md-12 mb-2">
+                <label for="defcon_ultima_actualizacion">Última actualización</label>
+                <textarea name="defcon_ultima_actualizacion" formControlName="defcon_ultima_actualizacion" class="form-control"></textarea>
+            </div>
+          </div> 
+          <div class="row">
+            <div class="col-md-6 mb-2">
+                <label for="defcon_estado">Estado</label>
+                <input type="text" class="form-control"  name="defcon_estado"  formControlName="defcon_estado"  />
+            </div>
+            <div class="col-md-6 mb-2">
+              <label for="defcon_resolutores">Resolutores</label>
+              <input type="text" class="form-control"  name="defcon_resolutores"  formControlName="defcon_resolutores"  />
+          </div>
+          </div> 
+          <p class="text-center"><button type="submit" [disabled]="DefconForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

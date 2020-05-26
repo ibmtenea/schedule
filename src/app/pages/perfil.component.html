@@ -1,1 +1,127 @@
-<p>perfil works!</p>
+<app-header></app-header>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mt-5">
+            <div class="tabbable" id="tabs-850675">
+	            <app-botonestab></app-botonestab>			
+				<div class="tab-content p-5">
+					<div class="tab-pane active" id="panel-813817">
+                        
+                        
+
+                   
+<div class="row">
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-12">
+        <div class="card p-3 aligmn">
+            <h2>Perfil de usuario</h2>
+            <h3>Edición de los datos del usuario</h3>
+
+
+
+
+            <div class="form-group mt-4">
+               <ul><li class="estillista">
+                    <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip"  (dblclick)="editing[user.id_persona + '-nombres'] = true;" *ngIf="!editing[user.id_persona  + '-nombres']">
+                        {{ user.nombres }}
+                    <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip text-muted2" *ngIf="user.nombres === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                    </span>
+                    <input autofocus type="text" name="nombres"  class="actividaddeinput form-control"
+                        *ngIf="editing[user.id_persona +  '-nombres']"
+                        (keyup.enter)="updateValue(user.id_persona,$event, 'nombres',user.nombres)"
+                        (clickOutside)="editing[user.id_persona +  '-nombres'] = false"
+                        [value]="user.nombres"  
+                        [(ngModel)]="user.nombres" />
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form-group ">
+                <ul><li class="estillista">
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip"  (dblclick)="editing[user.id_persona + '-telefono'] = true;" *ngIf="!editing[user.id_persona  + '-telefono']">
+                        Tel: {{ user.telefono }}
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip text-muted2" *ngIf="user.telefono === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                     </span>
+                     <input autofocus type="text" name="telefono"  class="actividaddeinput form-control"
+                         *ngIf="editing[user.id_persona +  '-telefono']"
+                         (keyup.enter)="updateValue(user.id_persona,$event, 'telefono',user.telefono)"
+                         (clickOutside)="editing[user.id_persona +  '-telefono'] = false"
+                         [value]="user.telefono"  
+                         [(ngModel)]="user.telefono" />
+                     </li>
+                 </ul>
+             </div>
+             <div class="form-group">
+                <ul><li class="estillista">
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip"  (dblclick)="editing[user.id_persona + '-email'] = true;" *ngIf="!editing[user.id_persona  + '-email']">
+                        E-mail: {{ user.email }}
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip text-muted2" *ngIf="user.email === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                     </span>
+                     <input autofocus type="text" name="email"  class="actividaddeinput form-control"
+                         *ngIf="editing[user.id_persona +  '-email']"
+                         (keyup.enter)="updateValue(user.id_persona,$event, 'email',user.email)"
+                         (clickOutside)="editing[user.id_persona +  '-email'] = false"
+                         [value]="user.email"  
+                         [(ngModel)]="user.email" />
+                     </li>
+                 </ul>
+             </div>
+             <div class="form-group ">
+                <ul><li class="estillista">
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip"  (dblclick)="editing[user.id_persona + '-password'] = true;" *ngIf="!editing[user.id_persona  + '-password']">
+                         Password: {{ user.password }}
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip text-muted2" *ngIf="user.password === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                     </span>
+                     <input autofocus type="text" name="password"  class="actividaddeinput form-control"
+                         *ngIf="editing[user.id_persona +  '-password']"
+                         (keyup.enter)="updateValue(user.id_persona,$event, 'password',user.password)"
+                         (clickOutside)="editing[user.id_persona +  '-password'] = false"
+                         [value]="user.password"  
+                         [(ngModel)]="user.password" />
+                     </li>
+                 </ul>
+             </div>
+             <div class="form-group ">
+                <ul><li class="estillista">
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip"  (dblclick)="editing[user.id_persona + '-direccion'] = true;" *ngIf="!editing[user.id_persona  + '-direccion']">
+                        Dirección: {{ user.direccion }}
+                     <span data-toggle="tooltip" data-placement="top" title="Doble click para editar" class="ttooltip text-muted2" *ngIf="user.direccion === null"> 0&nbsp;&nbsp;&nbsp;</span>
+                     </span>
+                     <input autofocus type="text" name="direccion"  class="actividaddeinput form-control"
+                         *ngIf="editing[user.id_persona +  '-direccion']"
+                         (keyup.enter)="updateValue(user.id_persona,$event, 'direccion',user.direccion)"
+                         (clickOutside)="editing[user.id_persona +  '-direccion'] = false"
+                         [value]="user.direccion"  
+                         [(ngModel)]="user.direccion" />
+                     </li>
+                 </ul>
+             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <div class="col-md-3">&nbsp;</div>
+</div>		   
+                        
+
+
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>

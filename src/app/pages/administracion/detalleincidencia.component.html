@@ -1,0 +1,161 @@
+<app-header></app-header>
+
+<ngx-spinner></ngx-spinner>
+
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 mt-5">
+      <div class="tabbable" id="tabs-850675">
+        <app-botonestab></app-botonestab>
+        <div class="tab-content p-5">
+          <div class="tab-pane active" id="panel-813817">
+            <div class="row m-2">
+              <div class="col-md-12 mt-4 tituloseccion">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a [routerLink]="['/incidenciasapp']">Incidencias</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      {{ registro.inci_enunciado }} - #{{ registro.inci_token }}
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+            <div class="row m-2 mt-4">
+              <div class="col-md-12">
+                Creada:
+                <em class="text-muted">{{
+                  registro.inci_fecha | date: "dd/MM/y HH:mm"
+                }}</em>
+              </div>
+            </div>
+
+            <div class="row m-2 mt-4">
+              <div class="col-md-12 alturaminima mb-5">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <h2 class="hachedosgrande">
+                        {{ registro.inci_enunciado }}
+                        <span
+                          *ngIf="registro.inci_resuelta === 'SI'"
+                          class="badge badge-success"
+                        >
+                          Resuelta
+                        </span>
+                      </h2>
+                      <h5 class="mb-2">
+                        Emitida por:
+                        <span class="spannombre"
+                          ><b>{{ registro.nombres }}</b></span
+                        >
+                      </h5>
+                      <hr />
+                      <p class="mt-3 mb-3 textomedio">
+                        {{ registro.inci_texto }}
+                      </p>
+                      <hr />
+                      <div *ngIf="registro.inci_imagen != ''">
+                        <h5 class="mt-4 mb-2">Imagen adjunta</h5>
+                        <img
+                          class="animate fadeIn mb-3"
+                          src="{{ registro.inci_imagen }}"
+                          jpPreload="{{ registro.inci_imagen }}"
+                          alt=""
+                        />
+                        <hr />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group text-center">
+                      <form
+                        [formGroup]="resolverSubmit"
+                        (ngSubmit)="onSubmit()"
+                      >
+                        <input
+                          type="hidden"
+                          class="form-control"
+                          formControlName="id_inci"
+                        />
+                        <input
+                          type="hidden"
+                          class="form-control"
+                          formControlName="inci_token"
+                        />
+                        <span *ngIf="registro.inci_resuelta === 'SI'">
+                          <h5 class="text-left">
+                            Comentarios adicionales sobre la incidencia
+                          </h5>
+                          <hr class="doteada" />
+                          <div class="text-left mb-4 textomedio">
+                            {{ registro.inci_comentarios }}
+                          </div>
+                          <hr class="doteada" />
+                        </span>
+                        <span *ngIf="registro.inci_resuelta === 'NO'">
+                          <h5 class="text-left">
+                            Comentarios adicionales sobre la incidencia
+                          </h5>
+                          <p class="text-left">
+                            El comentario solamente se guardará al resolver la
+                            incidencia
+                          </p>
+
+                          <ckeditor
+                            [config]="{
+                              toolbar: ['link', '|', 'bold', 'italic']
+                            }"
+                            (ready)="onReady($event)"
+                            id="ibmeditor"
+                            placeholder="Comentarios adicionales sobre la incidencia"
+                            maxlength="2000"
+                            name="inci_comentarios"
+                            formControlName="inci_comentarios"
+                            [editor]="Editor"
+                            data=""
+                            height="400"
+                          ></ckeditor>
+
+                          <hr />
+                        </span>
+
+                        <span *ngIf="registro.inci_resuelta === 'SI'">
+                          <button disabled class="btn btn-success mr-2">
+                            Resuelta
+                          </button>
+                        </span>
+                        <span *ngIf="registro.inci_resuelta != 'SI'">
+                          <button
+                            [disabled]="!resolverSubmit.valid"
+                            type="submit"
+                            class="btn btn-info mr-2"
+                          >
+                            Resolver
+                          </button>
+                        </span>
+                        <button
+                          [routerLink]="['/incidenciasapp']"
+                          class="btn btn-warning"
+                        >
+                          Volver
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

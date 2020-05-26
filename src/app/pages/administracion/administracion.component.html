@@ -10,13 +10,18 @@
                         
                         
 <div class="row">
-    <div class="col-md-4"><div class="card p-3 card-altura-minima"><h3>Crear nuevo informe</h3><p class="text-center tamaicon"><i class="fa fa-folder-open"></i></p><p>Se crea un informe nuevo con los campos vacíos</p><p>Es importante que el informe se cree a última hora porque pertenecerá al día siguiente al de hoy.</p></div></div>
-    <div class="col-md-4"><div class="card p-3 card-altura-minima"><h3>Crear usuarios</h3><p class="text-center tamaicon"><i class="fa fa-user"></i></p><p>Puede crear nuevos usuarios con diversos roles para supervisar los informes. </p></div></div>
-    <div class="col-md-4"><div class="card p-3 card-altura-minima"></div></div>
+    <div class="col-md-4"><div class="card p-3 card-altura-minima"><h3>Crear nuevo informe</h3><p class="text-center tamaicon"><i class="fa fa-folder-open"></i></p><p>Es importante que el informe se cree a última hora porque pertenecerá al día siguiente al de hoy.</p><p class="text-center"><button class="btn btn-primary mr-1" (click)="nuevoInforme()">Nuevo informe</button></div></div>
+    <div class="col-md-4"><div class="card p-3 card-altura-minima"><h3>Crear usuarios</h3><p class="text-center tamaicon"><i class="fa fa-user"></i></p><p>Puede crear nuevos usuarios con diversos roles para supervisar los informes. </p><p class="text-center"><button class="btn btn-primary mr-1" (click)="open(content)">Nuevo usuario</button><button [routerLink]="['/listapersonas']" class="btn btn-warning ml-1">Lista de usuarios</button></p></div></div>
+    <div class="col-md-4">
+      <div class="card p-3 card-altura-minima">
+        <h3>Incidencias</h3><p class="text-center tamaicon"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></p><p>Listado de incidencias y sugerencias sobre el funcionamiento de este aplicativo. </p><p class="text-center"><button [routerLink]="['/incidenciasapp']" class="btn btn-primary ml-1">Ver incidencias</button></p>
+      </div>
+    </div>
 </div>
                    
                           
 
+                  
 
 					</div>
 				</div>
@@ -25,3 +30,47 @@
       </div>
 </div>
 <app-footer></app-footer>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Crear nuevo usuario
+      </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Nombre y apellidos *</label>
+        <input required type="text" [(ngModel)]="datoregistro.nombres" name="nombres" autocomplete="off" class="form-control" placeholder="Nombre y apellidos" />
+ 
+    </div>
+      <div class="form-group"><label>E-mail *</label>
+        <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required type="email" [(ngModel)]="datoregistro.email" name="email" autocomplete="off" class="form-control" placeholder="E-mail" />
+ 
+    </div>
+      <div class="form-group"><label>Password * <small class="text-muted">(La contraseña debe tener al menos 6 carácteres.)</small></label>
+        <input pattern=".{6,}" required type="password" [(ngModel)]="datoregistro.password" name="password" autocomplete="off" class="form-control" placeholder="Password" />
+
+    </div>
+      <div class="form-group"><label>Teléfono</label>
+        <input  maxlength="9" type="text" [(ngModel)]="datoregistro.telefono" name="telefono" autocomplete="off" class="form-control" placeholder="Teléfono" />
+      </div>
+      <div class="form-group"><label>Dirección</label>
+        <input type="text" [(ngModel)]="datoregistro.direccion" name="direccion" autocomplete="off" class="form-control" placeholder="Dirección" />
+      </div>
+      <div class="form-group text-center mt-5">
+        <button (click)="guardarUsuario()" class="btn btn-info">
+          Añadir usuario
+        </button>
+      </div> 
+   
+    </div>
+  </ng-template>

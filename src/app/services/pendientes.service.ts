@@ -6,6 +6,8 @@ import { Schedule } from '../models/schedule';
 import { Diser } from '../models/diser';
 import { Dimod } from '../models/dimod';
 import { DimodComentarios } from '../models/dimodcomentarios';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ImagenCheck } from '../models/imagencheck';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,11 +15,22 @@ export class PendientesService {
 
   //constantes
   private PHP_API_SERVER = Constantes.API_SERVER; //URL del servicio
+  public showSpinner: boolean = false;
 
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private spinner: NgxSpinnerService,private httpClient: HttpClient) { }
 
   
+
+  showLoadingSpinner() {
+    this.spinner.show();
+  }
+  
+  hideLoadingSpinner() {
+    this.spinner.hide();
+  }
+
+
+
   guardarSema(valor){
 console.log(valor);
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_sema.php`,valor);
@@ -121,6 +134,12 @@ console.log(valor);
     })
     return temas;
   }
+
+
+
+
+
+
 
 
 

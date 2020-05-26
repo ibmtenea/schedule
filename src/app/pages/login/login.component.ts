@@ -4,6 +4,8 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../../services/dataservice.service';
 import Swal from 'sweetalert2';
+import { Periodos } from 'src/app/models/periodos';
+import { Constantes } from 'src/app/models/constantes.model';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   angForm: FormGroup;
   datosphp: string;
   mail = '';
-
+  
   constructor(private fb: FormBuilder, private dataService: DataserviceService, private router: Router) {
     this.angForm = this.fb.group({
 
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (localStorage.removeItem('id_persona') != null) {
       const keysToRemove = ["token", "id_persona", "usuario", "id_rol"];
       for (const key of keysToRemove) {
@@ -40,10 +43,12 @@ export class LoginComponent implements OnInit {
       }
       this.router.navigateByUrl('');
     }
+
   }
 
 
   postdata(angForm: FormGroup) {
+    
     var patronEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
     var emailResult = patronEmail.test(angForm.value.email);
     if (emailResult == false) {
@@ -58,6 +63,8 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
+            
+
             const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/home';
             this.router.navigate([redirect]);
           },

@@ -37,8 +37,7 @@ import { CambiosComponent } from './pages/cambios.component';
 import { PendientesComponent } from './pages/pendientes.component';
 import { PerfilComponent } from './pages/perfil.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { R4bComponent } from './pages/home/r4b.component';
-import { ControlesbatchComponent } from './pages/home/controlesbatch.component';
+
 import { ResumenComponent } from './pages/home/resumen.component';
 import { DefconComponent } from './pages/incidencias/defcon.component';
 import { CriticasComponent } from './pages/incidencias/criticas.component';
@@ -58,7 +57,28 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { InPlaceEditorModule } from '@syncfusion/ej2-angular-inplace-editor';
 import { RocketEditModule } from 'rocket-edit';
 import { BitacoraComponent } from './pages/bitacora/bitacora.component';
-import { AdministracionComponent } from './pages/administracion/administracion.component'
+import { AdministracionComponent } from './pages/administracion/administracion.component';
+
+import { NgxSpinnerModule } from "ngx-spinner";
+
+import { ControlesbatchComponent } from './pages/home/controlesbatch.component';
+import { R4bComponent } from './pages/home/r4b.component';
+import { DetallebitacoraComponent } from './pages/bitacora/detallebitacora.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListaPersonasComponent } from './pages/administracion/listapersonas.component';
+import { DetallePersonaAdminComponent } from './pages/administracion/detallepersonaadmin.component';
+import { ImprimirComponent } from './components/imprimir.component';
+import { IncidenciasappComponent } from './pages/administracion/incidenciasapp.component';
+import { DetalleincidenciaComponent } from './pages/administracion/detalleincidencia.component';
+import { AbririncidenciaComponent } from './pages/administracion/abririncidencia.component';
+import { ReporteglobalComponent } from './pages/reporteglobal/reporteglobal.component';
+import { ChecktaskComponent } from './pages/reporteglobal/components/checktask/checktask.component';
+import { CambiosaplicadosComponent } from './pages/reporteglobal/components/cambiosaplicados/cambiosaplicados.component';
+import { ReportincidenciasComponent } from './pages/reporteglobal/components/reportincidencias/reportincidencias.component';
+import { FieldErrorDisplayComponent } from './pages/field-error-display.component';
+
+
+
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 registerLocaleData(localeEs, 'es');
@@ -73,7 +93,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-
+    DetallePersonaAdminComponent,
+    ListaPersonasComponent,
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -102,11 +123,22 @@ export function HttpLoaderFactory(http: HttpClient) {
     SeguimientosemanalComponent,
     PeriodosanterioresComponent,
     BitacoraComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    DetallebitacoraComponent,
+    ImprimirComponent,
+    IncidenciasappComponent,
+    DetalleincidenciaComponent,
+    AbririncidenciaComponent,
+    ReporteglobalComponent,
+    ChecktaskComponent,
+    CambiosaplicadosComponent,
+    ReportincidenciasComponent,
+    FieldErrorDisplayComponent
     
   ],
   imports: [
     BrowserModule,
+    NgxSpinnerModule,
     RocketEditModule,
     ClickOutsideModule,
     MatTabsModule,
@@ -135,7 +167,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    NgbModule
   ],
   exports: [
     RouterModule

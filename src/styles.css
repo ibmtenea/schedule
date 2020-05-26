@@ -20,10 +20,41 @@ h4{color:#c18c5d;font-size:18px;}
 h3{color:#c18c5d;font-size:19px;}
 .text-muted{color:#c18c5d !important;}
 
+.spannombre{color:#c18c5d !important;}
+.textomedio{font-size:16px;}
+.textopequo{font-size:14px;}
+.botonsizes{
+  color:#ffffff !important;
+    width:28px;
+  padding:2px !important;
+  border:0px;
+  }
+
+.textocortado {
+  width:80%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+
+.torard .ng-star-inserted{z-index:9999;}
 
 
+.ck-content{min-height:250px !important;}
+.pointerplus{cursor:pointer; color:#ffffff !important}
+.basedoteada{border-bottom:0.5px dashed  #afafaf !important;}
+.doteada{border:0.5px dashed  #afafaf}
 /***************** GLOBALES*********************/
+.imprint{font-size:12px; color:#a7a6a6}
+.imprint i{font-size:18px; color:#a7a6a6;margin-right:4px;}
+.fa-calendar{cursor:pointer;font-size:24px;margin-left:10px;}
 
+.btn-warning{background-color: #c18c5d;color:#ffffff;}
+
+.llapiset:hover{text-decoration:underline;}
+
+.estillista{list-style:square;margin-left:30px;}
+.aligmn{ max-width:60%; margin: 0 auto !important;}
 .tamaicon i{font-size:88px;margin-top:30px;margin-bottom:30px;}
 .card-altura-minima{min-height:330px;}
 .tabladimond th{font-size:12px;background-color: #127e99;color:#ffffff;}
@@ -31,6 +62,7 @@ h3{color:#c18c5d;font-size:19px;}
 .tablacitrix th{font-size:12px;background-color: #8d7d34;color:#ffffff;}
 .tablasema th{font-size:12px;background-color: #c22c59;color:#ffffff;}
 
+.alert-light{margin-top:5px;border:1px solid #cccccc;background-color: #f1efef;}
 
 .positiver {width:100%;padding:5px;
     background-color: #d3f0cd;text-align:center !important;margin:0px;
@@ -152,3 +184,94 @@ h3{color:#c18c5d;font-size:19px;}
     -webkit-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);
     box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.2);}
+
+
+
+
+
+
+
+    /**************toolTIP***********************/
+    .tooltip-main {
+        background-color: #cccccc;
+        border: 1px solid #a3a3a3;
+        color: #333333;
+      }
+      
+      .tooltip-qm {
+        float: left;
+        margin: -2px 0px 3px 4px;
+        font-size: 12px;
+      }
+      
+      .tooltip-inner {
+        font-size: 12px;
+        background: #cccccc;
+        color:#333333;
+        border: 1px solid #737373;
+      }
+      
+      .tooltip.show {
+        opacity: 0.5;
+      }
+  
+      .tooltip.bottom .tooltip-arrow {
+        top: 0;
+        left: 50%;
+        margin-left: -5px;
+        border-bottom-color: #cccccc; /* black */
+        border-width: 0 5px 5px;
+      }
+
+      .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+      .bs-tooltip-bottom .arrow::before {
+        border-bottom-color: #cccccc;
+        /* Red */
+      }
+
+
+
+
+
+
+
+
+
+
+
+      
+
+.fileContainer {
+  overflow: hidden;
+  position: relative;
+}
+
+.fileContainer [type=file] {
+  cursor: inherit;
+  display: block;
+  font-size: 999px;
+  filter: alpha(opacity=0);
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+
+/* Example stylistic flourishes */
+
+.fileContainer {
+  background: #204051;
+  height: 50px;
+  color:#ffffff;
+  width: 50px;
+  border-radius: 50px;
+  padding: .5em;
+  padding-top:15px;
+}
+
+.fileContainer [type=file] {
+  cursor: pointer;
+}
