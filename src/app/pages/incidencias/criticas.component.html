@@ -8,14 +8,15 @@
 
   
     <div class="row">
-      <div class="col-9 text-right p-0 mt-2">
-        <!-- <a
-          alt="Nuevo registro"
-          title="nuevo registro"
-          [routerLink]="['/', 'alta']"
-          class="btn btn-info pt4 btn-circle posicionplus"
-          ><i class="fa fa-plus fa-3"></i
-        ></a> -->
+      <div class="col-9 text-left p-0 mt-2">
+ 
+        <a      
+        title="Ayuda"
+        (click)="open(crisecon)"
+        class="btn btn-info pointerplus btn-circle"
+        ><i class="fa fa-plus fa-2"></i
+          > </a>
+
       </div>
       <div class="col-3 p-0 mt-2 text-right">
         <div class="form">
@@ -25,7 +26,6 @@
         </div>
       </div>
     </div>
-  
 
 
 
@@ -328,3 +328,108 @@
     </div>
   </div>
   
+
+
+
+  <ng-template #crisecon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+    <form [formGroup]="CriseForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+
+
+
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="crise_proveedor">Proveedor</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="crise_proveedor" 
+                  formControlName="crise_proveedor">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="crise_existe_incidencia">Existe incidencia</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="crise_existe_incidencia" 
+                  formControlName="crise_existe_incidencia">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="crise_aplicaciones_impactadas">Aplicaciones impactadas</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="crise_aplicaciones_impactadas" 
+                  formControlName="crise_aplicaciones_impactadas">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="crise_estado">Estado</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="crise_estado" 
+                  formControlName="crise_estado">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+
+
+              <div class="form-group"><label for="crise_fecha">Fecha</label>
+                <div class="input-group">
+                  <input type="text" 
+               
+                  class="form-control"  
+                  name="crise_fecha" 
+                  formControlName="crise_fecha" 
+                  ngbDatepicker #d="ngbDatepicker" #spy>
+                  
+                  <div class="input-group-addon" (click)="d.toggle()" >
+                    <i class="fa fa-calendar fa-1g" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="crise_resolucion">Resolución</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="crise_resolucion" 
+                  formControlName="crise_resolucion">
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+     
+
+
+          <p class="text-center"><button type="submit" [disabled]="CriseForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

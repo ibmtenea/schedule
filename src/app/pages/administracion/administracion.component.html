@@ -10,13 +10,15 @@
                         
                         
 <div class="row">
-    <div class="col-md-4"><div class="card p-3 card-altura-minima"><h3>Crear nuevo informe</h3><p class="text-center tamaicon"><i class="fa fa-folder-open"></i></p><p>Es importante que el informe se cree a última hora porque pertenecerá al día siguiente al de hoy.</p><p class="text-center"><button class="btn btn-primary mr-1" (click)="nuevoInforme()">Nuevo informe</button></div></div>
-    <div class="col-md-4"><div class="card p-3 card-altura-minima"><h3>Crear usuarios</h3><p class="text-center tamaicon"><i class="fa fa-user"></i></p><p>Puede crear nuevos usuarios con diversos roles para supervisar los informes. </p><p class="text-center"><button class="btn btn-primary mr-1" (click)="open(content)">Nuevo usuario</button><button [routerLink]="['/listapersonas']" class="btn btn-warning ml-1">Lista de usuarios</button></p></div></div>
-    <div class="col-md-4">
+    <div class="col-md-3"><div class="card p-3 card-altura-minima"><h3>Crear nuevo informe</h3><p class="text-center tamaicon"><i class="fa fa-folder-open"></i></p><p>Es importante que el informe se cree a última hora porque pertenecerá al día siguiente al de hoy.</p><p class="text-center"><button class="btn btn-primary mr-1" (click)="nuevoInforme()">Nuevo informe</button></div></div>
+    <div class="col-md-3"><div class="card p-3 card-altura-minima"><h3>Crear usuarios</h3><p class="text-center tamaicon"><i class="fa fa-user"></i></p><p>Puede crear nuevos usuarios con diversos roles para supervisar los informes. </p><p class="text-center"><button class="btn btn-primary mr-1" (click)="open(content)">Nuevo usuario</button><button [routerLink]="['/listapersonas']" class="btn btn-warning ml-1">Lista de usuarios</button></p></div></div>
+    <div class="col-md-3">
       <div class="card p-3 card-altura-minima">
         <h3>Incidencias</h3><p class="text-center tamaicon"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></p><p>Listado de incidencias y sugerencias sobre el funcionamiento de este aplicativo. </p><p class="text-center"><button [routerLink]="['/incidenciasapp']" class="btn btn-primary ml-1">Ver incidencias</button></p>
       </div>
     </div>
+    <div class="col-md-3"><div class="card p-3 card-altura-minima"><h3>Lista de Correo</h3><p class="text-center tamaicon"><i class="fa fa-envelope"></i></p><p>Puede crear nuevos usuarios con diversos roles para supervisar los informes. </p><p class="text-center"><button class="btn btn-primary mr-1" (click)="open(content)">Nuevo usuario</button><button [routerLink]="['/listapersonas']" class="btn btn-warning ml-1">Lista de usuarios</button></p></div></div>
+
 </div>
                    
                           

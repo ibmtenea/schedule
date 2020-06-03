@@ -26,10 +26,36 @@ export class IncidenciasService {
 
 
   guardarDefcon(valor){  
-    console.log(valor);
+  
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_defcon.php`, valor);
   }
+  guardarCriti(valor){  
 
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_criti.php`, valor);
+  }
+
+  guardarCrise(valor){  
+ 
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_crise.php`, valor);
+  }
+
+  guardarSodi(valor){  
+    console.log(valor);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_sodi.php`, valor);
+  }
+
+  guardarSodiImagen1(datosImagen1){  
+
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_sodi_img1.php`, datosImagen1);
+  }
+
+  guardarSodiImagen2(datosImagen2){  
+  
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_sodi_img2.php`, datosImagen2);
+  }
+
+  
+  
 
   getListadoCriti(cb){
     const clave = localStorage.getItem('ccom');

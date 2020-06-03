@@ -135,6 +135,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReportincidenciasComponent,
     FieldErrorDisplayComponent
     
+    
   ],
   imports: [
     BrowserModule,

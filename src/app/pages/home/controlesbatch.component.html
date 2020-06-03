@@ -1,4 +1,4 @@
-<ngx-spinner></ngx-spinner><div class="container-fluid">
+<div class="container-fluid">
   <div class="row">
     <div class="col-10 p-0 mt-5">
       <h2>Controles Batch</h2>
@@ -45,12 +45,13 @@
         #mydatatable
         class="material striped"
         headerHeight="50"
-        [limit]="10"
+        [limit]="25"
         [columnMode]="'force'"
         footerHeight="50"
         rowHeight="50"
         [rows]="rows"
         [messages]="my_messages"
+     
       >
         <ngx-datatable-column name="id_coba1" [maxWidth]="90">
           <ng-template ngx-datatable-header-template>
@@ -394,7 +395,7 @@
         #mydatatable
         class="material striped"
         headerHeight="50"
-        [limit]="15"
+        [limit]="25"
         [columnMode]="'force'"
         footerHeight="50"
         rowHeight="50"

@@ -10,6 +10,10 @@ import { DataserviceService } from './dataservice.service';
   providedIn: 'root'
 })
 export class HomeService {
+
+  unsubscribe() {
+  }
+
   public periodo: Periodos;
   //constantes
   private PHP_API_SERVER = Constantes.API_SERVER; //URL del servicio
@@ -48,10 +52,27 @@ export class HomeService {
     return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_periodo.php`);
   }
 
+
+
+
   setClavePDF(datosenvio){
-    // console.log(datosenvio);
-    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/pdf_crear.php`,datosenvio);
+
+
+
+
+    //extraemos la classe que enviamos para determinar qué url usamos
+    // const datosen = JSON.parse(datosenvio);
+
+    // if(datosen.classe == "ClaseRBcuatroEstados"){
+      return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/rb4_pdf_crear.php`);
+    // } else {
+    //    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/rb4_pdf_crear.php`);
+    // }
+    
+    
   }
+
+
 
   getResumen() {
     return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_resumen_rb4.php`);

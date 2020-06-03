@@ -5,6 +5,8 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IncidenciasService } from '../../services/incidencias.service';
+import { NgbModalOptions, NgbDateStruct, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-criticas',
@@ -12,6 +14,8 @@ import { IncidenciasService } from '../../services/incidencias.service';
 })
 export class CriticasComponent implements OnInit {
 
+  closeResult: string;
+  modalOptions:NgbModalOptions;
   final: Observable<Object>;
 
   rows = [];
@@ -31,17 +35,48 @@ export class CriticasComponent implements OnInit {
     'totalMessage': ''
   };
 
+  CriseForm = new FormGroup({
+    id_persona:new FormControl(''),
+    clave_comun:new FormControl(''),
+    crise_fecha:new FormControl(''),
+    crise_proveedor:new FormControl(''),
+    crise_existe_incidencia:new FormControl(''),
+    crise_aplicaciones_impactadas:new FormControl(''),
+    crise_estado:new FormControl(''),
+    crise_resolucion:new FormControl(''),
+  });
+  isSubmittedTurno = false;
+  model: NgbDateStruct;
+  placement = 'bottom';
+
   //click fuera del input
   @HostListener('document:click', ['$event'])
   clickout(event) {
     this.ngOnInit();
   }
 
-  constructor(private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
+  constructor(private fb: FormBuilder,private modalService: NgbModal,private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
     translate.get('Total', { value: 'eeeeeeeeee' })
     .subscribe((res: string) => this.my_messages.totalMessage = res);
     translate.get('No hay resultados para mostrar', { value: '' })
     .subscribe((res: string) => this.my_messages.emptyMessage = res);
+
+    this.modalOptions = {
+      backdrop:'static',
+      backdropClass:'customBackdrop',
+      size: 'lg' 
+    }
+
+    this.CriseForm = this.fb.group({
+      id_persona: [localStorage.getItem('id_persona'), Validators.required],
+      crise_fecha : ['', Validators.required],
+      crise_proveedor: ['', Validators.required],
+      crise_existe_incidencia : ['', Validators.required],
+      crise_aplicaciones_impactadas: ['', Validators.required],
+      crise_estado: ['', Validators.required],
+      crise_resolucion: ['', Validators.required],
+      clave_comun: [localStorage.getItem('ccom'), Validators.required],
+    });
 
     /**
     * recibimos el listado
@@ -127,5 +162,42 @@ export class CriticasComponent implements OnInit {
 
 
     
+    open(tiket) {
+      this.modalService.open(tiket, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+    
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
+      }
+    }
+
+
+
+    submitdef(){
+
+      this.isSubmittedTurno = true;
+      const valor = JSON.stringify(this.CriseForm.value);
+      
+      this.incidenciasServicio.guardarCrise( valor ).subscribe( respuesta => {
+        Swal.fire({
+          title: 'Registro creado',
+          text: 'Se ha creado un registro de incidencia ',
+          icon: 'success',  
+          showConfirmButton : true
+        })
+      , this.recarga();
+        
+      });   
+    }
+
 
 }

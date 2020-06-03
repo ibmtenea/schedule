@@ -38,6 +38,7 @@ export class ControlesbatchComponent implements OnInit {
     'totalMessage': ''
   };
 
+  loading = "mensaje de carga"
   // //click fuera del input
   // @HostListener('document:click', ['$event'])
   // clickout(event) {

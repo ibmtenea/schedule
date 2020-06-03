@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild, HostListener, AfterViewInit, Input } from '@angular/core';
-import { RB4 } from 'src/app/models/rb4';
-import { HomeService } from 'src/app/services/home.service';
-import { TranslateService } from '@ngx-translate/core';
-import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { ColumnMode } from '@swimlane/ngx-datatable';
-import { Observable } from 'rxjs';
-import Swal from 'sweetalert2';
+import { Component, OnInit, ViewChild, HostListener, AfterViewInit, Input, OnDestroy } from '@angular/core';
 
+import { HomeService } from 'src/app/services/home.service';
+
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+
+import Swal from 'sweetalert2';
 
 
 
@@ -15,17 +13,20 @@ import Swal from 'sweetalert2';
   templateUrl: './r4b.component.html'
   
 })
-export class R4bComponent implements  OnInit {
+export class R4bComponent implements  OnInit, OnDestroy {
 
 
-  
+  my_messages = {
+    'emptyMessage': '',
+    'totalMessage': ''
+  };
 
-  final: Observable<Object>;
+  // final: Observable<Object>;
  
   rows = [];
   temp = [];
-  @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
-  ColumnMode = ColumnMode;
+   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  // ColumnMode = ColumnMode;
   campo: any;
   id_esse: any;
   id_persona: any;
@@ -34,10 +35,7 @@ export class R4bComponent implements  OnInit {
   req: any;
   datos: string;
   editing = {};
-  my_messages = {
-    'emptyMessage': '',
-    'totalMessage': ''
-  };
+
 
   //click fuera del input
   @HostListener('document:click', ['$event'])
@@ -61,15 +59,11 @@ export class R4bComponent implements  OnInit {
 
 
   ngOnInit(): void{
-    
-    /**
-    * recibimos el listado
-    */
-   this.homeServicio.getListado(data => {
-    this.temp = [...data];
-    this.rows = data;
-    });
 
+  }
+
+  ngOnDestroy() {
+    this.homeServicio.unsubscribe();
   }
 
   /**
@@ -132,7 +126,6 @@ export class R4bComponent implements  OnInit {
       // Cuando cambie el filtro, regresa a la primera página.
       this.table.offset = 0;
     }
-
 
 
 

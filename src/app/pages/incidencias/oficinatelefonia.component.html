@@ -8,15 +8,17 @@
     </div>
 
   
+  
     <div class="row">
-      <div class="col-9 text-right p-0 mt-2">
-        <!-- <a
-          alt="Nuevo registro"
-          title="nuevo registro"
-          [routerLink]="['/', 'alta']"
-          class="btn btn-info pt4 btn-circle posicionplus"
-          ><i class="fa fa-plus fa-3"></i
-        ></a> -->
+      <div class="col-9 text-left p-0 mt-2">
+ 
+        <a      
+        title="Ayuda"
+        (click)="open(sodicon)"
+        class="btn btn-info pointerplus btn-circle"
+        ><i class="fa fa-plus fa-2"></i
+          > </a>
+
       </div>
       <div class="col-3 p-0 mt-2 text-right">
         <div class="form">
@@ -26,6 +28,7 @@
         </div>
       </div>
     </div>
+
   
 
     <div class="row">
@@ -110,6 +113,15 @@
           /></ng-template>
           </ngx-datatable-column>
           
+
+
+
+
+
+
+
+
+
           <ngx-datatable-column name="sodi_grafico1" [maxWidth]="300">
             <ng-template ngx-datatable-header-template>
               <span>Imagen 1</span>
@@ -120,14 +132,42 @@
               let-value="value"
               let-row="row">
               <span *ngIf="row.sodi_grafico1!=null">
+               
+        <a      
+        title="Ayuda"
+        (click)="open(sodimagen)"
+        ><button>
                 <img 
                 class="minifoto"
                 src="./assets/loader.gif" 
                 jpPreload="{{row.sodi_grafico1}}">
+              </button></a>
               </span>
-              <p *ngIf="row.sodi_grafico2==null" class="text-muted2">no hay imagen</p>
+              <p *ngIf="row.sodi_grafico2==null" class="text-muted2">
+                <label class="fileContainerTXT">no hay imagen
+                  <input type="hidden" name="id_sodi" value="{{ row.id_sodi }}" /> 
+                  <input 
+                         type="file"
+                         name="sodi_grafico1"  
+                         accept="image/*" 
+                         (change)="handleUpload1($event)"
+                         title="{{ row.id_sodi }}"
+                         />
+                 </label> 
+              </p>
           </ng-template>
           </ngx-datatable-column>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -148,9 +188,34 @@
                 jpPreload="{{row.sodi_grafico2}}">
               
             </span>
-            <p *ngIf="row.sodi_grafico2==null" class="text-muted2">no hay imagen</p>
+            <p *ngIf="row.sodi_grafico2==null" class="text-muted2">
+              <label class="fileContainerTXT">no hay imagen
+                <input type="hidden" name="id_sodi" value="{{ row.id_sodi }}" /> 
+                <input 
+                       type="file"
+                       name="sodi_grafico2"  
+                       accept="image/*" 
+                       (change)="handleUpload2($event)"
+                       title="{{ row.id_sodi }}"
+                       />
+               </label>
+
+            </p>
           </ng-template>
           </ngx-datatable-column>
+
+
+
+
+
+
+
+
+
+
+
+
+
           
           <ngx-datatable-column name="sodi_estado" [maxWidth]="120">
             <ng-template ngx-datatable-header-template>
@@ -331,3 +396,150 @@
     </div>
   </div>
   
+
+
+  <ng-template #sodicon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+    <form [formGroup]="SodiForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+
+
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="sodi_estado">Estado</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="sodi_estado" 
+                  formControlName="sodi_estado">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="sodi_canales">Canales</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="sodi_canales" 
+                  formControlName="sodi_canales">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="sodi_estadoplataforma">Estado plataforma</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="sodi_estadoplataforma" 
+                  formControlName="sodi_estadoplataforma">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+            <div class="form-group"><label for="sodi_fecha">Fecha</label>
+              <div class="input-group">
+                <input type="text" 
+          
+                class="form-control"  
+                name="sodi_fecha" 
+                formControlName="sodi_fecha" readonly
+                ngbDatepicker #d="ngbDatepicker" #spy>
+                
+                <div class="input-group-addon" (click)="d.toggle()" >
+                  <i class="fa fa-calendar fa-1g" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+</div>
+
+
+
+
+
+          </div>
+
+
+
+          <!-- <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><h5>Gráfico 1</h5>
+                <div class="input-group">
+                <label class="fileContainer"><i class="fa fa-camera"></i>
+                  <input 
+                         type="file"
+                         name="sodi_grafico1"  
+                         formControlName="sodi_grafico1"
+                         accept="image/*" 
+                         (change)="handleUpload1($event)"
+                         />
+                
+                 </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><h5>Gráfico 2</h5>
+                <div class="input-group">
+                <label class="fileContainer"><i class="fa fa-camera"></i>
+                  <input 
+                         type="file"
+                         name="sodi_grafico2"  
+                         (change)="handleUpload2($event)"
+                         formControlName="sodi_grafico2"
+                         accept="image/*" 
+                         />
+                
+                 </label>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        
+        
+        
+     
+
+
+          <p class="text-center"><button type="submit" [disabled]="SodiForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+  <!--MODAL DE LAS IMAGENES-->
+  <ng-template #sodimagen let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <img 
+      class="minifoto"
+      src="./assets/loader.gif" 
+      jpPreload="{{row.sodi_grafico1}}">
+    </div>
+  </ng-template>

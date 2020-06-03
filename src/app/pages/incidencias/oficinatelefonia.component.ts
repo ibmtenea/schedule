@@ -5,6 +5,8 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IncidenciasService } from '../../services/incidencias.service';
+import { NgbModalOptions, NgbDateStruct, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-oficinatelefonia',
@@ -12,9 +14,9 @@ import { IncidenciasService } from '../../services/incidencias.service';
 })
 export class OficinatelefoniaComponent implements OnInit {
 
-
-  
-    final: Observable<Object>;
+  closeResult: string;
+  modalOptions:NgbModalOptions;
+  final: Observable<Object>;
   
     rows = [];
     temp = [];
@@ -32,20 +34,56 @@ export class OficinatelefoniaComponent implements OnInit {
       'emptyMessage': '',
       'totalMessage': ''
     };
+    private imageSrc: string = '';
 
-  
+    SodiImagenForm= new FormGroup({
+      sodi_grafico1:new FormControl(''),
+    });
+
+    SodiForm = new FormGroup({
+      id_persona:new FormControl(''),
+      clave_comun:new FormControl(''),
+      sodi_fecha:new FormControl(''),
+      sodi_estado:new FormControl(''),
+      sodi_canales:new FormControl(''),
+      sodi_estadoplataforma:new FormControl(''),
+    });
+    isSubmittedTurno = false;
+    model: NgbDateStruct;
+    placement = 'bottom';
+    datosFoto: string;
+  datosImagen1: string;
+  datosImagen2: string;
+
     //click fuera del input
     @HostListener('document:click', ['$event'])
     clickout(event) {
       this.ngOnInit();
     }
   
-    constructor(private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
+    constructor(private fb: FormBuilder,private modalService: NgbModal,private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
       translate.get('Total', { value: 'eeeeeeeeee' })
       .subscribe((res: string) => this.my_messages.totalMessage = res);
       translate.get('No hay resultados para mostrar', { value: '' })
       .subscribe((res: string) => this.my_messages.emptyMessage = res);
   
+
+
+      this.modalOptions = {
+        backdrop:'static',
+        backdropClass:'customBackdrop',
+        size: 'lg' 
+      }
+  
+      this.SodiForm = this.fb.group({
+        id_persona: [localStorage.getItem('id_persona'), Validators.required],
+        sodi_fecha : ['', Validators.required],
+        sodi_estado: ['', Validators.required],
+        sodi_canales : ['', Validators.required],
+        sodi_estadoplataforma: ['', Validators.required],
+        clave_comun: [localStorage.getItem('ccom'), Validators.required],
+      });
+
       /**
       * recibimos el listado
       */
@@ -70,6 +108,7 @@ export class OficinatelefoniaComponent implements OnInit {
   
     }
   
+
     /**
      * reload pagina al usar sweet alerts etc
      */
@@ -131,5 +170,91 @@ export class OficinatelefoniaComponent implements OnInit {
       }
 
   
+
+      
+    open(id_sodi) {
+      this.modalService.open(id_sodi, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+    
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
+      }
+    }
+
+
+
+
+    handleUpload1(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const id_sodi =  event.target.title;
+      const clave_comun =  localStorage.getItem('ccom');
+      this.datosImagen1 = JSON.stringify({ "id_sodi": id_sodi, "clave_comun": clave_comun,"sodi_grafico1": reader.result });
+        this.incidenciasServicio.guardarSodiImagen1( this.datosImagen1 ).subscribe( respuesta => {
+          Swal.fire({
+            title: 'Imagen actualizada',
+            text: 'la imagen ha sido actualizada ',
+            icon: 'success',  
+            showConfirmButton : false
+          })
+          , this.recarga();
+        });  
+      };
+    }
+
+    handleUpload2(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const id_sodi =  event.target.title;
+      const clave_comun =  localStorage.getItem('ccom');
+      this.datosImagen2 = JSON.stringify({ "id_sodi": id_sodi, "clave_comun": clave_comun,"sodi_grafico2": reader.result });
+        this.incidenciasServicio.guardarSodiImagen2( this.datosImagen2 ).subscribe( respuesta => {
+          Swal.fire({
+            title: 'Imagen actualizada',
+            text: 'la imagen ha sido actualizada ',
+            icon: 'success',  
+            showConfirmButton : false
+          })
+          , this.recarga();
+        });  
+      };
+    }
+
+
+    submitdef(){
+      this.isSubmittedTurno = true;
+      const valor = JSON.stringify(this.SodiForm.value);  
+      this.incidenciasServicio.guardarSodi( valor ).subscribe( respuesta => {
+        Swal.fire({
+          title: 'Registro creado',
+          text: 'Se ha creado un registro de incidencia ',
+          icon: 'success',  
+          showConfirmButton : true
+        })
+        //, this.recarga();
+      });  
+    }
+
+
+
+
+
+
+
+    
+
   }
   

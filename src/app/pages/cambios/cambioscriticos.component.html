@@ -7,14 +7,15 @@
 
   
     <div class="row">
-      <div class="col-9 text-right p-0 mt-2">
-        <!-- <a
-          alt="Nuevo registro"
-          title="nuevo registro"
-          [routerLink]="['/', 'alta']"
-          class="btn btn-info pt4 btn-circle posicionplus"
-          ><i class="fa fa-plus fa-3"></i
-        ></a> -->
+      <div class="col-9 text-left p-0 mt-2">
+ 
+        <a      
+        title="Ayuda"
+        (click)="open(cricon)"
+        class="btn btn-info pointerplus btn-circle"
+        ><i class="fa fa-plus fa-2"></i
+          > </a>
+
       </div>
       <div class="col-3 p-0 mt-2 text-right">
         <div class="form">
@@ -442,4 +443,144 @@
       </div>
     </div>
   </div>
+  <ng-template #cricon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
   
+    <form [formGroup]="CritForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="criti_id">Identificador</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_id" 
+                  formControlName="criti_id">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="criti_titulo">Título</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_titulo" 
+                  formControlName="criti_titulo">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="criti_score">Score</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_score" 
+                  formControlName="criti_score">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="criti_riesgo">Riesgo</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_riesgo" 
+                  formControlName="criti_riesgo">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+
+
+              <div class="form-group"><label for="criti_inicio">Inicio</label>
+                <div class="input-group">
+                  <input type="text" 
+               
+                  class="form-control"  
+                  name="criti_inicio" 
+                  formControlName="criti_inicio" 
+                  ngbDatepicker #d="ngbDatepicker" #spy>
+                  
+                  <div class="input-group-addon" (click)="d.toggle()" >
+                    <i class="fa fa-calendar fa-1g" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="criti_duracion">Duración</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_duracion" 
+                  formControlName="criti_duracion">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="criti_urgente">Urgente</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_urgente" 
+                  formControlName="criti_urgente">
+                </div>
+              </div>  
+            </div>
+            <div class="col-md-4 mb-2 fechainput">                         
+              <div class="form-group"><label for="criti_afectacion">Afectación</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_afectacion" 
+                  formControlName="criti_afectacion">
+                </div>
+              </div>  
+            </div>
+            <div class="col-md-4 mb-2 fechainput">           
+              <div class="form-group"><label for="criti_responsable">Responsable</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_responsable" 
+                  formControlName="criti_responsable">
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-2 fechainput">
+              <div class="form-group"><label for="criti_cio">CIO</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="criti_cio" 
+                  formControlName="criti_cio">
+                </div>
+              </div>              
+
+        </div>
+      </div> 
+
+
+          <p class="text-center"><button type="submit" [disabled]="CritForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>
