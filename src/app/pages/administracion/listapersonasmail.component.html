@@ -1,0 +1,158 @@
+<app-header></app-header>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mt-5">
+            <div class="tabbable" id="tabs-850675">
+	            <app-botonestab></app-botonestab>			
+				<div class="tab-content p-5">
+					<div class="tab-pane active" id="panel-813817">
+                        
+                        
+
+				   
+						
+
+
+						<div class="row">
+							<div class="col-9 text-right p-0 mt-2">
+							  <!-- <a
+								alt="Nuevo registro"
+								title="nuevo registro"
+								[routerLink]="['/', 'alta']"
+								class="btn btn-info pt4 btn-circle posicionplus"
+								><i class="fa fa-plus fa-3"></i
+							  ></a> -->
+							</div>
+							<div class="col-3 p-0 mt-2 text-right">
+							  <div class="form">
+								<mat-form-field floatPlaceholder="never" color="accent">
+								  <input matInput placeholder="Buscar" (keyup)="updateFilter($event)" />
+								</mat-form-field>
+							  </div>
+							</div>
+						  </div>
+						
+						  <div class="row">
+							<div class="col-12 p-0 m-0">
+							  <ngx-datatable
+								#mydatatable
+								class="material striped"
+								headerHeight="50"
+								[limit]="25"
+								[columnMode]="'force'"
+								footerHeight="50"
+								rowHeight="60"
+								[rows]="rows"
+								[messages]="my_messages"
+							  >
+							 <ngx-datatable-column name="id_lico" [maxWidth]="90">
+								  <ng-template ngx-datatable-header-template>
+									<span>ID</span>
+								  </ng-template>
+								  <ng-template
+									class="mat-column-id"
+									ngx-datatable-cell-template
+									let-rowIndex="rowIndex"
+									let-value="value"
+									let-row="row"
+									><div class="text-center">{{ row.id_lico }}</div>
+								  </ng-template>
+								</ngx-datatable-column> 
+						
+								<ngx-datatable-column name="lico_nombre" [maxWidth]="820">
+								  <ng-template ngx-datatable-header-template>
+									<span>Nombres</span>
+								  </ng-template>
+								  <ng-template
+									ngx-datatable-cell-template
+									let-rowIndex="rowIndex"
+									let-value="value"
+									let-row="row"
+								  >
+									{{ row.lico_nombre}}
+								  </ng-template>
+								</ngx-datatable-column>
+								<ngx-datatable-column name="lico_email" [maxWidth]="720">
+									<ng-template ngx-datatable-header-template>
+									  <span>E-mail</span>
+									</ng-template>
+									<ng-template
+									  ngx-datatable-cell-template
+									  let-rowIndex="rowIndex"
+									  let-value="value"
+									  let-row="row"
+									>
+									  {{ row.lico_email}}
+									</ng-template>
+								  </ngx-datatable-column>						
+								  
+								  
+							
+
+			
+	
+		<ngx-datatable-column name="ver" [maxWidth]="130">
+							  <ng-template
+								class="mat-column-id"
+								ngx-datatable-cell-template
+								let-row="row"
+							  >
+						
+								<div class="text-center">
+								  <div class="row">
+									<div class="col-12 p0 m0">
+						
+		
+									  <!-- <a
+									  [routerLink]="['/', 'perfil', row.id_lico]"
+										class="btn btn-info botonsizes mr-1"
+										><i class="fa fa-eye"></i></a> -->
+								
+
+
+									<span *ngIf="row.lico_activo==='off'">
+										<button
+												(click)="activar(row)"
+												class="btn btn-peligro botonsizes"
+												><i class="fa fa-toggle-off fa-2x "></i>
+										</button> 
+									</span>
+									<span *ngIf="row.lico_activo==='on'">
+										<button
+												(click)="desactivar(row)"
+												class="btn btn-blanco botonsizes"
+												><i class="fa fa-toggle-on fa-2x"></i>
+										</button> 
+									</span>
+
+						
+									</div>
+								  </div>
+								</div>
+							  </ng-template>
+							</ngx-datatable-column>
+							  </ngx-datatable>
+							</div>
+						  </div>
+
+
+
+
+
+
+
+
+
+
+
+                          
+
+
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>

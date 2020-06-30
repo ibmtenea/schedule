@@ -83,10 +83,11 @@
             class="form-control"
             [value]="row.sodi_fecha"
             [title]="row.id_sodi"
+            id="{{periodo.clave_comun}}"
           /></ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="sodi_canales" [maxWidth]="400">
+          <ngx-datatable-column name="sodi_canales" [maxWidth]="200">
             <ng-template ngx-datatable-header-template>
               <span>Canales</span>
             </ng-template>
@@ -110,6 +111,7 @@
             class="form-control"
             [value]="row.sodi_canales"
             [title]="row.id_sodi"
+            id="{{periodo.clave_comun}}"
           /></ng-template>
           </ngx-datatable-column>
           
@@ -131,19 +133,21 @@
               let-rowIndex="rowIndex"
               let-value="value"
               let-row="row">
-              <span *ngIf="row.sodi_grafico1!=null">
-               
-        <a      
-        title="Ayuda"
-        (click)="open(sodimagen)"
-        ><button>
+              <div *ngIf="row.sodi_grafico1!=null">
+<button (click)="open2(sodimagen1,row.id_sodi)">
                 <img 
                 class="minifoto"
-                src="./assets/loader.gif" 
+                src="./assets/loader.gif" id="sodi_grafico1"
                 jpPreload="{{row.sodi_grafico1}}">
-              </button></a>
-              </span>
-              <p *ngIf="row.sodi_grafico2==null" class="text-muted2">
+
+</button>
+
+
+
+
+            
+</div>
+              <div *ngIf="row.sodi_grafico2==null" class="text-muted2">
                 <label class="fileContainerTXT">no hay imagen
                   <input type="hidden" name="id_sodi" value="{{ row.id_sodi }}" /> 
                   <input 
@@ -152,19 +156,13 @@
                          accept="image/*" 
                          (change)="handleUpload1($event)"
                          title="{{ row.id_sodi }}"
+                         id="{{periodo.clave_comun}}"
                          />
                  </label> 
-              </p>
+              
+ </div>
           </ng-template>
           </ngx-datatable-column>
-
-
-
-
-
-
-
-
 
 
 
@@ -181,15 +179,30 @@
               let-value="value"
               let-row="row">
              
-            <span *ngIf="row.sodi_grafico2!=null">
+            <div *ngIf="row.sodi_grafico2!=null">
+
+              
+<button (click)="open2(sodimagen2,row.id_sodi)">
                 <img 
                 class="minifoto"
-                src="./assets/loader.gif" 
+                src="./assets/loader.gif" id="sodi_grafico2"
                 jpPreload="{{row.sodi_grafico2}}">
+
+</button>
+
               
-            </span>
+            </div>
+
+
+
+
+
+
+
             <p *ngIf="row.sodi_grafico2==null" class="text-muted2">
               <label class="fileContainerTXT">no hay imagen
+                <input type="hidden" name="cla_comun" value="{{periodo.clave_comun}}" /> 
+
                 <input type="hidden" name="id_sodi" value="{{ row.id_sodi }}" /> 
                 <input 
                        type="file"
@@ -197,8 +210,13 @@
                        accept="image/*" 
                        (change)="handleUpload2($event)"
                        title="{{ row.id_sodi }}"
+                       id="{{periodo.clave_comun}}"
                        />
                </label>
+
+
+
+               
 
             </p>
           </ng-template>
@@ -217,7 +235,7 @@
 
 
           
-          <ngx-datatable-column name="sodi_estado" [maxWidth]="120">
+          <ngx-datatable-column name="sodi_estado" [maxWidth]="570">
             <ng-template ngx-datatable-header-template>
               <span>Estado</span>
             </ng-template>
@@ -249,6 +267,7 @@
                   (change)="updateValue($event, 'sodi_estado', rowIndex)"
                   [value]="row.sodi_estado"
                   [title]="row.id_sodi"
+                  id="{{periodo.clave_comun}}"
                   ><option value="OPEN">OPEN</option>
                   <option value="CLOSED">CLOSED</option>
                 </select>
@@ -258,9 +277,9 @@
   
 
 
-          <ngx-datatable-column name="sodi_estadoplataforma" [maxWidth]="120">
+          <ngx-datatable-column name="sodi_estadoplataforma" [maxWidth]="520">
             <ng-template ngx-datatable-header-template>
-              <span>Estado</span>
+              <span>Estado plataforma</span>
             </ng-template>
             <ng-template
               ngx-datatable-cell-template
@@ -290,6 +309,7 @@
                   (change)="updateValue($event, 'sodi_estadoplataforma', rowIndex)"
                   [value]="row.sodi_estadoplataforma"
                   [title]="row.id_sodi"
+                  id="{{periodo.clave_comun}}"
                   ><option value="OPEN">OPEN</option>
                   <option value="CLOSED">CLOSED</option>
                 </select>
@@ -398,7 +418,7 @@
   
 
 
-  <ng-template #sodicon let-modal class="modal-lg">
+  <ng-template #sodicon let-modal class="modal-sm">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -409,7 +429,7 @@
   
     <form [formGroup]="SodiForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
           <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
-
+          <input type="hidden" class="form-control"  value="{{periodo.clave_comun}}" name="clave_comun"  formControlName="clave_comun"  />
 
           <div class="row">
             <div class="col-md-6 mb-2 fechainput">
@@ -470,41 +490,7 @@
 
 
 
-          <!-- <div class="row">
-            <div class="col-md-6 mb-2 fechainput">
-              <div class="form-group"><h5>Gráfico 1</h5>
-                <div class="input-group">
-                <label class="fileContainer"><i class="fa fa-camera"></i>
-                  <input 
-                         type="file"
-                         name="sodi_grafico1"  
-                         formControlName="sodi_grafico1"
-                         accept="image/*" 
-                         (change)="handleUpload1($event)"
-                         />
-                
-                 </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-2 fechainput">
-              <div class="form-group"><h5>Gráfico 2</h5>
-                <div class="input-group">
-                <label class="fileContainer"><i class="fa fa-camera"></i>
-                  <input 
-                         type="file"
-                         name="sodi_grafico2"  
-                         (change)="handleUpload2($event)"
-                         formControlName="sodi_grafico2"
-                         accept="image/*" 
-                         />
-                
-                 </label>
-                </div>
-              </div>
-            </div>
-          </div> -->
-        
+       
         
         
      
@@ -528,18 +514,49 @@
 
 
 
-  <!--MODAL DE LAS IMAGENES-->
-  <ng-template #sodimagen let-modal class="modal-lg">
+
+<div id="modalesimagen">
+  <ng-template #sodimagen1 let-modal class="modal-lg">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">×</span>
       </button>
     </div>
-    <div class="modal-body">
-      <img 
-      class="minifoto"
-      src="./assets/loader.gif" 
-      jpPreload="{{row.sodi_grafico1}}">
+    <div class="modal-body text-center">
+ <img 
+    src="./assets/loader.gif" 
+    jpPreload="{{registro.sodi_grafico1}}">
+
+    <hr /><p class="text-right"><button
+    (click)="borrarRegistroImagen(registro.id_sodi,registro.sodi_grafico1,null,periodo.clave_comun)"
+    class="btn btn-warning botonsizes"
+  >
+    <i class="fa fa-trash"></i>
+  </button></p>
+
     </div>
-  </ng-template>
+  </ng-template> 
+
+  <ng-template #sodimagen2 let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Incidencias</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+ <img 
+    src="./assets/loader.gif" 
+    jpPreload="{{registro.sodi_grafico2}}">
+  <hr /><p class="text-right"><button
+    (click)="borrarRegistroImagen(registro.id_sodi,null,registro.sodi_grafico2,periodo.clave_comun)"
+    class="btn btn-warning botonsizes"
+  >
+    <i class="fa fa-trash"></i>
+  </button></p>
+    
+    </div>
+  </ng-template> 
+
+</div>

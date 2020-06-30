@@ -4,12 +4,13 @@
 		
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="navbar-toggler-icon"></span>
-				</button> <a class="navbar-brand" href="#"><img class="logoimage" src="./assets/logotransparent.png" alt="SABIS" /> | <b>Seguimiento diario Producción - BS</b> - <span *ngFor="let perio of periodo" class="text-muted">{{perio.pema_fecha}}</span></a>
+				</button> <img class="logoimage" src="./assets/logotransparent.png" alt="SABIS" /> <b class="whitext">| Seguimiento diario Producción - BS -</b>&nbsp;&nbsp;&nbsp;<span *ngFor="let perio of periodo" class="text-muted">Informe con fecha: {{perio.pema_fecha}} - clave: {{perio.clave_comun}}</span>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="navbar-nav navbar-nav ml-md-auto">
-						<!-- <li class="nav-item active">
-							 <a class="nav-link" href="#">Link <span class="sr-only">(current)</span></a>
-						</li>-->
+						
+						<li class="nav-item active">
+							 <a class="nav-link" [routerLink]="['/', 'ayuda']"><i class="fa fa-question-circle"></i></a>
+						</li>
 						
 						<li class="nav-item dropdown">
 							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ user.nombres }}</a>

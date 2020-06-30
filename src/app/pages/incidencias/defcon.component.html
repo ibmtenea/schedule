@@ -42,26 +42,39 @@
           [limit]="25"
           [columnMode]="'force'"
           footerHeight="50"
-          rowHeight="50"
+          rowHeight="auto"
           [rows]="rows"
           [messages]="my_messages"
         >
-          <ngx-datatable-column name="id_defcon" [maxWidth]="60">
-            <ng-template ngx-datatable-header-template>
-              <span>ID</span>
-            </ng-template>
-            <ng-template
-              class="mat-column-id"
-              ngx-datatable-cell-template
-              let-rowIndex="rowIndex"
-              let-value="value"
-              let-row="row"
-              ><div class="text-center">{{ row.id_defcon }}</div>
-            </ng-template>
-          </ngx-datatable-column>
+        <ngx-datatable-column name="defcon_id" [maxWidth]="60">
+          <ng-template ngx-datatable-header-template>
+            <span>DEFCON</span>
+          </ng-template>
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row">
+          <span title="Doble click para editar"
+          (dblclick)="editing[rowIndex + '-defcon_id'] = true"
+          *ngIf="!editing[rowIndex + '-defcon_id']"
+          >
+          {{ row.defcon_id}}
+          <span class="text-muted2" *ngIf="row.defcon_id === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span>
+        <input autofocus
+          (clickOutside)="editing[rowIndex + '-defcon_id'] = false"
+          (keyup.enter)="updateValue($event, 'defcon_id', rowIndex)"
+          *ngIf="editing[rowIndex + '-defcon_id']"
+          type="text"
+          class="form-control"
+          [value]="row.defcon_id"
+          [title]="row.id_defcon"
+        /></ng-template>
+        </ngx-datatable-column>
   
 
-          <ngx-datatable-column name="defcon_fecha" [maxWidth]="100">
+          <ngx-datatable-column name="defcon_fecha" [maxWidth]="160">
             <ng-template ngx-datatable-header-template>
               <span>Fecha</span>
             </ng-template>
@@ -239,7 +252,7 @@
             {{ row.defcon_ultima_actualizacion}}
             <span class="text-muted2" *ngIf="row.defcon_ultima_actualizacion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
-          <input autofocus
+          <textarea autofocus
             (clickOutside)="editing[rowIndex + '-defcon_ultima_actualizacion'] = false"
             (keyup.enter)="updateValue($event, 'defcon_ultima_actualizacion', rowIndex)"
             *ngIf="editing[rowIndex + '-defcon_ultima_actualizacion']"
@@ -247,7 +260,9 @@
             class="form-control"
             [value]="row.defcon_ultima_actualizacion"
             [title]="row.id_defcon"
-          /></ng-template>
+          >{{ row.defcon_ultima_actualizacion}}</textarea>
+
+        </ng-template>
           </ngx-datatable-column>
 
 
@@ -290,12 +305,7 @@
               let-row="row"
               let-value="value"
             >
-              <div
-                [ngClass]="{
-                  positive: row.defcon_estado == 'OPEN',
-                  negative: row.defcon_estado == 'CLOSED'
-                }"
-              >
+
                 <span
                   title="Doble click para editar"
                   (dblclick)="editing[rowIndex + '-defcon_estado'] = true"
@@ -315,7 +325,7 @@
                   ><option value="OPEN">OPEN</option>
                   <option value="CLOSED">CLOSED</option>
                 </select>
-              </div>
+             
             </ng-template>
           </ngx-datatable-column>
   
@@ -357,7 +367,7 @@
             </ng-template>
           </ngx-datatable-column> -->
   
-          <!-- <ngx-datatable-column name="ver" [maxWidth]="150">
+ <ngx-datatable-column name="ver" [maxWidth]="150">
         <ng-template
           class="mat-column-id"
           ngx-datatable-cell-template
@@ -368,49 +378,23 @@
             <div class="row">
               <div class="col-12 p0 m0">
   
-  
-  <div *ngIf="row.disabledBotones===turnoValor && registroroleperson.id_rol!= '8'">
-                <button (click)="duplicar(row, i)"
-                class="btn btn-warning botonsizes mr-1">
-                    <i class="fa fa-clone"></i>
-                </button>
-                <a
-                  [routerLink]="['/detalle', row.tokenid]"
-                  class="btn btn-warning botonsizes mr-1"
-                  ><i class="fa fa-pencil"></i
-                ></a>
-                <button
-                  (click)="borrarRegistro(row, i)"
-                  class="btn btn-warning botonsizes"
-                >
-                  <i class="fa fa-trash"></i>
-                </button>
-  </div> 
-  
-  <div *ngIf="registroroleperson.id_rol== '8'">
-              <button (click)="duplicar(row, i)"
-              class="btn btn-warning botonsizes mr-1">
-                  <i class="fa fa-clone"></i>
-              </button>
-              <a
-                [routerLink]="['/detalle', row.tokenid]"
-                class="btn btn-warning botonsizes mr-1"
-                ><i class="fa fa-pencil"></i
-              ></a>
+  <!-- <div *ngIf="registroroleperson.id_rol== '8'"> -->
               <button
-                (click)="borrarRegistro(row, i)"
+                (click)="borrarRegistro(row, row.id_defcon)"
                 class="btn btn-warning botonsizes"
               >
                 <i class="fa fa-trash"></i>
               </button>
-  </div> 
+  <!-- </div>  -->
   
   
               </div>
             </div>
           </div>
         </ng-template>
-      </ngx-datatable-column> -->
+      </ngx-datatable-column>
+      
+
         </ngx-datatable>
       </div>
     </div>
@@ -431,12 +415,32 @@
    
     <form [formGroup]="DefconForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
           <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+          <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+
           <div class="row">
             <div class="col-md-12 mb-2">
                 <label for="defcon_ticket">Ticket</label>
                 <input type="text" class="form-control"  name="defcon_ticket"  formControlName="defcon_ticket"  />
             </div>
-          </div>   
+          </div> 
+          
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+
+              <div class="form-group"><label for="defcon_fecha">DEFCON</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="defcon_id" 
+                  formControlName="defcon_id">
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput"></div>
+          </div>
+
+
           <div class="row">
             <div class="col-md-4 mb-2 fechainput">
 
@@ -489,14 +493,18 @@
           <div class="row">
             <div class="col-md-6 mb-2">
                 <label for="defcon_estado">Estado</label>
-                <input type="text" class="form-control"  name="defcon_estado"  formControlName="defcon_estado"  />
+<select  name="defcon_estado"  formControlName="defcon_estado" >
+ <option value="OPEN">OPEN</option>
+ <option value="CLOSED">CLOSED</option>
+</select>
+
             </div>
             <div class="col-md-6 mb-2">
               <label for="defcon_resolutores">Resolutores</label>
               <input type="text" class="form-control"  name="defcon_resolutores"  formControlName="defcon_resolutores"  />
           </div>
           </div> 
-          <p class="text-center"><button type="submit" [disabled]="DefconForm.invalid" class="btn btn-primary">Guardar</button></p>  
+          <p class="text-center"><button type="submit"  class="btn btn-primary">Guardar</button></p>  
     </form>
   
     </div>

@@ -22,6 +22,7 @@ h3{color:#c18c5d;font-size:19px;}
 
 .spannombre{color:#c18c5d !important;}
 .textomedio{font-size:16px;}
+.textomedio p{font-size:16px;}
 .textopequo{font-size:14px;}
 .botonsizes{
   color:#ffffff !important;
@@ -37,9 +38,10 @@ h3{color:#c18c5d;font-size:19px;}
   text-overflow: ellipsis;
 }
 
+.modal-xl{margin-top:15% !important;max-width: 90%;}
 .torard .ng-star-inserted{z-index:9999;}
 
-
+.zetindex{z-index:9999 !important}
 .ck-content{min-height:250px !important;}
 .pointerplus{cursor:pointer; color:#ffffff !important}
 .basedoteada{border-bottom:0.5px dashed  #afafaf !important;}
@@ -97,7 +99,10 @@ h3{color:#c18c5d;font-size:19px;}
 .dimodclass .ng-valid{} 
 .dimodclass .ng-invalid{} 
 
-
+.whitext{color:#ffffff;
+}
+.imagenborde{width:100%;border:1px solid #cccccc;}
+.pointerplus2{cursor:pointer;}
 /*ng-star-inserted ng-dirty ng-touched"*/
 .activwinput{background-color:#c18c5d;color:#ffffff;}
 .actividaddeinput{background-color:#ffffff;color:#333333;}
@@ -106,6 +111,7 @@ h3{color:#c18c5d;font-size:19px;}
 .zebraone{background-color: #eed2b9;border-bottom:1px solid #ffffff !important;}
 .zebratwo{background-color: rgb(220, 221, 218);}
 .zebrathree{background-color: rgb(220, 221, 218);}
+.zebrafour{border-bottom:1px solid #cccccc !important;}
 
 .borbase{padding:5px; margin:0px;}
 .borderleft{padding:0px;  margin:0px;border-right:1px solid #DFE2E6;}
@@ -302,3 +308,14 @@ h3{color:#c18c5d;font-size:19px;}
 .fileContainer [type=file] {
   cursor: pointer;
 }
+
+
+.listadisco{list-style:disc;margin-left:25px; padding-bottom:8px;border-bottom:1px solid #cccccc;margin-bottom:15px;}
+.btn-peligro{background-color:transparent;color:rgb(212, 181, 187) !important;border:0px;}
+.btn-peligro:hover{background-color:transparent;color:rgb(161, 17, 38) !important;border:0px;}
+
+.btn-blanco{background-color:transparent;color:#629FB6 !important;border:0px;}
+.btn-blanco:hover{background-color:transparent;color:rgb(27, 79, 98) !important;border:0px;}
+
+
+.interform{font-size:14px; color:#2e2968;font-weight:bold;}

@@ -9,6 +9,23 @@
       </div>
     </div>
   
+
+    <div class="row">
+      <div class="col-9 text-left p-0 mt-2">
+  
+        <a      
+        title="Ayuda"
+        (click)="open(dimodcon)"
+        class="btn btn-info pointerplus btn-circle"
+        ><i class="fa fa-plus fa-2"></i
+          > </a>
+  
+      </div>
+      <div class="col-3 p-0 mt-2 text-right">
+  
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12 p-0 mt-5">
         <table class="table table-bordered">
@@ -267,3 +284,219 @@
     </div>
   </div>
   
+
+
+
+
+  <ng-template #dimodcon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Infraestructuras de comunicaciones</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+    <form [formGroup]="DimodForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+          <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+  
+
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_provider">* Provider</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_provider" 
+                  formControlName="dimod_provider">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_enviroment">* Environement</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_enviroment" 
+                  formControlName="dimod_enviroment">
+                </div>
+              </div>
+            </div>
+          </div>
+         <div class="row">
+          <div class="col-md-6 mb-2 fechainput">
+            <div class="form-group"><label for="dimod_description">Description</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="dimod_description" 
+                formControlName="dimod_description">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2 fechainput">
+            <div class="form-group"><label for="dimod_component">Component</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="dimod_component" 
+                formControlName="dimod_component">
+              </div>
+            </div>
+          </div>
+         </div>
+
+         <div class="row"><div class="col-12"><h4 class="interform">Units Deployed</h4><hr /></div></div>
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_ud_sft">SFT</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_ud_sft" 
+                  formControlName="dimod_ud_sft">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_ud_cbs">CBS</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_ud_cbs" 
+                  formControlName="dimod_ud_cbs">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="row"><div class="col-12"><h3>Component operational mode</h3><hr /></div></div>
+
+          <div class="row"><div class="col-12"><h4 class="interform">Fully Operational</h4><hr /></div></div>
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_fo_sft">SFT</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_fo_sft" 
+                  formControlName="dimod_fo_sft">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_fo_cbs">CBS</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_fo_cbs" 
+                  formControlName="dimod_fo_cbs">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row"><div class="col-12"><h4 class="interform">Single Failure</h4><hr /></div></div>
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_sf_sft">SFT</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_sf_sft" 
+                  formControlName="dimod_sf_sft">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_sf_cbs">CBS</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_sf_cbs" 
+                  formControlName="dimod_sf_cbs">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row"><div class="col-12"><h4 class="interform">DR</h4><hr /></div></div>
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_dr_sft">SFT</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_dr_sft" 
+                  formControlName="dimod_dr_sft">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_dr_cbs">CBS</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_dr_cbs" 
+                  formControlName="dimod_dr_cbs">
+                </div>
+              </div>
+            </div>
+          </div>
+<hr />
+
+          <div class="row"><div class="col-12"><h4 class="interform">Operations Mode Proposal</h4><hr /></div></div>
+          <div class="row">
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_omp_sft">SFT</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_omp_sft" 
+                  formControlName="dimod_omp_sft">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2 fechainput">
+              <div class="form-group"><label for="dimod_omp_cbs">CBS</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="dimod_omp_cbs" 
+                  formControlName="dimod_omp_cbs">
+                </div>
+              </div>
+            </div>
+          </div>
+
+<hr />
+
+         <div class="row"><div class="col-12"><h4 class="interform">1xQ(uarter) 2xY(ear) 1xM(onth) Specific DR Etc.</h4><hr /></div></div>
+         <div class="row">
+           <div class="col-md-12 mb-2 fechainput">
+             <div class="form-group"><label for="dimod_maintenances_plan">Maintenance plan?</label>
+               <div class="input-group">
+                 <input type="text" 
+                 class="form-control"  
+                 name="dimod_maintenances_plan" 
+                 formControlName="dimod_maintenances_plan">
+               </div>
+             </div>
+           </div>
+         </div>
+
+
+
+  
+          <p class="text-center"><button type="submit" [disabled]="DimodForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

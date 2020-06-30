@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mt-5">
+            <div class="tabbable" id="tabs-850675">
+	            <app-botonestab></app-botonestab>			
+				<div class="tab-content p-5">
+					<div class="tab-pane active" id="panel-813817">
+                        
+						
+                    <div class="row">
+                    <div class="col-12 p-0 m-0">
+                    <h2>Documentación de uso de la aplicación</h2> 
+                        <div class="mt-5">
+                            <ul *ngFor="let ayu of ayudas">
+                                <li class="listadisco">
+                                    <h3>{{ayu.ayuda_titulo}}</h3>
+                                    {{ayu.ayuda_texto}}
+                                    <p class="mt-3"><a href="http://schedule.ibmes.site:80/s/documentacion/{{ayu.ayuda_link}}" target="_blank"><i class="fa fa-toggle-right"></i>  http://schedule.ibmes.site:80/s/documentacion/{{ayu.ayuda_link | slice:0:140}}</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+
+
+
+					</div>
+				</div>
+			</div>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>

@@ -31,22 +31,27 @@ export class AdminService {
     return this.httpClient.get(`${ this.PHP_API_SERVER}/ajax/personas_detalle.php?id_persona=${ id_persona }`);
   }
   
-  guardarNuevancidencia(incidenciaForm){
+  guardarNuevancidencia(incidenciaForm){ 
 
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/incidencia_crear.php`, JSON.stringify(incidenciaForm));
   }  
 
   crearNuevoInforme() {
    const id_persona = localStorage.getItem('id_persona');
-  return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_informe.php`, id_persona);
-}
+   console.log(id_persona);
+   return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_informe.php`, id_persona);
+  }
 
-      actualizarRegistro(datoregistro) {
+  actualizarRegistro(datoregistro) {
 
-          return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_persona.php`, JSON.stringify(datoregistro));
-      }
+      return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_persona.php`, JSON.stringify(datoregistro));
+  }
 
+  actualizarRegistroListaCorreo(datoregistromail) {
 
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_lico.php`, JSON.stringify(datoregistromail));
+  }
+      
   
 
 }

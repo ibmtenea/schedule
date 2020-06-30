@@ -30,9 +30,34 @@ export class PendientesService {
   }
 
 
+  guardarPendi(valor){  
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_pendi.php`, valor);
+  }
+  nuevoDiser(valor){  
+    console.log(valor);
+       return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_diser.php`, valor);
+  }
+
+  nuevoDimod(valor){  
+  console.log(valor);
+      return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_dimod.php`, valor);
+  }
+
+  nuevoHemo(valor){  
+    console.log(valor);
+        return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_hemo.php`, valor);
+  }    
+
+  nuevoCitrix(valor){  
+    console.log(valor);
+        return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_citrix.php`, valor);
+  }    
+          
+
+
 
   guardarSema(valor){
-console.log(valor);
+
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_sema.php`,valor);
   }
 

@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-12">
-        <h6>Fecha: 2020-20-20</h6>
-        <h2>R4B - MAINFRAME</h2>
+    <div class="col-12" *ngFor="let periok of periodok">
+        <h6>Informe con Fecha: {{periok.pema_fecha}}</h6>
+        <h2>Clave Informe: {{periok.clave_comun}}</h2>
     </div>
 </div>
 
@@ -23,8 +23,8 @@
             <div class="block" *ngIf="tema.imch_imagen!=null">
               <img 
               class="perfildetalle animate fadeIn" 
-              src="../../../../assets/loader.gif" 
-              jpPreload="{{tema.imch_imagen}}">
+              src="http://schedule.ibmes.site:80/s/uploads/{{tema.imch_imagen}}" 
+              >
             </div> 
            
             </td>

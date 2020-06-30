@@ -5,6 +5,7 @@ import { BitacoraService } from '../../services/bitacora.service';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import Swal from 'sweetalert2';
 import { Personas } from 'src/app/models/personas';
+import { Lico } from 'src/app/models/lico';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ListaPersonasComponent implements OnInit {
   ColumnMode = ColumnMode;
   campo: any;
   id_persona: any;
+  id_lico: any;
   valor: any;
   ever: any;
   req: any;
@@ -33,6 +35,8 @@ export class ListaPersonasComponent implements OnInit {
     'totalMessage': ''
   };
   datosborrado: string;
+  datosdesactivar: string;
+  datosactivar:string;
   constructor(private spinner: NgxSpinnerService, private bitacoraServicio: BitacoraService) { }
 
   ngOnInit(){
@@ -56,7 +60,7 @@ export class ListaPersonasComponent implements OnInit {
         console.log(event);
         const val = event.target.value.toLowerCase();
         const temp = this.temp.filter(function (d) {
-          return d.nombres.toLowerCase().indexOf(val) !== -1 || d.registrado.toLowerCase().indexOf(val) !== -1 || d.telefono.toLowerCase().indexOf(val) !== -1 || !val;
+          return d.lico_nombre.toLowerCase().indexOf(val) !== -1 || d.lico_activo.toLowerCase().indexOf(val) !== -1 ||  !val;
         });
         // actualizamos las rows
         this.rows = temp;
@@ -68,7 +72,6 @@ export class ListaPersonasComponent implements OnInit {
   recarga() {
     location.reload();
   }
-
 
     //eliminar registro      
   borrarRegistro(registro: Personas, i: string) {
@@ -97,6 +100,27 @@ export class ListaPersonasComponent implements OnInit {
       }
     });
   }
+
+
+
+
+
+      // activar(registro: Lico) {
+      //   this.datosactivar = JSON.stringify({ "id_lico": registro.id_lico });
+      //   this.bitacoraServicio.activar(this.datosactivar).subscribe(data => {
+      //   }, error => {
+      //    console.log('error');
+      //   }), this.recarga();           
+      // }
+
+      // desactivar(registro: Lico) {
+      //   this.datosdesactivar = JSON.stringify({ "id_lico": registro.id_lico });
+      //   this.bitacoraServicio.desactivar(this.datosdesactivar).subscribe(data => {
+      //   }, error => {
+      //    console.log('error');
+      //   }), this.recarga();          
+      // }
+
 
 
 

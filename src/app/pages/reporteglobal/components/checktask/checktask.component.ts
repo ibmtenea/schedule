@@ -8,6 +8,10 @@ import Swal from 'sweetalert2';
 import { ImagenCheck } from '../../../../models/imagencheck';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Constantes } from 'src/app/models/constantes.model';
+import { Periodos } from 'src/app/models/periodos';
+import { DataserviceService } from 'src/app/services/dataservice.service';
 
 @Component({
   selector: 'app-checktask',
@@ -18,15 +22,15 @@ export class ChecktaskComponent implements OnInit {
 
 
   temas:ImagenCheck[] = [];
-  accionForm: FormGroup;
 
 
+  duracion: ImagenCheck[] = [];
 
   private imageSrc: string = '';
 
   campo: any;
   id_imch:string;
-
+  private PHP_API_SERVER = Constantes.API_SERVER; //URL del servicio
 
   id_persona: any;
   valor: any;
@@ -35,28 +39,46 @@ export class ChecktaskComponent implements OnInit {
   req: any;
   datos: string;
   datosFoto: string;
+  madre: any;
       // //click fuera del input
       @HostListener('document:click', ['$event'])
       clickout(event) {
         
       }
+selectedFile:File=null;
 
-  constructor(private fb: FormBuilder, 
+public periodok: Periodos;
+
+
+accionForm = new FormGroup({
+  imch_imagen: new FormControl(''),
+  existe: new FormControl(''),
+  clave_comun: new FormControl('')
+});
+
+
+
+  constructor(private dataService: DataserviceService,private fb: FormBuilder, private http: HttpClient,
       private activatedRoute: ActivatedRoute,private reporteServicio:ReporteGlogalService) { 
-        const commm = localStorage.getItem('ccom');
- 
-        this.accionForm = this.fb.group({
-          imch_imagen: ['', Validators.required],
-          clave_comun: [commm, Validators.required],
-          existe: [''],
-        });
+        this.dataService.getPeriodo ()
+        .subscribe( (respuesta:Periodos) => {
+        this.periodok = respuesta;
+        this.periodok.clave_comun = respuesta[0];
+        const Clave = Constantes.ARND+this.periodok.clave_comun['clave_comun']+Constantes.BRND;
+            this.accionForm = this.fb.group({
+              imch_imagen: ['', Validators.required],
+              clave_comun: [Clave, Validators.required],
+              existe: [''],
+            });
+         });
 
   }
 
   ngOnInit(){
     this.getTemasDias();
-    
+    this.getPeriodoActual();
   }
+
 
   getTemasDias(){   
     this.reporteServicio.getImgCheck()
@@ -64,11 +86,8 @@ export class ChecktaskComponent implements OnInit {
     this.temas=respuesta;
     this.id_imch=respuesta[0];
 
-
-
       });
   }
-
 
    /**
    * reload pagina al usar sweet alerts etc
@@ -77,40 +96,13 @@ export class ChecktaskComponent implements OnInit {
     location.reload();
   }
 
+  getPeriodoActual(){   
+    this.dataService.getPeriodo ()
+     .subscribe( (respuesta:Periodos) => {
+     this.periodok = respuesta;
 
-
-  /**
-   * metodo que actualiza los campos
-   */
-
-   updateValue(id_imch,event, cell, valor, rowIndex:number) {
-    this.editing[rowIndex + '-' + cell] = false;
-    this.campo = cell;
-    this.valor = valor;
-    this.id_imch = id_imch;
-    const id_persona = localStorage.getItem('id_persona');
-    const clave = localStorage.getItem('ccom');
-    this.ever =  this.campo,  this.valor,this.id_imch;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_imch": this.id_imch,"clave": clave});
-
-
-
-      this.reporteServicio.guardarImgCheck(this.datos).subscribe(
-        datos => {
-          Swal.fire({
-            text: 'Registro actualizado',
-            icon: 'success',
-            showConfirmButton: false
-          })
-          // , this.recarga();
-          , this.ngOnInit();
-        });
-   
+     });
   }
-
-
-
-
 
 
   handleInputChange(e) {
@@ -130,12 +122,7 @@ export class ChecktaskComponent implements OnInit {
    
     const clave_comun = this.accionForm.value.clave_comun;
 
-    if(this.imageSrc==''){
-      this.datosFoto = JSON.stringify({ "existe": "N" ,"clave_comun": clave_comun , "imch_imagen": this.imageSrc});
-    } else {
-      this.datosFoto = JSON.stringify({ "existe": "S" ,"clave_comun": clave_comun , "imch_imagen": this.imageSrc});
-    }
-       
+    this.datosFoto = JSON.stringify({ "clave_comun": clave_comun , "imch_imagen": this.imageSrc});
     this.reporteServicio.altaRegistroFoto(this.datosFoto).subscribe();
     
     Swal.fire({
@@ -143,12 +130,11 @@ export class ChecktaskComponent implements OnInit {
       icon: 'success',
       showConfirmButton: false
     })
-   // , this.recarga()
+    , this.recarga()
     ;
 
 
   }
-
 
 
 

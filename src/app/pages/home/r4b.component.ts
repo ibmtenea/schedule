@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild, HostListener, AfterViewInit, Input, OnDestroy } from '@angular/core';
 
-import { HomeService } from 'src/app/services/home.service';
+import { HomeService } from '../../services/home.service';
 
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 import Swal from 'sweetalert2';
+import { Constantes } from '../../models/constantes.model';
+import { Periodos } from '../../models/periodos';
+import { DataserviceService } from '../../services/dataservice.service';
 
 
 
@@ -35,6 +38,7 @@ export class R4bComponent implements  OnInit, OnDestroy {
   req: any;
   datos: string;
   editing = {};
+  clave_comun: any;
 
 
   //click fuera del input
@@ -44,9 +48,9 @@ export class R4bComponent implements  OnInit, OnDestroy {
   }
 
 
+  public periodo: Periodos;
 
-
-  constructor(private homeServicio: HomeService) { 
+  constructor(private homeServicio: HomeService,private dataService: DataserviceService) { 
     /**
     * recibimos el listado
     */
@@ -59,11 +63,26 @@ export class R4bComponent implements  OnInit, OnDestroy {
 
 
   ngOnInit(): void{
-
+  this.getPeriodoActual();
   }
 
   ngOnDestroy() {
     this.homeServicio.unsubscribe();
+  }
+
+
+  /**
+   * obtenemos el periodo vigente (el ultimo)
+   */
+
+  getPeriodoActual(){   
+    this.dataService.getPeriodo ()
+     .subscribe( (respuesta:Periodos) => {
+     this.periodo = respuesta;
+     this.periodo.pema_fecha = respuesta[0];  
+     this.periodo.c_comun = respuesta[0];
+     this.periodo.clave_comun = Constantes.ARND+this.periodo.c_comun['clave_comun']+Constantes.BRND;
+     });
   }
 
   /**
@@ -85,11 +104,11 @@ export class R4bComponent implements  OnInit, OnDestroy {
     this.rows = [...this.rows];
     this.campo = cell;
     this.id_esse = event.target.title;
-    const clave = localStorage.getItem('ccom');
+    this.clave_comun = event.target.id;//clave_comun
     const id_persona = localStorage.getItem('id_persona');
     this.valor = event.target.value;
     this.ever =  this.campo,  this.valor,this.id_esse;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_esse": this.id_esse,"clave_comun": clave});
+    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_esse": this.id_esse,"clave_comun": this.clave_comun});
     if (this.campo == "observaciones" && this.valor.length < 3) {
       Swal.fire({
         title: 'Revise los datos',

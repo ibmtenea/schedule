@@ -39,7 +39,9 @@ export class DetalleincidenciaComponent implements OnInit {
     inci_comentarios: new FormControl(''),
   });
 
-
+  public imagePath;
+  imgURL: any;
+  public message: string;
 
     PHP_API_SERVER = Constantes.API_SERVER; //URL del servicio
 
@@ -97,7 +99,7 @@ export class DetalleincidenciaComponent implements OnInit {
         icon: 'success',  
         showConfirmButton : true
       })
-      //, this.recarga();
+      , this.recarga();
       
     });   
 }
@@ -109,6 +111,26 @@ get inci_comentarios() { return this.resolverSubmit.get('inci_comentarios'); }
 
 
 
+
+
+ 
+  preview(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Solamente imágenes!!";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+  }
 
 
 

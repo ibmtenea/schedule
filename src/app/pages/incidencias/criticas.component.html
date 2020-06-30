@@ -39,11 +39,11 @@
           [limit]="25"
           [columnMode]="'force'"
           footerHeight="50"
-          rowHeight="50"
+          rowHeight="auto"
           [rows]="rows"
           [messages]="my_messages"
         >
-          <ngx-datatable-column name="id_crise" [maxWidth]="60">
+          <!-- <ngx-datatable-column name="id_crise" [maxWidth]="60">
             <ng-template ngx-datatable-header-template>
               <span>ID</span>
             </ng-template>
@@ -71,7 +71,7 @@
             *ngIf="!editing[rowIndex + '-crise_fecha']"
             >
             {{ row.crise_fecha}}
-            <span class="text-muted2" *ngIf="row.crise_fecha === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-muted2" *ngIf="row.crise_fecha ===''"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
             (clickOutside)="editing[rowIndex + '-crise_fecha'] = false"
@@ -82,9 +82,9 @@
             [value]="row.crise_fecha"
             [title]="row.id_crise"
           /></ng-template>
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
 
-          <ngx-datatable-column name="crise_proveedor" [maxWidth]="400">
+          <ngx-datatable-column name="crise_proveedor" [maxWidth]="200">
             <ng-template ngx-datatable-header-template>
               <span>Proveedor</span>
             </ng-template>
@@ -98,7 +98,7 @@
             *ngIf="!editing[rowIndex + '-crise_proveedor']"
             >
             {{ row.crise_proveedor}}
-            <span class="text-muted2" *ngIf="row.crise_proveedor === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-muted2" *ngIf="row.crise_proveedor ===''"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
             (clickOutside)="editing[rowIndex + '-crise_proveedor'] = false"
@@ -111,7 +111,7 @@
           /></ng-template>
           </ngx-datatable-column>
           
-          <ngx-datatable-column name="crise_existe_incidencia" [maxWidth]="300">
+          <ngx-datatable-column name="crise_existe_incidencia" [maxWidth]="150">
             <ng-template ngx-datatable-header-template>
               <span>Existe incidencia</span>
             </ng-template>
@@ -125,7 +125,7 @@
             *ngIf="!editing[rowIndex + '-crise_existe_incidencia']"
             >
             {{ row.crise_existe_incidencia}}
-            <span class="text-muted2" *ngIf="row.crise_existe_incidencia === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-muted2" *ngIf="row.crise_existe_incidencia ===''"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
           <input autofocus
             (clickOutside)="editing[rowIndex + '-crise_existe_incidencia'] = false"
@@ -138,7 +138,7 @@
           /></ng-template>
           </ngx-datatable-column>
         
-          <ngx-datatable-column name="crise_aplicaciones_impactadas" [maxWidth]="430">
+          <ngx-datatable-column name="crise_aplicaciones_impactadas" [maxWidth]="590">
             <ng-template ngx-datatable-header-template>
               <span>Aplicaciones impactadas</span>
             </ng-template>
@@ -152,9 +152,9 @@
             *ngIf="!editing[rowIndex + '-crise_aplicaciones_impactadas']"
             >
             {{ row.crise_aplicaciones_impactadas}}
-            <span class="text-muted2" *ngIf="row.crise_aplicaciones_impactadas === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-muted2" *ngIf="row.crise_aplicaciones_impactadas ===''"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
-          <input autofocus
+          <textarea autofocus
             (clickOutside)="editing[rowIndex + '-crise_aplicaciones_impactadas'] = false"
             (keyup.enter)="updateValue($event, 'crise_aplicaciones_impactadas', rowIndex)"
             *ngIf="editing[rowIndex + '-crise_aplicaciones_impactadas']"
@@ -162,10 +162,10 @@
             class="form-control"
             [value]="row.crise_aplicaciones_impactadas"
             [title]="row.id_crise"
-          /></ng-template>
+          >{{ row.crise_aplicaciones_impactadas}}</textarea></ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="crise_resolucion" [maxWidth]="380">
+          <ngx-datatable-column name="crise_resolucion" [maxWidth]="540">
             <ng-template ngx-datatable-header-template>
               <span>Última actualización</span>
             </ng-template>
@@ -179,9 +179,9 @@
             *ngIf="!editing[rowIndex + '-crise_resolucion']"
             >
             {{ row.crise_resolucion}}
-            <span class="text-muted2" *ngIf="row.crise_resolucion === null"> vacío &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-muted2" *ngIf="row.crise_resolucion ===''"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </span>
-          <input autofocus
+          <textarea autofocus
             (clickOutside)="editing[rowIndex + '-crise_resolucion'] = false"
             (keyup.enter)="updateValue($event, 'crise_resolucion', rowIndex)"
             *ngIf="editing[rowIndex + '-crise_resolucion']"
@@ -189,7 +189,7 @@
             class="form-control"
             [value]="row.crise_resolucion"
             [title]="row.id_crise"
-          /></ng-template>
+          >{{ row.crise_resolucion}}</textarea></ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="crise_estado" [maxWidth]="120">

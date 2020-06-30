@@ -5,30 +5,58 @@
             <h2>Resumen</h2>
         </div>
     </div>
+
     <div class="row">
         <div class="col-12 p-0 mt-5">
             <h3>Controles Batch</h3>
-            <div *ngFor="let conIn of conIncidencia">
-                    <strong>{{conIn.coba_hito1}}</strong> - {{conIn.coba_incidencias1}}
-                    <span *ngIf="conIn.coba_hito1===null">
-                        <p>Se han cumplido todos los controles</p>
-                    </span> 
+            <div> 
+                 <span [innerHTML]="resumenes.esre_controles_batch" (dblclick)="editing[ '-esre_controles_batch'] = true;" *ngIf="!editing[ '-esre_controles_batch']">
+                   {{resumenes.esre_controles_batch}}
+                    <span class="text-muted2" *ngIf="resumenes.esre_controles_batch === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </span>
+                  <angular-editor  
+                  *ngIf="editing[ '-esre_controles_batch']"
+                  (keyup.enter)="updateValue(resumenes.id_esre,$event, 'esre_controles_batch',resumenes.esre_controles_batch)"
+                  (clickOutside)="editing[ '-esre_controles_batch'] = false"
+                  [(ngModel)]="resumenes.esre_controles_batch" 
+                  [config]="config"
+                  [title]="resumenes.esre_controles_batch"
+                  id="{{resumenes.clave_comun}}">
+                </angular-editor>
             </div>  
-            <hr class="mt-2 mb-2" />          
+            <hr class="mt-2 mb-2" />  
             <h3>Incidencias destacables resueltas</h3>
-            <div *ngFor="let destaIn of destaIncidencia">
-                    <strong>{{destaIn.coba_proceso2}}</strong> - {{destaIn.coba_incidencias2}}
-                    <span *ngIf="destaIn.coba_proceso2===null">
-                        <p>Sin incidencias destacables</p>
-                    </span> 
+            <div>
+                <span [innerHTML]="resumenes.esre_incidencias_resueltas"  (dblclick)="editing[ '-esre_incidencias_resueltas'] = true;" *ngIf="!editing[ '-esre_incidencias_resueltas']">
+                    {{resumenes.esre_incidencias_resueltas}}
+                    <span class="text-muted2" *ngIf="resumenes.esre_incidencias_resueltas === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </span>
+                  <angular-editor
+                  *ngIf="editing[ '-esre_incidencias_resueltas']"
+                  (keyup.enter)="updateValue(resumenes.id_esre,$event, 'esre_incidencias_resueltas',resumenes.esre_incidencias_resueltas)"
+                  (clickOutside)="editing[ '-esre_incidencias_resueltas'] = false"
+                  [(ngModel)]="resumenes.esre_incidencias_resueltas" 
+                  [config]="config"
+                  [title]="resumenes.esre_incidencias_resueltas"
+                  id="{{resumenes.clave_comun}}">
+                </angular-editor>
             </div>            
             <hr class="mt-2 mb-2" />  
             <h3>Incidencias destacables pendientes</h3>
-            <div *ngFor="let resumenIn of resumenIncidencia">
-                <strong>{{resumenIn.esse_servicio}}</strong> - {{resumenIn.esse_observaciones}}
-                <span *ngIf="resumenIn.esse_servicio===null">
-                    <p>Sin incidencias destacables pendientes</p>
-                </span> 
+            <div>
+                <span [innerHTML]="resumenes.esre_incidencias_pendientes"  (dblclick)="editing[ '-esre_incidencias_pendientes'] = true;" *ngIf="!editing[ '-esre_incidencias_pendientes']">
+                    {{resumenes.esre_incidencias_pendientes}}
+                    <span class="text-muted2" *ngIf="resumenes.esre_incidencias_pendientes === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </span>
+                  <angular-editor
+                  *ngIf="editing[ '-esre_incidencias_pendientes']"
+                  (keyup.enter)="updateValue(resumenes.id_esre,$event, 'esre_incidencias_pendientes',resumenes.esre_incidencias_pendientes)"
+                  (clickOutside)="editing[ '-esre_incidencias_pendientes'] = false"
+                  [(ngModel)]="resumenes.esre_incidencias_pendientes" 
+                  [config]="config"
+                  [title]="resumenes.esre_incidencias_pendientes"
+                  id="{{resumenes.clave_comun}}">
+                </angular-editor>
             </div>  
         </div>
     </div>

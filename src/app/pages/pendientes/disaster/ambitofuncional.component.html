@@ -8,6 +8,23 @@
       </div>
     </div>
   
+    
+  <div class="row">
+    <div class="col-9 text-left p-0 mt-2">
+
+      <a      
+      title="Ayuda"
+      (click)="open(disercon)"
+      class="btn btn-info pointerplus btn-circle"
+      ><i class="fa fa-plus fa-2"></i
+        > </a>
+
+    </div>
+    <div class="col-3 p-0 mt-2 text-right">
+
+    </div>
+  </div>
+
     <div class="row">
       <div class="col-12 p-0 mt-5">
         <table class="table table-bordered">
@@ -95,3 +112,101 @@
     </div>
   </div>
   
+
+
+  <ng-template #disercon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Schedule</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+    <form [formGroup]="DiserForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+          <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+  
+  
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="id_dire_duracion">Duración</label>
+                <div class="input-group">
+                  <select
+                  required
+                  class="form-control form-control-sm"
+                  name="id_dire_duracion"
+                  formControlName="id_dire_duracion"
+                >
+                    <option
+                    *ngFor="let dura of duracion"
+                    value="{{ dura.id_dire_duracion }}"
+                    >
+                    {{ dura.dire_duracion_enunciado }}
+                    </option>
+                </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="diser_id">Identificador</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="diser_id" 
+                  formControlName="diser_id">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="diser_tipodr">Tipo DR</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="diser_tipodr" 
+                  formControlName="diser_tipodr">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-2 fechainput">
+              <div class="form-group"><label for="diser_fecha_plan">Fecha planificada</label>
+                <div class="input-group">
+                 
+                  <input type="text" 
+                  class="form-control"  
+                  name="diser_fecha_plan" 
+                  formControlName="diser_fecha_plan">
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+  
+              <div class="form-group"><label for="diser_estado">Estado</label>
+                <div class="input-group">
+                  <input type="text" 
+                  class="form-control"  
+                  name="diser_estado" 
+                  formControlName="diser_estado">
+                </div>
+              </div>
+    
+  
+            </div>
+            <div class="col-md-4 mb-2 fechainput">
+
+            </div>
+          </div>
+  
+
+  
+  
+          <p class="text-center"><button type="submit" [disabled]="DiserForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

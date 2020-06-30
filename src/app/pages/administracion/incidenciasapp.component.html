@@ -72,6 +72,7 @@
 									  let-row="row"
 									>
 									<div class="textocortado">  {{ row.inci_enunciado}}</div>
+									
 									</ng-template>
                                   </ngx-datatable-column>	
                                   
@@ -115,7 +116,8 @@
 									  let-value="value"
 									  let-row="row"
 									>
-									<div class="textocortado"> {{ row.inci_texto}}</div>
+
+									<div class="textocortado" [innerHtml]="row.inci_texto"></div>
 									</ng-template>
 								  </ngx-datatable-column>									  
 						

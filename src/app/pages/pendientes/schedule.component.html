@@ -5,6 +5,28 @@
     </div>
   </div>
 
+
+
+
+  <div class="row">
+    <div class="col-9 text-left p-0 mt-2">
+
+      <a      
+      title="Ayuda"
+      (click)="open(pendicon)"
+      class="btn btn-info pointerplus btn-circle"
+      ><i class="fa fa-plus fa-2"></i
+        > </a>
+
+    </div>
+    <div class="col-3 p-0 mt-2 text-right">
+
+    </div>
+  </div>
+
+
+
+
   <div class="row">
     <div class="col-12 p-0 mt-5">
       <table class="table table-bordered">
@@ -19,7 +41,7 @@
                     </td>
                   </tr>
                   <tr *ngFor="let param of tema.parametros; let n = index">
-                    <td class="schedulclass c1tema">
+                    <td class="schedulclass c1tema zebrafour">
                       <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_ticket'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_ticket']">
                         {{param.pendi_ticket}}
                         <span class="text-muted2" *ngIf="param.pendi_ticket === null"> 0&nbsp;&nbsp;&nbsp;</span>
@@ -43,7 +65,7 @@
                             [value]="param.pendi_aplicaciones"  
                             [(ngModel)]="param.pendi_aplicaciones" />
                     </td>
-                    <td class="schedulclass c3tema">
+                    <td class="schedulclass c3tema zebrafour">
                       <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_descripcion'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_descripcion']">
                         {{param.pendi_descripcion}}
                         <span class="text-muted2" *ngIf="param.pendi_descripcion === null"> 0&nbsp;&nbsp;&nbsp;</span>
@@ -67,7 +89,7 @@
                             [value]="param.pendi_analisis"  
                             [(ngModel)]="param.pendi_analisis" />
                     </td>                    
-                    <td class="schedulclass c5tema">
+                    <td class="schedulclass c5tema zebrafour">
                       <span (dblclick)="editing[tema.pendi_dia + n + '-pendi_ultiactual'] = true;" *ngIf="!editing[tema.pendi_dia + n + '-pendi_ultiactual']">
                         {{param.pendi_ultiactual}}
                         <span class="text-muted2" *ngIf="param.pendi_ultiactual === null"> 0&nbsp;&nbsp;&nbsp;</span>
@@ -101,3 +123,122 @@
     </div>
   </div>
 </div>
+
+
+
+
+<ng-template #pendicon let-modal class="modal-lg">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Schedule</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+  <form [formGroup]="CamiForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+        <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+
+
+
+
+        <div class="row">
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="cami_id">Día semana</label>
+              <div class="input-group">
+                <select
+                required
+                class="form-control form-control-sm"
+                name="id_pendi_dias"
+                formControlName="id_pendi_dias"
+              >
+                  <option
+                  *ngFor="let diasS of diasSemana"
+                  value="{{ diasS.id_pendi_dias }}"
+                  >
+                  {{ diasS.pendi_dia }} - {{ diasS.pendi_definicion }}
+                  </option>
+              </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="pendi_ticket">Ticket</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="pendi_ticket" 
+                formControlName="pendi_ticket">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="pendi_aplicaciones">Aplicaciones</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="pendi_aplicaciones" 
+                formControlName="pendi_aplicaciones">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="pendi_descripcion">Descripción</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="pendi_descripcion" 
+                formControlName="pendi_descripcion">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+
+            <div class="form-group"><label for="pendi_analisis">Analisis</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="pendi_analisis" 
+                formControlName="pendi_analisis">
+              </div>
+            </div>
+  
+
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="pendi_ultiactual">Última actualización</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="pendi_ultiactual" 
+                formControlName="pendi_ultiactual">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 mb-2 fechainput">
+            <div class="form-group"><label for="pendi_owner">Owner</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="pendi_owner" 
+                formControlName="pendi_owner">
+              </div>
+            </div>              
+
+      </div>
+    </div> 
+
+
+        <p class="text-center"><button type="submit" [disabled]="CamiForm.invalid" class="btn btn-primary">Guardar</button></p>  
+  </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+  </div>
+</ng-template>

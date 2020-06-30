@@ -10,6 +10,22 @@
     </div>
   
     <div class="row">
+      <div class="col-9 text-left p-0 mt-2">
+  
+        <a      
+        title="Ayuda"
+        (click)="open(citrixcon)"
+        class="btn btn-info pointerplus btn-circle"
+        ><i class="fa fa-plus fa-2"></i
+          > </a>
+  
+      </div>
+      <div class="col-3 p-0 mt-2 text-right">
+  
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-12 p-0 mt-5">
         <table class="table table-bordered">
 
@@ -64,7 +80,7 @@
                         <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_environement'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_environement']">
                               {{tema.citrix_environement}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_environement.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_environement == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_environement"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_environement']"
@@ -76,7 +92,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_descripcion'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_descripcion']">
                               {{tema.citrix_descripcion}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_descripcion.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_descripcion == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_descripcion"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_descripcion']"
@@ -88,7 +104,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_component'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_component']">
                               {{tema.citrix_component}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_component.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_component == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_component"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_component']"
@@ -100,7 +116,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_ud_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_ud_sfb']">
                               {{tema.citrix_ud_sfb}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_ud_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_ud_sfb == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_ud_sfb"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_ud_sfb']"
@@ -112,7 +128,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_ud_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_ud_cbs']">
                               {{tema.citrix_ud_cbs}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_ud_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_ud_cbs == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_ud_cbs"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_ud_cbs']"
@@ -124,7 +140,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_ud_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_ud_colt']">
                               {{tema.citrix_ud_colt}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_ud_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_ud_colt == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_ud_colt"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_ud_colt']"
@@ -136,7 +152,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_fo_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_fo_sfb']">
                               {{tema.citrix_fo_sfb}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_fo_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_fo_sfb == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_fo_sfb"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_fo_sfb']"
@@ -148,7 +164,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_fo_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_fo_cbs']">
                               {{tema.citrix_fo_cbs}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_fo_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_fo_cbs == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_fo_cbs"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_fo_cbs']"
@@ -160,7 +176,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_fo_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_fo_colt']">
                               {{tema.citrix_fo_colt}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_fo_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_fo_colt == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_fo_colt"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_fo_colt']"
@@ -172,7 +188,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_sf_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_sf_sfb']">
                               {{tema.citrix_sf_sfb}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_sf_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_sf_sfb == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_sf_sfb"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_sf_sfb']"
@@ -184,7 +200,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_sf_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_sf_cbs']">
                               {{tema.citrix_sf_cbs}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_sf_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_sf_cbs == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_sf_cbs"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_sf_cbs']"
@@ -196,7 +212,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_sf_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_sf_colt']">
                               {{tema.citrix_sf_colt}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_sf_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_sf_colt == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_sf_colt"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_sf_colt']"
@@ -208,7 +224,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_dr_sfb'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_dr_sfb']">
                               {{tema.citrix_dr_sfb}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_dr_sfb.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_dr_sfb == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_dr_sfb"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_dr_sfb']"
@@ -220,7 +236,7 @@
                           <td class="citrixclass c1dimod">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_dr_cbs'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_dr_cbs']">
                               {{tema.citrix_dr_cbs}}
-                            <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_dr_cbs.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span class="text-muted2" *ngIf="tema.citrix_dr_cbs == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_dr_cbs"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_dr_cbs']"
@@ -232,7 +248,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_citrix + n + '-citrix_dr_colt'] = true;" *ngIf="!editing[tema.id_citrix + n + '-citrix_dr_colt']">
                               {{tema.citrix_dr_colt}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.citrix_dr_colt.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.citrix_dr_colt == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="citrix_dr_colt"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_citrix + n + '-citrix_dr_colt']"
@@ -251,7 +267,7 @@
 
                                
 {{comentarios.citrix_comentariostabla}}
-<span class="text-muted2" *ngIf="comentarios == undefined || comentarios.citrix_comentariostabla.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="text-muted2" *ngIf="comentarios == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
 
                               
@@ -275,3 +291,209 @@
     </div>
   </div>
   
+
+
+  <ng-template #citrixcon let-modal class="modal-lg">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Infraestructuras de comunicaciones</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+      <form [formGroup]="CitrixForm" (ngSubmit)="submitdef()" class="formulario" novalidate>
+        <input type="hidden" class="form-control"  name="id_persona"  formControlName="id_persona"  />
+        <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+    
+    
+        <div class="row">
+          <div class="col-md-6 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_environement">* Environement</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_environement" 
+                formControlName="citrix_environement">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_descripcion">Description</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_descripcion" 
+                formControlName="citrix_descripcion">
+              </div>
+            </div>
+          </div>
+        </div>
+       <div class="row">
+        <div class="col-md-12 mb-2 fechainput">
+          <div class="form-group"><label for="citrix_component">Component</label>
+            <div class="input-group">
+              <input type="text" 
+              class="form-control"  
+              name="citrix_component" 
+              formControlName="citrix_component">
+            </div>
+          </div>
+        </div>
+       </div>
+    
+       <div class="row"><div class="col-12"><h4 class="interform">Units Deployed</h4><hr /></div></div>
+        <div class="row">
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_ud_sfb">SFT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_ud_sfb" 
+                formControlName="citrix_ud_sfb">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_ud_cbs">CBS</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_ud_cbs" 
+                formControlName="citrix_ud_cbs">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_ud_colt">COLT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_ud_colt" 
+                formControlName="citrix_ud_colt">
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    
+    
+    
+        <div class="row"><div class="col-12"><h3>Component operational mode</h3><hr /></div></div>
+        <div class="row"><div class="col-12"><h4 class="interform">Fully Operational</h4><hr /></div></div>
+
+
+        
+        <div class="row">
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_fo_sfb">SFT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_fo_sfb" 
+                formControlName="citrix_fo_sfb">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_fo_cbs">CBS</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_fo_cbs" 
+                formControlName="citrix_fo_cbs">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_fo_colt">COLT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_fo_colt" 
+                formControlName="citrix_fo_colt">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row"><div class="col-12"><h4 class="interform">Single Failure</h4><hr /></div></div>
+        <div class="row">
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_sf_sfb">SFT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_sf_sfb" 
+                formControlName="citrix_sf_sfb">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_sf_cbs">CBS</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_sf_cbs" 
+                formControlName="citrix_sf_cbs">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_sf_colt">COLT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_sf_colt" 
+                formControlName="citrix_sf_colt">
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row"><div class="col-12"><h4 class="interform">DR</h4><hr /></div></div>
+        <div class="row">
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_dr_sfb">SFT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_dr_sfb" 
+                formControlName="citrix_dr_sfb">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_dr_cbs">CBS</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_dr_cbs" 
+                formControlName="citrix_dr_cbs">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-2 fechainput">
+            <div class="form-group"><label for="citrix_dr_colt">COLT</label>
+              <div class="input-group">
+                <input type="text" 
+                class="form-control"  
+                name="citrix_dr_colt" 
+                formControlName="citrix_dr_colt">
+              </div>
+            </div>
+          </div>
+        </div>
+    <hr />
+    
+
+    
+    
+        <p class="text-center"><button type="submit" [disabled]="CitrixForm.invalid" class="btn btn-primary">Guardar</button></p>  
+    </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

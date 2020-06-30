@@ -17,7 +17,7 @@ export class DefconComponent implements OnInit {
   closeResult: string;
   modalOptions:NgbModalOptions;
   final: Observable<Object>;
-
+  datosborradoDef: string;
   rows = [];
   temp = [];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
@@ -38,6 +38,7 @@ export class DefconComponent implements OnInit {
   DefconForm = new FormGroup({
     clave_comun:new FormControl(''),
     defcon_fecha:new FormControl(''),
+    defcon_id:new FormControl(''),
     defcon_inicio_incidencia:new FormControl(''),
     defcon_final_incidencia:new FormControl(''),
     defcon_ticket :new FormControl(''),
@@ -70,17 +71,18 @@ export class DefconComponent implements OnInit {
     }
 
     this.DefconForm = this.fb.group({
-      id_persona: [localStorage.getItem('id_persona'), Validators.required],
-      defcon_inicio_incidencia: ['', Validators.required],
-      defcon_fecha:['', Validators.required],
-      clave_comun: [localStorage.getItem('ccom'), Validators.required],
-      defcon_final_incidencia:['', Validators.required],
-      defcon_ticket:['', Validators.required],
-      defcon_aplicaciones_impactadas:['', Validators.required],
-      defcon_descripcion:['', Validators.required],
-      defcon_ultima_actualizacion:['', Validators.required],
-      defcon_resolutores:['', Validators.required],
-      defcon_estado:['', Validators.required],
+      defcon_id:[''],
+      id_persona: [localStorage.getItem('id_persona')],
+      defcon_inicio_incidencia: [''],
+      defcon_fecha:[''],
+      clave_comun: [localStorage.getItem('ccom')],
+      defcon_final_incidencia:[''],
+      defcon_ticket:[''],
+      defcon_aplicaciones_impactadas:[''],
+      defcon_descripcion:[''],
+      defcon_ultima_actualizacion:[''],
+      defcon_resolutores:[''],
+      defcon_estado:[''],
 
     });
     /**
@@ -195,18 +197,51 @@ export class DefconComponent implements OnInit {
     submitdef(){
 
       this.isSubmittedTurno = true;
-      const valor = JSON.stringify(this.DefconForm.value);
+      const valordefcon = JSON.stringify(this.DefconForm.value);
       
-      this.incidenciasServicio.guardarDefcon( valor ).subscribe( respuesta => {
+      this.incidenciasServicio.guardarDefcon( valordefcon ).subscribe( respuesta => {
         Swal.fire({
           title: 'Registro creado',
           text: 'Se ha creado un registro de incidencia ',
           icon: 'success',  
           showConfirmButton : true
         })
-     //   , this.recarga();
+      , this.recarga();
         
       });   
     }
+
+
+
+     //eliminar registro      
+  borrarRegistro(registro: any, id_defcon) {
+
+    Swal.fire({
+      title: `¿Desea borrar el registro?`,
+      text: 'Confirme si desea borrar el registro',
+      icon: 'question',
+      showConfirmButton: true,
+      showCancelButton: true
+
+    }).then(respuesta => {
+      if (respuesta.value) {
+
+        this.datosborradoDef = JSON.stringify({ "id_defcon": registro.id_defcon });
+        this.incidenciasServicio.deleteDefcon(this.datosborradoDef).subscribe();
+
+        Swal.fire({
+          title: 'registro eliminado',
+          text: 'Registro eliminado',
+          icon: 'success',
+          showConfirmButton: false
+        })
+         , this.recarga();
+
+      }
+    });
+  }
+
+
+
 
 }

@@ -10,6 +10,9 @@ import { TurnosReporte } from 'src/app/models/turnosreporte';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Periodos } from 'src/app/models/periodos';
+import { DataserviceService } from 'src/app/services/dataservice.service';
+import { Constantes } from 'src/app/models/constantes.model';
 
 @Component({
   selector: 'app-cambiosaplicados',
@@ -61,9 +64,9 @@ export class CambiosaplicadosComponent implements OnInit {
       clickout(event) {
         
       }
-
+  public periodor: Periodos;
   constructor(
-    private fb: FormBuilder,
+    private fb: FormBuilder,private dataService: DataserviceService,
     private reporteServicio:ReporteGlogalService,
     private modalService: NgbModal,
     private httpClient: HttpClient,
@@ -77,22 +80,28 @@ export class CambiosaplicadosComponent implements OnInit {
         size: 'lg' 
       }
 
-      this.careTiketForm = this.fb.group({
-        id_persona: ['', Validators.required],
-        care_ticket: ['', Validators.required],
-        care_fecha: ['', Validators.required],
-        care_titulo: ['', Validators.required],
-        care_horacomienzo: ['', Validators.required],
-        care_horaresolucion: ['', Validators.required],
-        care_estado: ['', Validators.required],
-        care_comentarios: ['', Validators.required],
-        clave_comun: [localStorage.getItem('ccom'), Validators.required]
-      });
-      this.tureTiketForm = this.fb.group({
-        id_persona: ['', Validators.required],
-        ture_texto: ['', Validators.required],
-        ture_titulo:['', Validators.required],
-        clave_comun: [localStorage.getItem('ccom'), Validators.required]
+      this.dataService.getPeriodo ()
+      .subscribe( (respuesta:Periodos) => {
+      this.periodor = respuesta;
+      this.periodor.clave_comun = respuesta[0];
+      const Clave = Constantes.ARND+this.periodor.clave_comun['clave_comun']+Constantes.BRND;
+            this.careTiketForm = this.fb.group({
+              id_persona: ['', Validators.required],
+              care_ticket: ['', Validators.required],
+              care_fecha: ['', Validators.required],
+              care_titulo: ['', Validators.required],
+              care_horacomienzo: ['', Validators.required],
+              care_horaresolucion: ['', Validators.required],
+              care_estado: ['', Validators.required],
+              care_comentarios: ['', Validators.required],
+              clave_comun: [Clave, Validators.required]
+            });
+            this.tureTiketForm = this.fb.group({
+              id_persona: ['', Validators.required],
+              ture_texto: ['', Validators.required],
+              ture_titulo:['', Validators.required],
+              clave_comun: [Clave, Validators.required]
+            });
       });
   }
 
@@ -101,18 +110,30 @@ export class CambiosaplicadosComponent implements OnInit {
     this.getcambiosTure();
   }
 
-  getcambiosCheck(){   
-    this.reporteServicio.getCheckcambios()
-    .subscribe( respuesta => {
-    this.cambios=respuesta;
-      });
+  getcambiosCheck(){     
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodor = respuesta;
+    this.periodor.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodor.clave_comun['clave_comun']+Constantes.BRND;
+      this.reporteServicio.getCheckcambios(Clave)
+      .subscribe( respuesta => {
+      this.cambios=respuesta;
+        });
+    });
   }
   
   getcambiosTure(){   
-    this.reporteServicio.getTurecambios()
-    .subscribe( respuesta => {
-    this.turnos=respuesta;
-      });
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodor = respuesta;
+    this.periodor.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodor.clave_comun['clave_comun']+Constantes.BRND;
+      this.reporteServicio.getTurecambios(Clave)
+      .subscribe( respuesta => {
+      this.turnos=respuesta;
+        });
+    });
   }
 
    /**
@@ -132,19 +153,26 @@ export class CambiosaplicadosComponent implements OnInit {
     this.valor = valor;
     this.id_care = id_care;
     const id_persona = localStorage.getItem('id_persona');
-    const clave = localStorage.getItem('ccom');
-    this.ever =  this.campo,  this.valor,this.id_care;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_care": this.id_care,"clave": clave});
-      this.reporteServicio.guardarCheckcambios(this.datos).subscribe(
-        datos => {
-          Swal.fire({
-            text: 'Registro actualizado',
-            icon: 'success',
-            showConfirmButton: false
-          })
-          // , this.recarga();
-          , this.ngOnInit();
-        }); 
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodor = respuesta;
+    this.periodor.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodor.clave_comun['clave_comun']+Constantes.BRND;
+        this.ever =  this.campo,  this.valor,this.id_care;
+        this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_care": this.id_care,"clave": Clave});
+        this.reporteServicio.guardarCheckcambios(this.datos).subscribe(
+            datos => {
+              Swal.fire({
+                text: 'Registro actualizado',
+                icon: 'success',
+                showConfirmButton: false
+              })
+              // , this.recarga();
+              , this.ngOnInit();
+            }); 
+    });
+
+
   }
 
 
@@ -155,19 +183,26 @@ export class CambiosaplicadosComponent implements OnInit {
     this.valor = valor;
     this.id_ture = id_ture;
     const id_persona = localStorage.getItem('id_persona');
-    const clave = localStorage.getItem('ccom');
-    this.ever =  this.campo,  this.valor,this.id_ture;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_ture": this.id_ture,"clave": clave});
-      this.reporteServicio.guardarTurecambios(this.datos).subscribe(
-        datos => {
-          Swal.fire({
-            text: 'Registro actualizado',
-            icon: 'success',
-            showConfirmButton: false
-          })
-          // , this.recarga();
-          , this.ngOnInit();
-        });
+
+    
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodor = respuesta;
+    this.periodor.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodor.clave_comun['clave_comun']+Constantes.BRND;   
+        this.ever =  this.campo,  this.valor,this.id_ture;
+        this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_ture": this.id_ture,"clave": Clave});
+          this.reporteServicio.guardarTurecambios(this.datos).subscribe(
+            datos => {
+              Swal.fire({
+                text: 'Registro actualizado',
+                icon: 'success',
+                showConfirmButton: false
+              })
+              // , this.recarga();
+              , this.ngOnInit();
+            });
+    });      
   }
 
 

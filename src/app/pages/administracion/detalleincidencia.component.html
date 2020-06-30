@@ -16,6 +16,9 @@
                     <li class="breadcrumb-item">
                       <a [routerLink]="['/incidenciasapp']">Incidencias</a>
                     </li>
+                    <li class="breadcrumb-item">
+                      <a [routerLink]="['/incidenciasapp']">Listado de incidencias</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">
                       {{ registro.inci_enunciado }} - #{{ registro.inci_token }}
                     </li>
@@ -54,19 +57,19 @@
                         >
                       </h5>
                       <hr />
-                      <p class="mt-3 mb-3 textomedio">
-                        {{ registro.inci_texto }}
-                      </p>
+                      <div class="mt-3 mb-3 textomedio" [innerHtml]="registro.inci_texto"></div>
                       <hr />
                       <div *ngIf="registro.inci_imagen != ''">
                         <h5 class="mt-4 mb-2">Imagen adjunta</h5>
                         <img
-                          class="animate fadeIn mb-3"
+                          class="animate fadeIn mb-3 imagenborde"
                           src="{{ registro.inci_imagen }}"
                           jpPreload="{{ registro.inci_imagen }}"
                           alt=""
+                     
                         />
                         <hr />
+                    
                       </div>
                     </div>
                   </div>

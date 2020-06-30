@@ -2,7 +2,57 @@
 <div class="container-fluid">
     <div class="row">
     <div class="col-12 p-0 mt-5">
-        <h2>Periodos anteriores</h2>
+        <h2>Cajeros + PEX</h2>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12 text-center mt-5">
+     <form [formGroup]="imagenCapexForm" class="formulario" novalidate>
+       <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+ 
+ 
+       <label class="fileContainer"><i class="fa fa-camera"></i>
+       <input 
+              type="file"
+              name="capex_imagen"  
+              formControlName="capex_imagen"
+              (change)="handleInputChange($event)"
+              accept="image/*" 
+              
+              />
+     
+      </label>
+     </form>
+     </div>
+   </div>
+   
+ 
+   <div class="row">
+     <div class="col-12 text-center p-0 mt-2">
+       <table class="table">
+         <tbody>
+           <tr >
+             <td class="pt-5 pb-5">
+                 <div class="block" *ngIf="imagenes.capex_imagen===''">
+                   <img 
+                   class="nofoto animate fadeIn" 
+                   src="../../../../assets/nophoto.jpg" 
+                   >
+                 </div> 
+                 <div class="block" *ngIf="imagenes.capex_imagen!=''">
+                   <img 
+                   class="perfildetalle animate fadeIn" 
+                   src="{{imagenes.capex_imagen}}" 
+                   >
+                 </div> 
+                
+                 </td>
+                 </tr>
+             </tbody>
+     </table>
+     </div>
+   </div>
+
+   
 </div>

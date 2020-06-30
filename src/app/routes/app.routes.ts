@@ -20,6 +20,9 @@ import { IncidenciasappComponent } from '../pages/administracion/incidenciasapp.
 import { DetalleincidenciaComponent } from '../pages/administracion/detalleincidencia.component';
 import { AbririncidenciaComponent } from '../pages/administracion/abririncidencia.component';
 import { ReporteglobalComponent } from '../pages/reporteglobal/reporteglobal.component';
+import { ListaPersonasMailComponent } from '../pages/administracion/listapersonasmail.component';
+import { DetallePersonaMailAdminComponent } from '../pages/administracion/detallepersonamailadmin.component';
+import { AyudaComponent } from '../pages/ayuda.component';
 
 
 
@@ -32,7 +35,7 @@ export const routes: Routes = [
 
   { path: 'home' , component: HomeComponent, canActivate: [ AuthguardGuard ] },
 
-
+  { path: 'ayuda' , component: AyudaComponent, canActivate: [ AuthguardGuard ] },
   { path: 'incidencias' , component: IncidenciasComponent, canActivate: [ AuthguardGuard ] },
   { path: 'cambios' , component: CambiosComponent, canActivate: [ AuthguardGuard ] },
   { path: 'pendientes' , component: PendientesComponent, canActivate: [ AuthguardGuard ] },
@@ -40,7 +43,9 @@ export const routes: Routes = [
   { path: 'bitacora' , component: BitacoraComponent, canActivate: [ AuthGuardRole ] },
   { path: 'detallebitacora/:tokenid' , component: DetallebitacoraComponent, canActivate: [ AuthGuardRole ] },
   { path: 'listapersonas' , component: ListaPersonasComponent, canActivate: [ AuthGuardRole ] },
-  { path: 'detallepersonas/:tokenid' , component: DetallePersonaAdminComponent, canActivate: [ AuthGuardRole ] },
+  { path: 'listapersonasmail' , component: ListaPersonasMailComponent, canActivate: [ AuthGuardRole ] },
+  { path: 'detallepersonasmail/:id_persona' , component: DetallePersonaMailAdminComponent, canActivate: [ AuthGuardRole ] },
+  { path: 'detallepersonas/:id_persona' , component: DetallePersonaAdminComponent, canActivate: [ AuthGuardRole ] },
   { path: 'administracion' , component: AdministracionComponent, canActivate: [ AuthGuardRole ]},
   { path: 'reporteglobal' , component: ReporteglobalComponent, canActivate: [ AuthGuardRole ]},
   { path: 'incidenciasapp' , component: IncidenciasappComponent, canActivate: [ AuthGuardRole ]},

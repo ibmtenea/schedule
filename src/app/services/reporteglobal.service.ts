@@ -45,10 +45,9 @@ export class ReporteGlogalService {
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_inci_reporte.php`, valor);
   }
 
-  
 
   altaRegistroFoto(datosFoto) {
-  
+  console.log(datosFoto);
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_imch.php`, datosFoto);
   } 
 
@@ -68,9 +67,8 @@ getImgCheck(){
 guardarIncidcambios(valor){
   return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_incid.php`,valor);
 }
-getIncidcambios(){
-  const clave = localStorage.getItem('ccom');
-  return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_incid.php?clave=${clave}`)
+getIncidcambios(Clave){
+  return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_incid.php?clave=${Clave}`)
   .pipe(
     map( this.crearArreglosIncid )
   );
@@ -93,9 +91,9 @@ private crearArreglosIncid( scheObjeto: Object ){
 guardarTurecambios(valor){
   return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_ture.php`,valor);
 }
-getTurecambios(){
-  const clave = localStorage.getItem('ccom');
-  return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_ture.php?clave=${clave}`)
+getTurecambios(Clave){
+  console.log(Clave);
+  return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_ture.php?clave=${Clave}`)
   .pipe(
     map( this.crearArreglosTure )
   );
@@ -116,9 +114,8 @@ private crearArreglosTure( scheObjeto: Object ){
 guardarCheckcambios(valor){
   return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_care.php`,valor);
 }
-getCheckcambios(){
-  const clave = localStorage.getItem('ccom');
-  return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_care.php?clave=${clave}`)
+getCheckcambios(Clave){
+  return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_care.php?clave=${Clave}`)
   .pipe(
     map( this.crearArregloscambios )
   );

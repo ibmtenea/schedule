@@ -33,16 +33,16 @@
         #mydatatable
         class="material striped"
         headerHeight="50"
-        [limit]="10"
+        [limit]="25"
         [columnMode]="'force'"
         footerHeight="50"
         rowHeight="50"
         [rows]="rows"
         [messages]="my_messages"
       >
-        <ngx-datatable-column name="id_esse" [maxWidth]="90">
+        <!-- <ngx-datatable-column name="id_esse" [maxWidth]="90">
           <ng-template ngx-datatable-header-template>
-            <span>ID</span>
+            <span>ID </span>
           </ng-template>
           <ng-template
             class="mat-column-id"
@@ -52,9 +52,9 @@
             let-row="row"
             ><div class="text-center">{{ row.id_esse }}</div>
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
 
-        <ngx-datatable-column name="esse_servicio" [maxWidth]="580">
+        <ngx-datatable-column name="esse_servicio" [maxWidth]="380">
           <ng-template ngx-datatable-header-template>
             <span>Servicio</span>
           </ng-template>
@@ -68,7 +68,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="esse_estado" [maxWidth]="180">
+        <ngx-datatable-column name="esse_estado" [maxWidth]="170">
           <ng-template ngx-datatable-header-template>
             <span>Estado</span>
           </ng-template>
@@ -101,6 +101,7 @@
                 (change)="updateValue($event, 'esse_estado', rowIndex)"
                 [value]="row.esse_estado"
                 [title]="row.id_esse"
+                id="{{periodo.clave_comun}}"
                 ><option value="OK">OK</option>
                 <option value="KO">KO</option>
                 <option value="WARNING">WARNING</option>
@@ -109,7 +110,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="esse_observaciones" [maxWidth]="980">
+        <ngx-datatable-column name="esse_observaciones" [maxWidth]="1680">
           <ng-template ngx-datatable-header-template>
             <span>Observaciones</span>
           </ng-template>
@@ -126,8 +127,8 @@
             >
               {{ row.esse_observaciones}}
               <span class="text-muted2" *ngIf="row.esse_observaciones === null">
-                vacío
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </span>
             </span>
 
@@ -143,6 +144,7 @@
               class="form-control"
               [value]="row.esse_observaciones"
               [title]="row.id_esse"
+              id="{{periodo.clave_comun}}"
             />
           </ng-template>
         </ngx-datatable-column>

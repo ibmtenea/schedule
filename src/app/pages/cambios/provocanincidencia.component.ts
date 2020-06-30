@@ -5,6 +5,8 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { IncidenciasService } from '../../services/incidencias.service';
+import { NgbModalOptions, NgbDateStruct, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-provocanincidencia',
@@ -13,6 +15,8 @@ import { IncidenciasService } from '../../services/incidencias.service';
 export class ProvocanincidenciaComponent implements OnInit {
 
 
+  closeResult: string;
+  modalOptions:NgbModalOptions;
   final: Observable<Object>;
 
   rows = [];
@@ -32,17 +36,54 @@ export class ProvocanincidenciaComponent implements OnInit {
     'totalMessage': ''
   };
 
+  CamiForm = new FormGroup({
+    id_persona:new FormControl(''),
+    cami_id:new FormControl(''),
+    cami_titulo:new FormControl(''),
+    cami_comentarios:new FormControl(''),
+    cami_grupo:new FormControl(''), 
+    cami_responsable:new FormControl(''),
+    cami_cio:new FormControl(''),
+    clave_comun:new FormControl(''),
+
+  });
+  isSubmittedTurno = false;
+  model: NgbDateStruct;
+  placement = 'bottom';
+
   //click fuera del input
   @HostListener('document:click', ['$event'])
   clickout(event) {
     this.ngOnInit();
   }
 
-  constructor(private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
+  constructor(private fb: FormBuilder,private modalService: NgbModal,private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
     translate.get('Total', { value: 'eeeeeeeeee' })
     .subscribe((res: string) => this.my_messages.totalMessage = res);
     translate.get('No hay resultados para mostrar', { value: '' })
     .subscribe((res: string) => this.my_messages.emptyMessage = res);
+
+
+    
+    this.modalOptions = {
+      backdrop:'static',
+      backdropClass:'customBackdrop',
+      size: 'lg' 
+    }
+
+    this.CamiForm = this.fb.group({
+      id_persona: [localStorage.getItem('id_persona'), Validators.required],
+      cami_id : ['', Validators.required],
+      cami_titulo : ['', Validators.required],
+      cami_comentarios : ['', Validators.required],
+      cami_grupo : ['', Validators.required], 
+      cami_responsable : ['', Validators.required],
+      cami_cio : ['', Validators.required],
+      clave_comun: [localStorage.getItem('ccom'), Validators.required],
+
+
+    });
+
 
     /**
     * recibimos el listado
@@ -128,5 +169,43 @@ export class ProvocanincidenciaComponent implements OnInit {
 
 
     
+
+    open(tiket) {
+      this.modalService.open(tiket, this.modalOptions).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+    
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return  `with: ${reason}`;
+      }
+    }
+
+
+
+    submitdef(){
+
+      this.isSubmittedTurno = true;
+      const valor = JSON.stringify(this.CamiForm.value);
+      
+      this.incidenciasServicio.guardarCami( valor ).subscribe( respuesta => {
+        Swal.fire({
+          title: 'Registro creado',
+          text: 'Se ha creado un registro de incidencia ',
+          icon: 'success',  
+          showConfirmButton : true
+        })
+      , this.recarga();
+        
+      });   
+    }
+
 
 }

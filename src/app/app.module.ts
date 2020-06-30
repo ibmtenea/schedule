@@ -66,7 +66,10 @@ import { R4bComponent } from './pages/home/r4b.component';
 import { DetallebitacoraComponent } from './pages/bitacora/detallebitacora.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListaPersonasComponent } from './pages/administracion/listapersonas.component';
+import { ListaPersonasMailComponent } from './pages/administracion/listapersonasmail.component';
 import { DetallePersonaAdminComponent } from './pages/administracion/detallepersonaadmin.component';
+import { DetallePersonaMailAdminComponent} from './pages/administracion/detallepersonamailadmin.component';
+
 import { ImprimirComponent } from './components/imprimir.component';
 import { IncidenciasappComponent } from './pages/administracion/incidenciasapp.component';
 import { DetalleincidenciaComponent } from './pages/administracion/detalleincidencia.component';
@@ -76,8 +79,11 @@ import { ChecktaskComponent } from './pages/reporteglobal/components/checktask/c
 import { CambiosaplicadosComponent } from './pages/reporteglobal/components/cambiosaplicados/cambiosaplicados.component';
 import { ReportincidenciasComponent } from './pages/reporteglobal/components/reportincidencias/reportincidencias.component';
 import { FieldErrorDisplayComponent } from './pages/field-error-display.component';
+import { AyudaComponent } from './pages/ayuda.component';
 
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CambiosGenericaComponent } from './pages/cambios/cambiosgenerica.component';
+//import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
@@ -94,7 +100,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     DetallePersonaAdminComponent,
+    DetallePersonaMailAdminComponent,
     ListaPersonasComponent,
+    ListaPersonasMailComponent,
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -133,11 +141,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChecktaskComponent,
     CambiosaplicadosComponent,
     ReportincidenciasComponent,
-    FieldErrorDisplayComponent
-    
+    FieldErrorDisplayComponent,
+    AyudaComponent,
+    CambiosGenericaComponent
     
   ],
   imports: [
+   
     BrowserModule,
     NgxSpinnerModule,
     RocketEditModule,
@@ -153,6 +163,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     JpImagePreloadModule.forRoot(),
     MatSortModule,
+    AngularEditorModule,
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
@@ -162,6 +173,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxDatatableModule,
     SocketIoModule.forRoot(config),
     CKEditorModule,
+  
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

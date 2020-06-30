@@ -40,7 +40,7 @@
                         <td class="citrixclass c1dimod ">
                             <span (dblclick)="editing[tema.id_sema + n + '-sema_ambito'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_ambito']">
                               {{tema.sema_ambito}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_ambito.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.sema_ambito == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="sema_ambito"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_sema + n + '-sema_ambito']"
@@ -52,7 +52,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_sema + n + '-sema_descripcion'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_descripcion']">
                               {{tema.sema_descripcion}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_descripcion.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema == undefined">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="sema_descripcion"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_sema + n + '-sema_descripcion']"
@@ -64,7 +64,7 @@
                           <td class="citrixclass c1dimod ">
                             <span (dblclick)="editing[tema.id_sema + n + '-sema_escenarios'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_escenarios']">
                               {{tema.sema_escenarios}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_escenarios.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.sema_escenarios == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="sema_escenarios"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_sema + n + '-sema_escenarios']"
@@ -76,7 +76,7 @@
                           <td class="citrixclass c1dimod zebrathree">
                             <span (dblclick)="editing[tema.id_sema + n + '-sema_propuesta'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_propuesta']">
                               {{tema.sema_propuesta}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_propuesta.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.sema_propuesta == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="sema_propuesta"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_sema + n + '-sema_propuesta']"
@@ -88,7 +88,7 @@
                           <td class="citrixclass c1dimod ">
                             <span (dblclick)="editing[tema.id_sema + n + '-sema_analisis'] = true;" *ngIf="!editing[tema.id_sema + n + '-sema_analisis']">
                               {{tema.sema_analisis}}
-                              <span class="text-muted2" *ngIf="tema == undefined || tema.sema_analisis.length===0">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <span class="text-muted2" *ngIf="tema.sema_analisis == undefined ">vacío&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input autofocus type="text" name="sema_analisis"  class="actividaddeinput form-control"
                                   *ngIf="editing[tema.id_sema + n + '-sema_analisis']"

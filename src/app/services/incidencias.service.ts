@@ -23,17 +23,49 @@ export class IncidenciasService {
   hideLoadingSpinner() {
     this.spinner.hide();
   }
+  altaRegistroFile(datosFile) {
+    console.log(datosFile);
+          return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_cage.php`, datosFile);
+        } 
 
+  public uploadFichero(datos) {
+    console.log(datos);
+    let uploadURL = `${this.PHP_API_SERVER}/ajax/upload_fichero_cambios.php`;
+    return this.httpClient.post<any>(uploadURL, datos);
+  }
 
-  guardarDefcon(valor){  
   
-    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_defcon.php`, valor);
+  getFileCage(){
+    const clave_comun = localStorage.getItem('ccom');
+      return this.httpClient.get(`${ this.PHP_API_SERVER}/ajax/read_cage.php?clave_comun=${ clave_comun }`);
+  }
+  updateRegistroFile(datosFile){  
+    console.log(datosFile);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_cage.php`,datosFile);
+  }
+
+
+  delete(datosborrado){
+   
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/sodi_borrar_imagen.php`,datosborrado);
+  }
+  deleteDefcon(datosborradoDef){
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/delete_defcon.php`,datosborradoDef);
+  }
+
+  guardarDefcon(valordefcon){  
+
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_defcon.php`, valordefcon);
   }
   guardarCriti(valor){  
 
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_criti.php`, valor);
   }
+  guardarCami(valor){  
 
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_cami.php`, valor);
+  }
+  
   guardarCrise(valor){  
  
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_crise.php`, valor);
@@ -108,7 +140,10 @@ export class IncidenciasService {
     req.send();
   }
 
-  
+  getImgSodi(id_sodi) {
+    const clave = localStorage.getItem('ccom');
+    return this.httpClient.get(`${this.PHP_API_SERVER}/ajax/read_sodi_porid.php?clave_comun=${clave}&id_sodi=${id_sodi}`);
+  }
   
   getListadoSoDi(cb){
     const clave = localStorage.getItem('ccom');

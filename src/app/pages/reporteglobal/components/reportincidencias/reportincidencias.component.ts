@@ -9,6 +9,9 @@ import { ReporteGlogalService } from 'src/app/services/reporteglobal.service';
 
 import { IncidenciasReporte } from 'src/app/models/reporteincidencias';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Periodos } from 'src/app/models/periodos';
+import { DataserviceService } from 'src/app/services/dataservice.service';
+import { Constantes } from 'src/app/models/constantes.model';
 
 @Component({
   selector: 'app-reportincidencias',
@@ -43,22 +46,26 @@ export class ReportincidenciasComponent implements OnInit {
       clickout(event) {
         
       }
-
-  constructor(private fb: FormBuilder,private reporteServicio:ReporteGlogalService,private modalService: NgbModal) { 
+      public periodof: Periodos;
+  constructor(private dataService: DataserviceService,private fb: FormBuilder,private reporteServicio:ReporteGlogalService,private modalService: NgbModal) { 
 
     this.modalOptions = {
       backdrop:'static',
       backdropClass:'customBackdrop',
       size: 'lg' 
     }
-
-    this.incideTiketForm = this.fb.group({
-      id_persona: ['', Validators.required],
-      incid_texto: ['', Validators.required],
-      incid_tipo:['', Validators.required],
-      clave_comun: [localStorage.getItem('ccom'), Validators.required]
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodof = respuesta;
+    this.periodof.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodof.clave_comun['clave_comun']+Constantes.BRND;
+        this.incideTiketForm = this.fb.group({
+          id_persona: ['', Validators.required],
+          incid_texto: ['', Validators.required],
+          incid_tipo:['', Validators.required],
+          clave_comun: [Clave, Validators.required]
+        });
     });
-
   }
 
   ngOnInit(){
@@ -68,10 +75,17 @@ export class ReportincidenciasComponent implements OnInit {
 
 
   getcambiosIncid(){   
-    this.reporteServicio.getIncidcambios()
-    .subscribe( respuesta => {
-    this.incidencias=respuesta;
-      });
+
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodof = respuesta;
+    this.periodof.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodof.clave_comun['clave_comun']+Constantes.BRND;
+        this.reporteServicio.getIncidcambios(Clave)
+        .subscribe( respuesta => {
+        this.incidencias=respuesta;
+          });
+    });
   }
 
    /**
@@ -91,20 +105,25 @@ export class ReportincidenciasComponent implements OnInit {
     this.valor = valor;
     this.id_incid = id_incid;
     const id_persona = localStorage.getItem('id_persona');
-    const clave = localStorage.getItem('ccom');
-    this.ever =  this.campo,  this.valor,this.id_incid;
-    this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_incid": this.id_incid,"clave": clave});
-      this.reporteServicio.guardarIncidcambios(this.datos).subscribe(
-        datos => {
-          Swal.fire({
-            text: 'Registro actualizado',
-            icon: 'success',
-            showConfirmButton: false
-          })
-          // , this.recarga();
-          , this.ngOnInit();
-        });
-   
+
+    this.dataService.getPeriodo ()
+    .subscribe( (respuesta:Periodos) => {
+    this.periodof = respuesta;
+    this.periodof.clave_comun = respuesta[0];
+    const Clave = Constantes.ARND+this.periodof.clave_comun['clave_comun']+Constantes.BRND;
+      this.ever =  this.campo,  this.valor,this.id_incid;
+      this.datos = JSON.stringify({ "id_persona": id_persona,"campo": this.campo, "valor": this.valor ,"id_incid": this.id_incid,"clave": Clave});
+        this.reporteServicio.guardarIncidcambios(this.datos).subscribe(
+          datos => {
+            Swal.fire({
+              text: 'Registro actualizado',
+              icon: 'success',
+              showConfirmButton: false
+            })
+            // , this.recarga();
+            , this.ngOnInit();
+          });
+    });
   }
 
 

@@ -22,11 +22,12 @@ export class DetallePersonaAdminComponent implements OnInit {
 
   closeResult = '';
   // model: NgbDateStruct;
-  registro: Bitacora = new Bitacora();
-  dregistroa: Bitacora = new Bitacora();
+  registro: Personas = new Personas();
+
   public Editor = ClassicEditor;
   dias: { name: string; value: string; checked: boolean; }[];
-  id_categoria: string;
+  id_persona: string;
+
   periodetalle: any[];
   categoperiod: any;
   periodcate: any;
@@ -43,16 +44,10 @@ export class DetallePersonaAdminComponent implements OnInit {
   datosborrado: string;
   numero: number;
   final: Observable<Object>;
-  dregistro = null;
-  datoregistro = {
-    id_seguimiento: null,
-    tokenid: this.activatedRoute.snapshot.paramMap.get('tokenid'),
-    id_persona: null,
-    id_persona_log: localStorage.getItem('id_persona')
-  }
+
+
   constructor(private httpClient: HttpClient, private bitacoraServicio: BitacoraService,
-    private activatedRoute: ActivatedRoute, private router: Router,
-    // private modalService: NgbModal
+    private activatedRoute: ActivatedRoute, private router: Router
     ) {
 
 
@@ -65,15 +60,27 @@ export class DetallePersonaAdminComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    const tokenid = this.activatedRoute.snapshot.paramMap.get('tokenid');
-    this.bitacoraServicio.getRegistro(tokenid)
-      .subscribe((respuesta: Bitacora) => {
+    const id_persona = this.activatedRoute.snapshot.paramMap.get('id_persona');
+    //const id_persona = this.makeid(5)+Constantes.ARND+identificador+Constantes.BRND
+    this.bitacoraServicio.getRegistroPersonaLst(id_persona)
+      .subscribe((respuesta: Personas) => {
         this.registro = respuesta;
-        this.registro.tokenid = tokenid;
+        this.registro.id_persona = id_persona;
       });
 
   }
+
+
+
+  makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
 
 
   recarga() {

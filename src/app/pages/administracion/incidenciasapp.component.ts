@@ -100,7 +100,6 @@ public showSpinner: boolean = false;
       req.open('GET', `${this.PHP_API_SERVER}/ajax/read_incidencias.php`);
       req.onload = () => {
         cb(JSON.parse(req.response));
-        console.log(JSON.parse(req.response));
       };
       req.send();
     }

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-12 p-0 mt-5">
+        <h2>Cambios </h2>
+    </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 text-center p-0 mt-2">
+       <table class="table">
+         <tbody>
+           <tr>
+             <td class="pt-5 pb-5">
+               
+                 <div class="block" *ngIf="ficherosfile.cage_file===null">
+                   No existe archivo.
+                 </div> 
+                 <div class="block" *ngIf="ficherosfile.cage_file!=null">
+                  
+     <h4>Archivo de datos</h4>
+     <h5><a href="http://schedule.ibmes.site:80/s/uploads/{{ficherosfile.cage_file}}" target="_blank">{{ficherosfile.cage_name}}</a></h5>
+            
+       
+
+
+
+                </div>
+             </td>
+           </tr>
+        </tbody>
+     </table>
+     
+      </div>
+    </div>
+
+
+
+  
+    <div class="row">
+      <div class="col-md-4 text-center mt-5"></div>
+      <div class="col-md-4 text-center mt-5">
+
+        <form [formGroup]="formFileUp"  novalidate>
+          <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+          <label>Nombre del fichero</label>
+          <input type="text" class="form-control mb-3"  name="cage_name"  formControlName="cage_name"  />
+
+          <label class="fileContainer"><i class="fa fa-camera"></i>
+          <input type="file" name="cage_file" formControlName="cage_file" (change)="handleInputChange($event)"
+          accept="pdf/*ppt/*doc/*docx/*"
+           />
+        </label>
+        </form>
+   
+       </div>
+       <div class="col-md-4 text-center mt-5"></div>
+     </div>
+     
+   
+
+</div>
