@@ -216,6 +216,7 @@ export class HomeService {
   }
 
   deleteBatch(datosborrado){
+    console.log(datosborrado);
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/delete_coba1.php`,datosborrado);
   }
 

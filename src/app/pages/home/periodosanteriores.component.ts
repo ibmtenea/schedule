@@ -88,7 +88,7 @@ export class PeriodosanterioresComponent implements OnInit {
               icon: 'success',
               showConfirmButton: false
             })
-         //  , this.recarga()
+        //   , this.recarga()
             ;
         } else {
             this.homeServicio.altaRegistroCapexFoto(this.datosFotoCapex).subscribe();
@@ -97,7 +97,7 @@ export class PeriodosanterioresComponent implements OnInit {
               icon: 'success',
               showConfirmButton: false
             })
-          , this.recarga()
+          //, this.recarga()
             ;
         }
 

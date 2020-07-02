@@ -83,6 +83,9 @@ import { AyudaComponent } from './pages/ayuda.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CambiosGenericaComponent } from './pages/cambios/cambiosgenerica.component';
+import { SanitizeHtmlDirective } from './sanitize-html.directive';
+import { InformeComponent } from './pages/informe/informe.component';
+
 //import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
@@ -143,7 +146,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReportincidenciasComponent,
     FieldErrorDisplayComponent,
     AyudaComponent,
-    CambiosGenericaComponent
+    CambiosGenericaComponent,
+    SanitizeHtmlDirective,
+    InformeComponent
     
   ],
   imports: [

@@ -370,7 +370,7 @@ hitos: HitosCoba[];
 
 
 
-  borrarRegistro(id_coba1: string) {
+  borrarRegistro(registro: any, id_coba1:string) {
     Swal.fire({
       title: `¿Desea borrar el registro`,
       text: 'Confirme si desea borrar el registro',
@@ -386,7 +386,8 @@ hitos: HitosCoba[];
           text: 'Registro eliminado',
           icon: 'success',
           showConfirmButton: false
-        }), this.recarga();
+        })
+        , this.recarga();
       }
     });
   }

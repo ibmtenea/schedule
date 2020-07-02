@@ -8,6 +8,7 @@ import { Dimod } from '../models/dimod';
 import { DimodComentarios } from '../models/dimodcomentarios';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ImagenCheck } from '../models/imagencheck';
+import { Personas } from '../models/personas';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class PendientesService {
   //constantes
   private PHP_API_SERVER = Constantes.API_SERVER; //URL del servicio
   public showSpinner: boolean = false;
-
+  user:Personas = new Personas();
   constructor(private spinner: NgxSpinnerService,private httpClient: HttpClient) { }
 
   
@@ -29,6 +30,10 @@ export class PendientesService {
     this.spinner.hide();
   }
 
+  deletePendi(datosborrado){
+    
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/delete_pendi.php`,datosborrado);
+  }
 
   guardarPendi(valor){  
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_pendi.php`, valor);
@@ -42,6 +47,26 @@ export class PendientesService {
   console.log(valor);
       return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_dimod.php`, valor);
   }
+
+  updateRegistroFile(datosFile){  
+    console.log(datosFile);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_pendi_file.php`,datosFile);
+  }
+
+
+  altaRegistroFile(datosFile) {
+    console.log(datosFile);
+          return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_pendi_file.php`, datosFile);
+        } 
+
+  getFilePendi(id_pendi){
+    console.log(id_pendi);
+            return this.httpClient.get(`${ this.PHP_API_SERVER}/ajax/read_file_pendi.php?id_pendi=${ id_pendi }`);
+  }
+
+
+
+
 
   nuevoHemo(valor){  
     console.log(valor);

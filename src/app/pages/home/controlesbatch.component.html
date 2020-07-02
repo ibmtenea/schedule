@@ -57,7 +57,7 @@
                 <div class="block" *ngIf="imagenes.imba_imagen===''">
                   <img 
                   class="nofoto animate fadeIn" 
-                  src="../../../../assets/nophoto.jpg" 
+                  src="http://schedule.ibmes.site/sched/assets/nophoto.jpg" 
                   >
                 </div> 
                 <div class="block" *ngIf="imagenes.imba_imagen!=''">
@@ -334,17 +334,14 @@
             let-rowIndex="rowIndex"
             let-value="value"
             let-row="row"
-          >
-  
-        <div *ngIf="user.id_rol=='8'">
-          <button
-            (click)="borrarRegistro(row.id_coba1)"
-            class="btn btn-warning botonsizes"
-          >
-            <i class="fa fa-trash"></i>
-          </button>
-      </div> 
-
+          ><div *ngIf="user.id_rol=='8'">
+                <button
+                  (click)="borrarRegistro(row, row.id_coba1)"
+                  class="btn btn-warning botonsizes"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+            </div> 
           </ng-template>
         </ngx-datatable-column> 
 

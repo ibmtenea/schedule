@@ -8,6 +8,7 @@ import { IncidenciasService } from '../../services/incidencias.service';
 import { NgbModalOptions, NgbDateStruct, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FicherosCambios } from 'src/app/models/ficheroscambios';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -34,9 +35,11 @@ export class CambiosGenericaComponent implements OnInit {
     datosFile: string;
     imageSrc: any;
     id_cage: any;
+  filero: any;
   constructor(private fb: FormBuilder,
     private modalService: NgbModal,
-    private incidenciasServicio: IncidenciasService
+    private incidenciasServicio: IncidenciasService,
+    private sanitizer:DomSanitizer
     ) { 
 
 
@@ -49,6 +52,9 @@ export class CambiosGenericaComponent implements OnInit {
 
   }
 
+  sanitizedUrl;
+
+ 
 
   ngOnInit(){ this.getFicheroActual();}
 
@@ -64,7 +70,8 @@ export class CambiosGenericaComponent implements OnInit {
     this.incidenciasServicio.getFileCage()
     .subscribe( (respuesta:any) => {
     this.ficherosfile=respuesta;
-  
+    this.sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(this.ficherosfile.cage_file);
+
 
       });
   }
@@ -95,31 +102,41 @@ export class CambiosGenericaComponent implements OnInit {
     this.imageSrc = reader.result;
     const cage_name = this.formFileUp.value.cage_name;
     const clave_comun = this.formFileUp.value.clave_comun;
-    this.datosFile = JSON.stringify({ "clave_comun": clave_comun , "cage_file": this.imageSrc, "cage_name": cage_name});
 
     this.incidenciasServicio.getFileCage()
     .subscribe((respuesta: FicherosCambios) => {
       this.ficheros = respuesta;
       const imagenExiste = this.ficheros.cage_file;
-
+      const identificador = this.ficheros.id_cage;
         if(imagenExiste!=""){
-            this.incidenciasServicio.updateRegistroFile(this.datosFile).subscribe();
+          this.datosFile = JSON.stringify({ "id_cage": identificador , "clave_comun": clave_comun , "cage_name": cage_name, "cage_file": this.imageSrc});
+
+            this.incidenciasServicio.updateRegistroFile(this.datosFile).subscribe();     
+   
             Swal.fire({
-              text: 'Archivo actualizado',
+              text: 'Archivo actualizado, un momento, por favor...',
               icon: 'success',
-              showConfirmButton: false
-            })
-           , this.recarga()
-            ;
+              timer: 7000,
+              allowOutsideClick: false,
+              showConfirmButton: false      
+            }).then(function() {
+              location.reload();
+            });
+
+
         } else {
+          this.datosFile = JSON.stringify({ "clave_comun": clave_comun , "cage_name": cage_name, "cage_file": this.imageSrc});
+
             this.incidenciasServicio.altaRegistroFile(this.datosFile).subscribe();
             Swal.fire({
-              text: 'Archivo añadido',
+              text: 'Archivo añadido, un momento, por favor...',
               icon: 'success',
-              showConfirmButton: false
-            })
-           , this.recarga()
-            ;
+              timer: 12000,
+              allowOutsideClick: false,
+              showConfirmButton: false      
+            }).then(function() {
+              location.reload();
+            });
         }
 
         });

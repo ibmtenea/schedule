@@ -11,6 +11,8 @@ import { Constantes } from 'src/app/models/constantes.model';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DiasSemana } from 'src/app/models/diassemanaschedule';
+import { Personas } from 'src/app/models/personas';
+import { DataserviceService } from 'src/app/services/dataservice.service';
 
 @Component({
   selector: 'app-schedule',
@@ -22,9 +24,10 @@ export class ScheduleComponent implements OnInit {
   modalOptions:NgbModalOptions;
   final: Observable<Object>;
 
+  user:Personas = new Personas();
 
   temas:Schedule[] = [];
-
+  ficheros: Schedule = new Schedule();
   campo: any;
   id_pendi: any;
   id_persona: any;
@@ -33,8 +36,22 @@ export class ScheduleComponent implements OnInit {
   ever: any;
   req: any;
   datos: string;
-
+  imageSrc: any;
+  datosFile: string;
   diasSemana: DiasSemana[] = [];
+  datosborrado: string;
+
+
+
+ 
+  formFileUp = new FormGroup({
+    id_pendi:new FormControl(''),
+    pendi_file:new FormControl(''),
+    clave_comun:new FormControl('')
+
+  });
+
+
 
 
   CamiForm = new FormGroup({
@@ -52,7 +69,9 @@ export class ScheduleComponent implements OnInit {
   isSubmittedTurno = false;
   model: NgbDateStruct;
   placement = 'bottom';
-
+  parametros: any;
+  madre: any;
+  sanitizedUrl;
       // //click fuera del input
       @HostListener('document:click', ['$event'])
       clickout(event) {
@@ -61,15 +80,18 @@ export class ScheduleComponent implements OnInit {
   //constantes
   private PHP_API_SERVER = Constantes.API_SERVER; //URL del servicio
 
-  constructor(private fb: FormBuilder,private modalService: NgbModal,private pendientesServicio:PendientesService,
+  constructor(   private dataService: DataserviceService,private fb: FormBuilder,private modalService: NgbModal,private pendientesServicio:PendientesService,
     private httpClient: HttpClient,private activatedRoute: ActivatedRoute, private router: Router
     ) { 
+
+
 
     //cargo diasSemana para los combos select
     httpClient.get<any[]>(this.PHP_API_SERVER + '/ajax/dias_semana_schedule_read.php').subscribe(result => {
       this.diasSemana = result;
     }, error => console.error(error));
         
+
 
     this.modalOptions = {
       backdrop:'static',
@@ -94,13 +116,23 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit(){
     this.getTemasDias();
-    
+    this.getUsuario();
+  }
+
+  pasoId(id_pendi){
+    this.formFileUp = this.fb.group({
+      id_pendi: [id_pendi, Validators.required],
+      pendi_file: ['', Validators.required],
+      clave_comun: [localStorage.getItem('ccom'), Validators.required],
+    });
   }
 
   getTemasDias(){   
     this.pendientesServicio.getDiasTemas()
     .subscribe( respuesta => {
     this.temas=respuesta;
+
+
       });
   }
 
@@ -181,6 +213,105 @@ export class ScheduleComponent implements OnInit {
       
     });   
   }
+
+  getUsuario(){   
+    const id_persona = localStorage.getItem('id_persona'); 
+    this.dataService.getUserId ( id_persona )
+      .subscribe( (resp:Personas) => {
+        this.user = resp;
+      });
+  }
+
+
+  borrarRegistro( id_pendi:string) {
+    Swal.fire({
+      title: `¿Desea borrar el registro`,
+      text: 'Confirme si desea borrar el registro',
+      icon: 'question',
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then(respuesta => {
+      if (respuesta.value) {
+        this.datosborrado = JSON.stringify({ "id_pendi": id_pendi });
+        this.pendientesServicio.deletePendi(this.datosborrado).subscribe();
+        Swal.fire({
+          title: 'BORRADO',
+          text: 'Registro eliminado',
+          icon: 'success',
+          showConfirmButton: false
+        })
+        , this.recarga();
+      }
+    });
+  }
+
+
+
+
+  handleInputChange(e) { 
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /pdf-*/;
+    var reader = new FileReader();
+     if (!file.type.match(pattern)) {
+       Swal.fire({
+        text: 'Solo puede cargar PDF!!',
+        icon: 'error',
+        showConfirmButton: true
+      });
+       return;
+     }
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    
+    let reader = e.target;
+    this.imageSrc = reader.result;
+    const id_pendi = this.formFileUp.value.id_pendi;
+    console.log(id_pendi);
+    this.datosFile = JSON.stringify({ "id_pendi": id_pendi , "pendi_file": this.imageSrc});
+
+    this.pendientesServicio.getFilePendi(id_pendi)
+    .subscribe((respuesta: Schedule) => {
+      this.ficheros = respuesta;
+      const imagenExiste = this.ficheros.pendi_file;
+
+        if(imagenExiste!=""){
+            this.pendientesServicio.updateRegistroFile(this.datosFile).subscribe();
+           
+           
+            Swal.fire({
+              text: 'Archivo actualizado, un momento, por favor...',
+              icon: 'success',
+              timer: 7000,
+              allowOutsideClick: false,
+              showConfirmButton: false      
+            }).then(function() {
+              location.reload();
+            });
+
+
+
+
+
+        } else {
+            this.pendientesServicio.altaRegistroFile(this.datosFile).subscribe();
+            Swal.fire({
+              text: 'Archivo añadido, un momento, por favor...',
+              icon: 'success',
+              timer: 7000,
+              allowOutsideClick: false,
+              showConfirmButton: false      
+            }).then(function() {
+              location.reload();
+            });
+
+        }
+
+        });
+
+  }
+
 
 
 }

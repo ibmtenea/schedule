@@ -46,7 +46,7 @@
           [rows]="rows"
           [messages]="my_messages"
         >
-        <ngx-datatable-column name="defcon_id" [maxWidth]="60">
+        <ngx-datatable-column name="defcon_id" [maxWidth]="80">
           <ng-template ngx-datatable-header-template>
             <span>DEFCON</span>
           </ng-template>
@@ -367,33 +367,25 @@
             </ng-template>
           </ngx-datatable-column> -->
   
- <ngx-datatable-column name="ver" [maxWidth]="150">
-        <ng-template
-          class="mat-column-id"
-          ngx-datatable-cell-template
-          let-row="row"
-        >
+          <ngx-datatable-column name="" [maxWidth]="70">
+            <ng-template ngx-datatable-header-template>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-row="row"
+            ><div *ngIf="user.id_rol=='8'">
+                  <button
+                    (click)="borrarRegistro(row, row.id_defcon)"
+                    class="btn btn-warning botonsizes"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+              </div> 
+            </ng-template>
+          </ngx-datatable-column> 
   
-          <div class="text-center">
-            <div class="row">
-              <div class="col-12 p0 m0">
-  
-  <!-- <div *ngIf="registroroleperson.id_rol== '8'"> -->
-              <button
-                (click)="borrarRegistro(row, row.id_defcon)"
-                class="btn btn-warning botonsizes"
-              >
-                <i class="fa fa-trash"></i>
-              </button>
-  <!-- </div>  -->
-  
-  
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ngx-datatable-column>
-      
 
         </ngx-datatable>
       </div>
@@ -493,7 +485,7 @@
           <div class="row">
             <div class="col-md-6 mb-2">
                 <label for="defcon_estado">Estado</label>
-<select  name="defcon_estado"  formControlName="defcon_estado" >
+<select  name="defcon_estado" class="form-control" formControlName="defcon_estado" >
  <option value="OPEN">OPEN</option>
  <option value="CLOSED">CLOSED</option>
 </select>

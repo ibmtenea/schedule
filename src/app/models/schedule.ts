@@ -10,6 +10,7 @@ export class Schedule {
     public pendi_analisis  : string;
     public pendi_ultiactual: string;
     public pendi_owner     : string;
+    public pendi_file: any;
 
 }
 

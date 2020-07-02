@@ -93,10 +93,10 @@ export class CriticasComponent implements OnInit {
     /**
     * recibimos el listado
     */
-    this.incidenciasServicio.getListadoCriticas(data => {
-      this.temp = [...data];
-      this.rows = data;
-    });
+    // this.incidenciasServicio.getListadoCriticas(data => {
+    //   this.temp = [...data];
+    //   this.rows = data;
+    // });
 
   }
 

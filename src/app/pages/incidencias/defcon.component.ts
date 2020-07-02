@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { IncidenciasService } from '../../services/incidencias.service';
 import {NgbModal, ModalDismissReasons, NgbModalOptions, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { DataserviceService } from 'src/app/services/dataservice.service';
+import { Personas } from 'src/app/models/personas';
 
 @Component({
   selector: 'app-defcon',
@@ -14,6 +16,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class DefconComponent implements OnInit {
 
+  user:Personas = new Personas();
   closeResult: string;
   modalOptions:NgbModalOptions;
   final: Observable<Object>;
@@ -51,14 +54,15 @@ export class DefconComponent implements OnInit {
   isSubmittedTurno = false;
   model: NgbDateStruct;
   placement = 'bottom';
-
+  datosborrado: string;
   //click fuera del input
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    this.ngOnInit();
-  }
- 
-  constructor(private fb: FormBuilder,private modalService: NgbModal,private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
+    //click fuera del input
+    @HostListener('document:click', ['$event'])
+    clickout(event) {
+      this.ngOnInit();
+    }
+  
+  constructor( private dataService: DataserviceService,private fb: FormBuilder,private modalService: NgbModal,private incidenciasServicio: IncidenciasService,private translate: TranslateService) { 
     translate.get('Total', { value: 'eeeeeeeeee' })
     .subscribe((res: string) => this.my_messages.totalMessage = res);
     translate.get('No hay resultados para mostrar', { value: '' })
@@ -97,18 +101,23 @@ export class DefconComponent implements OnInit {
 
 
   ngOnInit(){
-    /**
-    * recibimos el listado
-    */
-    this.incidenciasServicio.getListado(data => {
-      this.temp = [...data];
-      this.rows = data;
-    });
+    // /**
+    // * recibimos el listado
+    // */
+    // this.incidenciasServicio.getListado(data => {
+    //   this.temp = [...data];
+    //   this.rows = data;
+    // });
+this.getUsuario();
 
-    
+  }
 
-
-
+  getUsuario(){   
+    const id_persona = localStorage.getItem('id_persona'); 
+    this.dataService.getUserId ( id_persona )
+      .subscribe( (resp:Personas) => {
+        this.user = resp;
+      });
   }
 
   /**
@@ -212,34 +221,29 @@ export class DefconComponent implements OnInit {
     }
 
 
+    borrarRegistro(registro: any, id_defcon:string) {
 
-     //eliminar registro      
-  borrarRegistro(registro: any, id_defcon) {
+      Swal.fire({
+        title: `¿Desea borrar el registro`,
+        text: 'Confirme si desea borrar el registro',
+        icon: 'question',
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then(respuesta => {
+        if (respuesta.value) {
 
-    Swal.fire({
-      title: `¿Desea borrar el registro?`,
-      text: 'Confirme si desea borrar el registro',
-      icon: 'question',
-      showConfirmButton: true,
-      showCancelButton: true
-
-    }).then(respuesta => {
-      if (respuesta.value) {
-
-        this.datosborradoDef = JSON.stringify({ "id_defcon": registro.id_defcon });
-        this.incidenciasServicio.deleteDefcon(this.datosborradoDef).subscribe();
-
-        Swal.fire({
-          title: 'registro eliminado',
-          text: 'Registro eliminado',
-          icon: 'success',
-          showConfirmButton: false
-        })
-         , this.recarga();
-
-      }
-    });
-  }
+          this.datosborrado = JSON.stringify({ "id_defcon": id_defcon });
+          this.incidenciasServicio.deleteDefcon(this.datosborrado).subscribe();
+          Swal.fire({
+            title: 'BORRADO',
+            text: 'Registro eliminado',
+            icon: 'success',
+            showConfirmButton: false
+          })
+          , this.recarga();
+        }
+      });
+    }
 
 
 

@@ -49,7 +49,9 @@ export class IncidenciasService {
    
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/sodi_borrar_imagen.php`,datosborrado);
   }
+
   deleteDefcon(datosborradoDef){
+    
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/delete_defcon.php`,datosborradoDef);
   }
 

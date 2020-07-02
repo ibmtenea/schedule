@@ -13,13 +13,18 @@
            <tr>
              <td class="pt-5 pb-5">
                
-                 <div class="block" *ngIf="ficherosfile.cage_file===null">
+                 <div class="block" *ngIf="ficherosfile.filero===''">
                    No existe archivo.
                  </div> 
-                 <div class="block" *ngIf="ficherosfile.cage_file!=null">
+                 <div class="block" *ngIf="ficherosfile.filero!=''">
                   
      <h4>Archivo de datos</h4>
-     <h5><a href="http://schedule.ibmes.site:80/s/uploads/{{ficherosfile.cage_file}}" target="_blank">{{ficherosfile.cage_name}}</a></h5>
+     <h5 >
+       
+     <a href="http://schedule.ibmes.site:80/s/uploads/{{ficherosfile.cage_file}}" target="_blank">
+
+      {{ficherosfile.cage_name}}
+    </a></h5>
             
        
 
@@ -42,6 +47,8 @@
       <div class="col-md-4 text-center mt-5">
 
         <form [formGroup]="formFileUp"  novalidate>
+          <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
+
           <input type="hidden" class="form-control"  name="clave_comun"  formControlName="clave_comun"  />
           <label>Nombre del fichero</label>
           <input type="text" class="form-control mb-3"  name="cage_name"  formControlName="cage_name"  />

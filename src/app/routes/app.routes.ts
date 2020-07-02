@@ -23,6 +23,8 @@ import { ReporteglobalComponent } from '../pages/reporteglobal/reporteglobal.com
 import { ListaPersonasMailComponent } from '../pages/administracion/listapersonasmail.component';
 import { DetallePersonaMailAdminComponent } from '../pages/administracion/detallepersonamailadmin.component';
 import { AyudaComponent } from '../pages/ayuda.component';
+import { InformeComponent } from '../pages/informe/informe.component';
+
 
 
 
@@ -34,7 +36,9 @@ import { AyudaComponent } from '../pages/ayuda.component';
 export const routes: Routes = [
 
   { path: 'home' , component: HomeComponent, canActivate: [ AuthguardGuard ] },
+  { path: 'informe' , component: InformeComponent, canActivate: [ AuthguardGuard ] },
 
+  
   { path: 'ayuda' , component: AyudaComponent, canActivate: [ AuthguardGuard ] },
   { path: 'incidencias' , component: IncidenciasComponent, canActivate: [ AuthguardGuard ] },
   { path: 'cambios' , component: CambiosComponent, canActivate: [ AuthguardGuard ] },
