@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 
 
+
 html, body { height: 100%; }
 
 
@@ -343,10 +344,32 @@ h3{color:#c18c5d;font-size:19px;}
 .fileContainerPequ [type=file] {
   cursor: pointer;
 }
+.datoevent{font-size:18px;color:#000;}
+.tituloevent{font-weight:bold;font-size:20px;color:#000;}
+.smaol{font-size:12px;}
+.estiltextareas{min-height:650px}
+.estiltextareas2{min-height:500px}
+.profile-pic {
+	position: relative;
+	display: inline-block;
+}
 
+.profile-pic:hover .edit {
+	display: block;
+}
 
+.edit {
+	padding-top: 7px;	
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
 
-
+.edit a {
+	color: #000;
+}
 .listadisco{list-style:disc;margin-left:25px; padding-bottom:8px;border-bottom:1px solid #cccccc;margin-bottom:15px;}
 .btn-peligro{background-color:transparent;color:rgb(212, 181, 187) !important;border:0px;}
 .btn-peligro:hover{background-color:transparent;color:rgb(161, 17, 38) !important;border:0px;}

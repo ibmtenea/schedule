@@ -33,7 +33,7 @@ export class ReporteglobalComponent implements OnInit {
           respuesta => {
             if (respuesta.value) {
 
-              window.open(`http://schedule.ibmes.site:80/s/ajax/send_reporte_global.php?x474rtrfdg4584gt88t44g4=${clave_comun}`, "_blank");
+              window.open(`http://schedule.ibmes.site:80/ss/ajax/send_reporte_global.php?x474rtrfdg4584gt88t44g4=${clave_comun}`, "_blank");
 
             }
           }

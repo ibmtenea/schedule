@@ -1,0 +1,182 @@
+
+  
+  
+  
+  
+    <app-header></app-header>
+
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 mt-5">
+                <div class="tabbable" id="tabs-850675">
+            <app-botonestab></app-botonestab>			
+            <div class="tab-content p-5">
+              <div class="tab-pane active" id="panel-813817">
+                
+                
+                <div class='row'>
+
+                  <!-- <div class='col-md-3'>
+                  
+                     <div class='demo-app-sidebar-section'>
+                      <h3>Todos los eventos ({{currentEvents.length}})</h3>
+                      <ul class="mt-5">
+                        <li class="smaol" *ngFor='let event of currentEvents;let i = index'>
+                        <div>
+                          <b>{{event.startStr | date:'dd-mm-yyyy H:mm' }}</b>&nbsp;{{event.title}}
+                        </div>  
+                        </li>
+                      </ul>
+                    </div> 
+                  </div> -->
+                
+                  <div class='col-md-12'>
+                    <full-calendar
+                  
+                      *ngIf='calendarVisible'
+                      [options]='calendarOptions'
+                    ></full-calendar>
+
+
+      
+
+                    <!-- <ng-template #modal let-modal class="modal-lg">
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Planning</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12 mb-2 text-right">  
+                                 <button *ngIf="user.id_rol=='8'"
+                                  (click)="borrarRegistro(row, i)"
+                                  class="btn">Eliminar este evento <i class="fa fa-trash"></i>
+                                </button> 
+                        </div>
+                        </div>
+                      <form [formGroup]="ModalForm" (ngSubmit)="onSubmit()" class="formulario" novalidate>
+           
+                    <input type="hidden" class="form-control"  name="id"  formControlName="id"  />
+                    
+                    
+                            <div class="row">
+                              <div class="col-md-12 mb-2 fechainput">
+                                <div class="form-group"><label for="title">Nombre del evento o registro {{user.id_rol}}</label>
+                                  <div class="input-group" *ngIf="user.id_rol=='8'">
+                                    <input type="text" class="form-control"  name="title"  formControlName="title"  />
+                                  </div>
+                                  <div  *ngIf="user.id_rol!='8'">
+                                    <h4 class="tituloevent">{{ detalle.title }}</h4>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <div class="row">
+                              <div class="col-md-4 mb-2 fechainput">
+                                <div class="form-group"><label for="start">Inicio</label>
+                                  <div class="input-group"  *ngIf="user.id_rol=='8'">
+                                    <input type="text" class="form-control"  name="start"  formControlName="start"  />
+                                  </div>
+                                  <div  *ngIf="user.id_rol!='8'">
+                                    <p class="datoevent">{{ detalle.start }} {{ detalle.hora_inicio }}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-2 mb-2 fechainput">
+                                <div class="form-group"><label for="hora_inicio">Hora inicio</label>
+                                  <div class="input-group"  *ngIf="user.id_rol=='8'">
+                                    <input type="text" placeholder="00:00"  pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"  class="form-control"  name="hora_inicio"  formControlName="hora_inicio"  />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4 mb-2 fechainput">
+                                <div class="form-group"><label for="end">Fin</label>
+                                  <div class="input-group"  *ngIf="user.id_rol=='8'">
+                                    <input type="text" class="form-control"  name="end"  formControlName="end"  />
+                                  </div>
+                                  <div  *ngIf="user.id_rol!='8'">
+                                    <p class="datoevent">{{ detalle.start }} {{ detalle.hora_fin }}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            
+                            <div class="col-md-2 mb-2 fechainput">
+                              <div class="form-group"><label for="hora_fin">Hora fin</label>
+                                <div class="input-group"  *ngIf="user.id_rol=='8'">
+                                  <input type="text" placeholder="00:00" pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" class="form-control"  name="hora_fin"  formControlName="hora_fin"  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
+
+                            <div class="row">
+                              <div class="col-md-12 mb-2 fechainput">
+                                <div class="form-group"><label for="eventos_descripcion">Descripción del evento o registro</label>
+                                  <div class="input-group"  *ngIf="user.id_rol=='8'">
+                                    <div   class="estiltextareas2">
+                                    <angular-editor
+                                    formControlName="eventos_descripcion"
+                                    name="eventos_descripcion"
+                                  
+                                    [config]="config"
+                                  
+                                    ></angular-editor>           
+                                 
+                                  </div>
+                                  </div>
+
+                                  <div  *ngIf="user.id_rol!='8'">
+                                    {{ detalle.eventos_descripcion }}
+                                  </div>
+
+
+
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <p class="text-center">
+                              <button type="submit"  [disabled]="!ModalForm.valid" class="btn btn-primary">Guardar</button>&nbsp;
+                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+
+                            </p>  
+                      </form> 
+                    
+                      </div>
+
+                    </ng-template> -->
+                  
+                  </div>
+
+
+
+
+
+                
+                </div>
+  
+       
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<app-footer></app-footer>
+  

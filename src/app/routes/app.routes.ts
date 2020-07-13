@@ -26,6 +26,9 @@ import { AyudaComponent } from '../pages/ayuda.component';
 import { InformeComponent } from '../pages/informe/informe.component';
 
 
+import { PlanningComponent } from '../pages/planning/planning.component';
+
+
 
 
 
@@ -37,8 +40,9 @@ export const routes: Routes = [
 
   { path: 'home' , component: HomeComponent, canActivate: [ AuthguardGuard ] },
   { path: 'informe' , component: InformeComponent, canActivate: [ AuthguardGuard ] },
+  { path: 'planning' , component: PlanningComponent, canActivate: [ AuthguardGuard ] },
 
-  
+ 
   { path: 'ayuda' , component: AyudaComponent, canActivate: [ AuthguardGuard ] },
   { path: 'incidencias' , component: IncidenciasComponent, canActivate: [ AuthguardGuard ] },
   { path: 'cambios' , component: CambiosComponent, canActivate: [ AuthguardGuard ] },

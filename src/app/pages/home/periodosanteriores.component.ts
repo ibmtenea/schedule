@@ -80,25 +80,34 @@ export class PeriodosanterioresComponent implements OnInit {
     .subscribe((respuesta: ImagenCapex) => {
       this.imagenes = respuesta;
       const imagenExiste = this.imagenes.capex_imagen;
-
+  
         if(imagenExiste!=""){
-            this.homeServicio.updateRegistroCapexFoto(this.datosFotoCapex).subscribe();
-            Swal.fire({
-              text: 'Foto actualizada',
-              icon: 'success',
-              showConfirmButton: false
-            })
-        //   , this.recarga()
-            ;
+
+
+
+          this.homeServicio.updateRegistroCapexFoto(this.datosFotoCapex).subscribe();
+          Swal.fire({
+            text: 'Foto actualizada, un momento, por favor...',
+            icon: 'success',
+            timer: 7000,
+            allowOutsideClick: false,
+            showConfirmButton: false      
+          }).then(function() {
+            location.reload();
+          });
+
+
         } else {
             this.homeServicio.altaRegistroCapexFoto(this.datosFotoCapex).subscribe();
             Swal.fire({
-              text: 'Foto añadida',
+              text: 'Foto añadida, un momento, por favor...',
               icon: 'success',
-              showConfirmButton: false
-            })
-          //, this.recarga()
-            ;
+              timer: 7000,
+              allowOutsideClick: false,
+              showConfirmButton: false      
+            }).then(function() {
+              location.reload();
+            });
         }
 
         });

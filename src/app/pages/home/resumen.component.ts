@@ -8,17 +8,19 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-
+import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.component.html'
   
 })
 export class ResumenComponent implements OnInit {
-
- 
+  public Editor = ClassicEditor;
+  closeResult: string;
+  modalOptions:NgbModalOptions;
   resumenes: ResumenBatch = new ResumenBatch();
-  
+  isSubmittedTurno = false;
   editing = {};
   my_messages = {
     'emptyMessage': '',
@@ -32,46 +34,35 @@ export class ResumenComponent implements OnInit {
   id_esre: any;
 
     //click fuera del input
-    @HostListener('document:click', ['$event'])
-    clickout(event) {
-      this.ngOnInit();
-    }
+    // @HostListener('document:click', ['$event'])
+    // clickout(event) {
+    //   this.ngOnInit();
+    // }
   
 
-  // issueForm = new FormGroup({
-  //   id_issue: new FormControl(''),
-  //   id_proyecto: new FormControl(''),
-  //   id_estado: new FormControl(''),
-  //   id_tipo: new FormControl(''),
-  //   id_prioridad: new FormControl(''),
-  //   issue_repo_git: new FormControl(''),
-  //   issue_asignada: new FormControl(''),
-  //   issue_creada: new FormControl(''),
-  //   issue_fecha_creacion: new FormControl(''),
-  //   issue_fecha_modificacion: new FormControl(''),
-  //   issue_fecha_finalizacion: new FormControl(''),
-  //   issue_fecha_objetivo_inicio: new FormControl(''),
-  //   issue_fecha_objetivo_final: new FormControl(''),
-  //   issue_fecha_despliegue: new FormControl(''),
-  //   issue_fecha_reabierta: new FormControl(''),
-  //   issue_titulo: new FormControl(''),
-  //   issue_horas_estimadas: new FormControl(''),
-  //   issue_descripcion: new FormControl('')
-  // });
+    DefconFormEdicion1 = new FormGroup({
+      esre_controles_batch:new FormControl(''),
+      clave_comun:new FormControl('')
+    });
+    DefconFormEdicion2 = new FormGroup({
+      esre_incidencias_resueltas:new FormControl(''),
+      clave_comun:new FormControl('')
+    });
+    DefconFormEdicion3 = new FormGroup({
+      esre_incidencias_pendientes:new FormControl(''),
+      clave_comun:new FormControl('')
+    });
 
   
-
-
 
   config: AngularEditorConfig = {
     editable: true,
-    spellcheck: true,
-    height: '15rem',
+    spellcheck: false,
+    height: '35rem',
     width: '760px',
-    minHeight: '5rem',
+    minHeight: '35rem',
     placeholder: 'Escriba el texto aquí...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
+
     toolbarHiddenButtons: [
       ['insertVideo',
         'insertHorizontalRule',
@@ -95,9 +86,16 @@ export class ResumenComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private el: ElementRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NgbModal
 
   ) {
+
+    this.modalOptions = {
+      backdrop:'static',
+      backdropClass:'customBackdrop',
+      size: 'lg' 
+    }
 
 
 
@@ -122,10 +120,41 @@ export class ResumenComponent implements OnInit {
       this.homeService.getResumenBactch()
         .subscribe((resp: ResumenBatch) => {
           this.resumenes = resp;
-  
+            this.DefconFormEdicion1 = this.fb.group({
+              esre_controles_batch:[this.resumenes.esre_controles_batch],
+              id_esre: [this.resumenes.id_esre],
+            });
+            this.DefconFormEdicion2 = this.fb.group({
+              esre_incidencias_resueltas:[this.resumenes.esre_incidencias_resueltas],
+              id_esre: [this.resumenes.id_esre],
+            });
+            this.DefconFormEdicion3 = this.fb.group({
+              esre_incidencias_pendientes:[this.resumenes.esre_incidencias_pendientes],
+              id_esre: [this.resumenes.id_esre],
+            });
         });
   }
 
+
+
+    
+  open(tiket) {
+    this.modalService.open(tiket, this.modalOptions).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 
 
 
@@ -177,20 +206,44 @@ export class ResumenComponent implements OnInit {
  /**
    * metodo que actualiza los campos
    */
-
-  updateValue(id_esre,event, cell, valor) {
-    this.editing[cell] = false;
-    this.campo = cell;
-    this.valor = valor;
-    this.id_esre = id_esre;
-    this.ever =  this.campo,  this.valor,this.id_esre;
-    this.datosResumenEstado = JSON.stringify({ "campo": this.campo, "valor": this.valor ,"id_esre": this.id_esre});
-      this.homeService.updateResumenEstado(this.datosResumenEstado).subscribe(
-        datos => {
-         this.ngOnInit();
-        });
-   
+  updateValue1(){
+    this.isSubmittedTurno = true;
+    const valordefcon = JSON.stringify(this.DefconFormEdicion1.value);
+    this.homeService.updateResumenEstado1( valordefcon ).subscribe( respuesta => {
+      Swal.fire({
+        title: 'Registro Modificado',
+        text: 'Se ha modificado el registro',
+        icon: 'success',  
+        showConfirmButton : false
+      }), this.recarga();
+    });   
   }
+  updateValue2(){
+    this.isSubmittedTurno = true;
+    const valordefcon = JSON.stringify(this.DefconFormEdicion2.value);
+    this.homeService.updateResumenEstado2( valordefcon ).subscribe( respuesta => {
+      Swal.fire({
+        title: 'Registro Modificado',
+        text: 'Se ha modificado el registro',
+        icon: 'success',  
+        showConfirmButton : false
+      }), this.recarga();
+    });   
+  }
+  updateValue3(){
+    this.isSubmittedTurno = true;
+    const valordefcon = JSON.stringify(this.DefconFormEdicion3.value);
+    this.homeService.updateResumenEstado3( valordefcon ).subscribe( respuesta => {
+      Swal.fire({
+        title: 'Registro Modificado',
+        text: 'Se ha modificado el registro',
+        icon: 'success',  
+        showConfirmButton : false
+      }), this.recarga();
+    });   
+  }
+
+
 
 
 

@@ -30,7 +30,7 @@ export class AdminService {
 
     return this.httpClient.get(`${ this.PHP_API_SERVER}/ajax/personas_detalle.php?id_persona=${ id_persona }`);
   }
-  
+   
   guardarNuevancidencia(incidenciaForm){ 
 
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/incidencia_crear.php`, JSON.stringify(incidenciaForm));
@@ -39,7 +39,7 @@ export class AdminService {
   crearNuevoInforme() {
    const id_persona = localStorage.getItem('id_persona');
    console.log(id_persona);
-   return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_informe.php`, id_persona);
+   return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/crear_informe.php`, id_persona,{ responseType: 'text' });
   }
 
   actualizarRegistro(datoregistro) {

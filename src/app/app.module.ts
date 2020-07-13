@@ -86,6 +86,30 @@ import { CambiosGenericaComponent } from './pages/cambios/cambiosgenerica.compon
 import { SanitizeHtmlDirective } from './sanitize-html.directive';
 import { InformeComponent } from './pages/informe/informe.component';
 
+
+
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MonthModule } from './pages/calendario/month/month.module';
+import { PlanningComponent } from './pages/planning/planning.component';
+
+
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+])
+
 //import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
@@ -148,11 +172,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     AyudaComponent,
     CambiosGenericaComponent,
     SanitizeHtmlDirective,
-    InformeComponent
+    InformeComponent,
+    PlanningComponent
     
   ],
   imports: [
-   
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     BrowserModule,
     NgxSpinnerModule,
     RocketEditModule,
@@ -186,7 +216,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgbModule
+    NgbModule,
+    MonthModule,
+    FullCalendarModule
   ],
   exports: [
     RouterModule

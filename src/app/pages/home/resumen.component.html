@@ -9,88 +9,134 @@
     <div class="row">
         <div class="col-12 p-0 mt-5">
             <h3>Controles Batch</h3>
-            <div> 
-                 <span [innerHTML]="resumenes.esre_controles_batch" (dblclick)="editing[ '-esre_controles_batch'] = true;" *ngIf="!editing[ '-esre_controles_batch']">
-                   {{resumenes.esre_controles_batch}}
+            <div class="profile-pic">
+              <div class="edit">
+                <button class="btn btn-primary" title="edicion" (click)="open(edicion1)">
+                  <i class="fa fa-pencil fa-lg"></i>
+                </button>
+              </div>
+                <span [innerHTML]="resumenes.esre_controles_batch">
+                    {{resumenes.esre_controles_batch}}
                     <span class="text-muted2" *ngIf="resumenes.esre_controles_batch === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  </span>
-                
-                
-                
-                <textarea
-                  *ngIf="editing[ '-esre_controles_batch']"
-                  (clickOutside)="updateValue(resumenes.id_esre,$event, 'esre_controles_batch',resumenes.esre_controles_batch)"
-                  (clickOutside)="editing[ '-esre_controles_batch'] = false"
-                  [(ngModel)]="resumenes.esre_controles_batch" 
-                  class="form-control"
-                  [title]="resumenes.esre_controles_batch"
-                  rows="10"
-                  id="{{resumenes.clave_comun}}">
-                </textarea>
-
-
-
-
-            </div>  
+                </span>
+                <ng-template #edicion1 let-modal class="edicion1 modal-lg">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Controles Batch</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="DefconFormEdicion1" (ngSubmit)="updateValue1()" class="formulario" novalidate>
+                    <input type="hidden" name="id_esre"  formControlName="id_esre" />
+                        <div   class="estiltextareas">
+                        <angular-editor
+                        formControlName="esre_controles_batch"
+                        name="esre_controles_batch"
+                        class="form-control"
+                        [config]="config"
+                        [title]="resumenes.esre_controles_batch"
+                        rows="30"></angular-editor>  
+                        </div>
+                    <p class="text-center"><button type="submit" 
+                      class="btn btn-primary">Guardar</button></p>  
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+                  </div>
+                </ng-template>
+            </div> 
             <hr class="mt-2 mb-2" />  
             <h3>Incidencias destacables resueltas</h3>
-            <div>
-                <span [innerHTML]="resumenes.esre_incidencias_resueltas"  (dblclick)="editing[ '-esre_incidencias_resueltas'] = true;" *ngIf="!editing[ '-esre_incidencias_resueltas']">
+            <div class="profile-pic">
+              <div class="edit">
+                <button class="btn btn-primary" title="edicion" (click)="open(edicion2)">
+                  <i class="fa fa-pencil fa-lg"></i>
+                </button>
+              </div>
+                <span [innerHTML]="resumenes.esre_incidencias_resueltas">
                     {{resumenes.esre_incidencias_resueltas}}
                     <span class="text-muted2" *ngIf="resumenes.esre_incidencias_resueltas === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  </span>
-                  <!-- <angular-editor
-                  *ngIf="editing[ '-esre_incidencias_resueltas']"
-                  (keyup.enter)="updateValue(resumenes.id_esre,$event, 'esre_incidencias_resueltas',resumenes.esre_incidencias_resueltas)"
-                  (clickOutside)="editing[ '-esre_incidencias_resueltas'] = false"
-                  [(ngModel)]="resumenes.esre_incidencias_resueltas" 
-                  [config]="config"
-                  [title]="resumenes.esre_incidencias_resueltas"
-                  id="{{resumenes.clave_comun}}">
-                </angular-editor> -->
-
-                <textarea
-                *ngIf="editing[ '-esre_incidencias_resueltas']"
-                (clickOutside)="updateValue(resumenes.id_esre,$event, 'esre_incidencias_resueltas',resumenes.esre_incidencias_resueltas)"
-                (clickOutside)="editing[ '-esre_incidencias_resueltas'] = false"
-                [(ngModel)]="resumenes.esre_incidencias_resueltas" 
-                class="form-control"
-                [title]="resumenes.esre_incidencias_resueltas"
-                rows="10"
-                id="{{resumenes.clave_comun}}">
-                </textarea>
-                
-
-
-            </div>            
+                </span>
+                <ng-template #edicion2 let-modal class="edicion2 modal-lg">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Controles Batch</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="DefconFormEdicion2" (ngSubmit)="updateValue2()" class="formulario" novalidate>
+                    <input type="hidden" name="id_esre"  formControlName="id_esre" />
+                        <div   class="estiltextareas">
+                        <angular-editor
+                        formControlName="esre_incidencias_resueltas"
+                        name="esre_incidencias_resueltas"
+                        class="form-control"
+                        [config]="config"
+                        [title]="resumenes.esre_incidencias_resueltas"
+                        rows="30"></angular-editor>  
+                        </div>
+                    <p class="text-center"><button type="submit" 
+                      class="btn btn-primary">Guardar</button></p>  
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+                  </div>
+                </ng-template>
+            </div>     
             <hr class="mt-2 mb-2" />  
             <h3>Incidencias destacables pendientes</h3>
-            <div>
-                <span [innerHTML]="resumenes.esre_incidencias_pendientes"  (dblclick)="editing[ '-esre_incidencias_pendientes'] = true;" *ngIf="!editing[ '-esre_incidencias_pendientes']">
+            <div class="profile-pic">
+              <div class="edit">
+                <button class="btn btn-primary" title="edicion" (click)="open(edicion3)">
+                  <i class="fa fa-pencil fa-lg"></i>
+                </button>
+              </div>
+                <span [innerHTML]="resumenes.esre_incidencias_pendientes">
                     {{resumenes.esre_incidencias_pendientes}}
                     <span class="text-muted2" *ngIf="resumenes.esre_incidencias_pendientes === null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  </span>
-                  <!-- <angular-editor
-                  *ngIf="editing[ '-esre_incidencias_pendientes']"
-                  (keyup.enter)="updateValue(resumenes.id_esre,$event, 'esre_incidencias_pendientes',resumenes.esre_incidencias_pendientes)"
-                  (clickOutside)="editing[ '-esre_incidencias_pendientes'] = false"
-                  [(ngModel)]="resumenes.esre_incidencias_pendientes" 
-                  [config]="config"
-                  [title]="resumenes.esre_incidencias_pendientes"
-                  id="{{resumenes.clave_comun}}">
-                </angular-editor> -->
-                <textarea
-*ngIf="editing[ '-esre_incidencias_pendientes']"
-(clickOutside)="updateValue(resumenes.id_esre,$event, 'esre_incidencias_pendientes',resumenes.esre_incidencias_pendientes)"
-(clickOutside)="editing[ '-esre_incidencias_pendientes'] = false"
-[(ngModel)]="resumenes.esre_incidencias_pendientes" 
-class="form-control"
-[title]="resumenes.esre_incidencias_pendientes"
-rows="10"
-id="{{resumenes.clave_comun}}">
-</textarea>
+                </span>
+                <ng-template #edicion3 let-modal class="edicion3 modal-lg">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Controles Batch</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="DefconFormEdicion3" (ngSubmit)="updateValue3()" class="formulario" novalidate>
+                    <input type="hidden" name="id_esre"  formControlName="id_esre" />
+                        <div   class="estiltextareas">
+                        <angular-editor
+                        formControlName="esre_incidencias_pendientes"
+                        name="esre_incidencias_pendientes"
+                        class="form-control"
+                        [config]="config"
+                        [title]="resumenes.esre_incidencias_pendientes"
+                        rows="30"></angular-editor>  
+                        </div>
+                    <p class="text-center"><button type="submit" 
+                      class="btn btn-primary">Guardar</button></p>  
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+                  </div>
+                </ng-template>
+            </div> 
+            
+            
 
-            </div>  
+
+
+
+
+
+
+
         </div>
     </div>
 </div>

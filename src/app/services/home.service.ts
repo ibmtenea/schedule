@@ -234,11 +234,19 @@ export class HomeService {
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_capex.php`,datosFotoCapex,{ responseType: 'text' });
   }
 
-  updateResumenEstado(datosResumenEstado){  
-    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_estado_resumen.php`,datosResumenEstado);
+  updateResumenEstado1(valordefcon){  
+    console.log(valordefcon);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_estado_resumen1.php`,valordefcon);
   }
-
-
+  updateResumenEstado2(valordefcon){  
+    console.log(valordefcon);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_estado_resumen2.php`,valordefcon);
+  }
+  updateResumenEstado3(valordefcon){  
+    console.log(valordefcon);
+    return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_estado_resumen3.php`,valordefcon);
+  }
+  
   modiRegistroBacth(datos){
     return this.httpClient.post(`${this.PHP_API_SERVER}/ajax/update_batch1.php`,datos);
   }
