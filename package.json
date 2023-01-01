@@ -55,7 +55,7 @@
     "jspdf": "^1.5.3",
     "maxlength-contenteditable": "^1.0.1",
     "ng-click-outside": "^6.0.0",
-    "ng2-pdf-viewer": "^3.0.8",
+    "ng2-pdf-viewer": "^9.1.3",
     "ngx-datatable": "^1.0.3",
     "ngx-lightbox": "^1.2.0",
     "ngx-socket-io": "^3.2.0",
@@ -69,7 +69,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.10",
+    "@angular-devkit/build-angular": "^15.0.4",
     "@angular/cli": "~9.0.7",
     "@angular/compiler-cli": "~9.0.7",
     "@angular/language-service": "~9.0.7",
